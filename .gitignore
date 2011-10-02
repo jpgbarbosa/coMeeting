@@ -1,0 +1,6 @@
+coMeeting/.bundle
+coMeeting/db/*.sqlite3
+coMeeting/log/*.log
+coMeeting/tmp/
+coMeeting/.sass-cache/
+coMeeting/.git
