@@ -1,4 +1,7 @@
 class Meeting < ActiveRecord::Base
+
+  serialize :topics
+
   validates :subject, :presence => true
   validates :local, :presence => true
   validates :date, :presence => true
