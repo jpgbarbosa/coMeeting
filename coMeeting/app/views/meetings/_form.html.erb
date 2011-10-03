@@ -1,17 +1,43 @@
 <%= form_for(@meeting) do |f| %>
-  <% if @meeting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+    <% if @meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
-      <ul>
-      <% @meeting.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @meeting.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :subject %>
+      <br/>
+      <%= f.text_field :subject %>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.label :date %>
+      <br/>
+      <%= f.text_field :date %>
+    </div>
+    <div class="field">
+      <%= f.label :local %>
+      <br/>
+      <%= f.text_field :local %>
+    </div>
+    <div class="field">
+      <%= f.label :topics %>
+      <br/>
+      <%= f.text_field :topics %>
+      <br/>
+      <input type="hidden" value="0" id="theValue" />
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <p><a href="javascript:" onclick="addElement();">Add Some Elements</a></p>
+
+      <div id="myDiv"> </div>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>
