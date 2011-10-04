@@ -23,8 +23,7 @@
     </div>
     <div class="field">
       <%= f.label :duration %>
-      <br/>
-      <%= f.text_field :duration %>
+      <%=select_tag "textTag",options_for_select(%w{ undefined 30m 1h 1h30m 2h 2h30m 3h 3h30m 4h 4h30m 5h }) %>
     </div>
     <div class="field">
       <%= f.label :local %>
@@ -41,7 +40,19 @@
         </div>
       </div>
       <a href="#" onclick="addElement();">+</a>
+
     </div>
+    <div class="field">
+        <%= f.label :Email %>
+        <br/>
+        <%= f.email_field :admin %>
+    </div>
+    <div class="field">
+        <%= f.label :Extra_Information %>
+        <br/>
+        <%= f.email_field :extra_info %>
+    </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>
