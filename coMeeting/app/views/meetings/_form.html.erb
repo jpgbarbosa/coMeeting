@@ -22,20 +22,25 @@
       <%= f.text_field :date %>
     </div>
     <div class="field">
+      <%= f.label :duration %>
+      <br/>
+      <%= f.text_field :duration %>
+    </div>
+    <div class="field">
       <%= f.label :local %>
       <br/>
       <%= f.text_field :local %>
     </div>
     <div class="field">
+      <input type="hidden" value="0" id="theValue" />
+      <div id="myDiv">
       <%= f.label :topics %>
       <br/>
-      <%= f.text_field :topics %>
-      <br/>
-      <input type="hidden" value="0" id="theValue" />
-      <div id="myDiv"> </div>
-      <a href="javascript:" onclick="addElement();">+</a>
-
-
+        <div id="my0Div">
+            <input type="text" size="30" id="field0 " />  <a href="#" onclick="removeElement(my0Div)"> - </a>
+        </div>
+      </div>
+      <a href="#" onclick="addElement();">+</a>
     </div>
     <div class="actions">
       <%= f.submit %>

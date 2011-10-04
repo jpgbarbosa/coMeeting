@@ -1,5 +1,4 @@
 	function addElement() {
-
         var ni = document.getElementById('myDiv');
         var numi = document.getElementById('theValue');
         var num = (document.getElementById('theValue').value - 1) + 2;
@@ -17,6 +16,13 @@
 
         var d = document.getElementById('myDiv');
         var olddiv = document.getElementById(divNum.id);
-        d.removeChild(olddiv);
+        if(d.childElementCount > 3){
+            d.removeChild(olddiv);
+        }
+        else{
+            olddiv.children[0].value ="";
+        }
+
+
 
     }
