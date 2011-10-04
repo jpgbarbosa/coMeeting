@@ -9,20 +9,16 @@
 		<meta name="author" content="coMeeting" />
 
 		<title><%= get_title %></title>
-	  
-		<link href="/stylesheets/theme.css" rel="stylesheet" type="text/css" />
-		<script src="/javascripts/cookies.js"></script>
 		
-		<!--<%= stylesheet_link_tag :all %>-->
-		<!--<%= javascript_include_tag :defaults %>-->
+		<%= stylesheet_link_tag :theme %>
+		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 	</head>
 
 	<body>
 		<div id="container">
 			<div id="header">
-				<a href="/"><img class="floatLeft" src="/images/logo-small.jpg"/></a>
-				<!--<%= link_to image_tag("logo-small.jpg"), {:action => 'index', :controller => 'home'}, {:class => 'floatLeft'} %>-->
+				<a href="/"><img class="floatLeft" src="/assets/logo-small.jpg"/></a>
 				<h4>coMeeting</h4>
 			</div>
 			<div id="body">
