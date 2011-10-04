@@ -41,13 +41,14 @@ container {
 	background-color:#413839;
 }
 
-.content {
-	padding:15px;
+.inner_wrapper {
+	padding-left:10px;
+	padding-top:5px;
 }
 
 .resize {
 	width: auto;
-	height : 200px;
+	height: 200px;
 }
 
 .floatLeft {
