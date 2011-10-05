@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004194133) do
+ActiveRecord::Schema.define(:version => 20111005190417) do
 
   create_table "meetings", :force => true do |t|
     t.string   "subject"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20111004194133) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "duration"
+    t.string   "extra_info"
     t.string   "meeting_date"
   end
 

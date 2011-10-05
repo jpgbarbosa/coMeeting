@@ -17,10 +17,8 @@ html, body {
 }
 
 #content {
+	padding-top:10px;
 	padding-bottom:80px;	/* Height of the footer plus some extra space */
-	padding-left:10px;
-	padding-right:10px;
-	background-color:#FFFFFF;
 }
 
 #footer {
@@ -45,8 +43,7 @@ a:link {
 	color:#FFFFFF;
 }
 #footer a:hover {
-	color:#FFFFFF;
-	background-color:#413839;
+	color:#909090;
 }
 
 .resize {
