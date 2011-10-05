@@ -13,7 +13,7 @@ html, body {
 }
 #body {
 	padding:15px;
-	padding-bottom:70px;   /* Height of the footer */
+	padding-bottom:90px;   /* Height of the footer */
 }
 #footer {
 	position:absolute;

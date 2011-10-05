@@ -1,17 +1,17 @@
 <%= form_for(@meeting) do |f| %>
-    <% if @meeting.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+        <% if @meeting.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
-          <ul>
-            <% @meeting.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+              <ul>
+                <% @meeting.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
-    <div class="field">
+    <div class="field" >
       <%= f.label :subject %>
       <br/>
       <%= f.text_field :subject %>
@@ -19,11 +19,21 @@
     <div class="field">
       <%= f.label :date %>
       <br/>
-      <input class="inputDate" id="inputDate" value="<%= @current_date %>" />
+      <!--<%= f.text_field :date, :value => @current_date %>-->
+      <input id="meeting_date" type="text" size="30" value="<%=@current_date %>"/>
+      <p id="date"></p>
+        <script>
+        $('#meeting_date').keyup(function() {
+            $('#date').DatePickerSetDate($('#meeting_date').val(), true);
+        });
+
+      </script>
     </div>
     <div class="field">
       <%= f.label :duration %>
-      <%=select_tag "textTag",options_for_select(%w{ undefined 30m 1h 1h30m 2h 2h30m 3h 3h30m 4h 4h30m 5h }) %>
+      <br/>
+      <!--<%=select_tag "textTag",options_for_select(%w{ undefined 30m 1h 1h30m 2h 2h30m 3h 3h30m 4h 4h30m 5h }) %>-->
+      <%= f.text_field :duration %>
     </div>
     <div class="field">
       <%= f.label :local %>
@@ -36,15 +46,15 @@
 			<%= f.label :topics %>
 			<br/>
 			<div id="my0Div">
-				<input type="text" size="30" id="field0 " />  <a href="#" onclick="removeElement(my0Div); return false;"> - </a><p></p>
+				<%=f.text_field :topics %>  <a href="#" onclick=" return removeElement(my0Div);"> - </a><p></p>
 			</div>
 		</div>
-		<a href="javascript:void(0)" onclick="addElement();">+</a>
+		<a href="#" onclick="return addElement();">+</a>
     </div>
     <div class="field">
         <%= f.label :Extra_Information %>
         <br/>
-        <%= f.email_field :extra_info %>
+        <%= f.text_field :extra_info %>
     </div>
 	<div class="field">
         <%= f.label :Email %>

@@ -10,11 +10,12 @@
 		showTab.apply(currentTab.get(0));
 		$('#date').DatePicker({
 			flat: true,
-			date: '2008-07-31',
-			current: '2008-07-31',
+            format: 'd/m/Y',
+			date: $('#meeting_date').val(),
 			calendars: 1,
-			starts: 1,
-			view: 'years'
+            onChange: function(formated, dates){
+				$('#meeting_date').val(formated);
+			}
 		});
 		var now = new Date();
 		now.addDays(-10);
@@ -103,4 +104,5 @@
 	};
 	
 	EYE.register(initLayout, 'init');
+
 })(jQuery)
