@@ -19,7 +19,7 @@
     <div class="field">
       <%= f.label :date %>
       <br/>
-      <%= f.text_field :date %>
+      <input class="inputDate" id="inputDate" value="<%= @current_date %>" />
     </div>
     <div class="field">
       <%= f.label :duration %>
@@ -36,7 +36,7 @@
 			<%= f.label :topics %>
 			<br/>
 			<div id="my0Div">
-				<input type="text" size="30" id="field0 " />  <a href="javascript:void(0)" onclick="removeElement(my0Div); return false;"> - </a><p></p>
+				<input type="text" size="30" id="field0 " />  <a href="#" onclick="removeElement(my0Div); return false;"> - </a><p></p>
 			</div>
 		</div>
 		<a href="javascript:void(0)" onclick="addElement();">+</a>

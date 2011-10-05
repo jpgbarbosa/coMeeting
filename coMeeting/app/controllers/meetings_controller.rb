@@ -25,6 +25,9 @@ class MeetingsController < ApplicationController
   # GET /meetings/new.json
   def new
     @meeting = Meeting.new
+    time = Time.new
+
+    @current_date = time.day.to_s + '/' + time.month.to_s + '/' + time.year.to_s
 
     respond_to do |format|
       format.html # new.html.erb
