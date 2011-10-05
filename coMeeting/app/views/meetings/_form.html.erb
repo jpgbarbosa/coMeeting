@@ -17,10 +17,9 @@
       <%= f.text_field :subject %>
     </div>
     <div class="field">
-      <%= f.label :date %>
+      <%= f.label :meeting_date %>
       <br/>
-      <!--<%= f.text_field :date, :value => @current_date %>-->
-      <input id="meeting_date" type="text" size="30" value="<%=@current_date %>"/>
+      <input id="meeting_date" name="meeting[meeting_date]" type="text" size="30" value="<%=@current_date %>"/>
       <p id="date"></p>
         <script>
         $('#meeting_date').keyup(function() {

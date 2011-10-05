@@ -11,11 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004201343) do
+ActiveRecord::Schema.define(:version => 20111004194133) do
 
   create_table "meetings", :force => true do |t|
     t.string   "subject"
-    t.datetime "date"
     t.string   "local"
     t.string   "admin"
     t.string   "link_admin"
@@ -24,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20111004201343) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "duration"
-    t.string   "extra_info"
+    t.string   "meeting_date"
   end
 
   create_table "participations", :force => true do |t|
