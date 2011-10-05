@@ -7,9 +7,10 @@
         var divIdName = 'my' + num + 'Div';
         newdiv.setAttribute('id', divIdName);
 
-        newdiv.innerHTML = '<input type=\'text\' size=\'30\' id=\'field ' + num + '\' + ">  <a href=\'#\' onclick=\'removeElement(' + divIdName + ')\'> - </a>';
+        newdiv.innerHTML = '<input type=\'text\' size=\'30\' id=\'field ' + num + '\' + ">  <a href=\'#\' onclick=\'removeElement(' + divIdName + ')\'> - </a><p></p>';
         ni.appendChild(newdiv);
-
+		
+		window.scrollBy(0,42); // horizontal and vertical scroll increments
     }
 
     function removeElement(divNum) {
@@ -22,7 +23,4 @@
         else{
             olddiv.children[0].value ="";
         }
-
-
-
     }

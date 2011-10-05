@@ -30,27 +30,26 @@
       <br/>
       <%= f.text_field :local %>
     </div>
-    <div class="field">
-      <input type="hidden" value="0" id="theValue" />
-      <div id="myDiv">
-      <%= f.label :topics %>
-      <br/>
-        <div id="my0Div">
-            <input type="text" size="30" id="field0 " />  <a href="#" onclick="removeElement(my0Div)"> - </a>
-        </div>
-      </div>
-      <a href="#" onclick="addElement();">+</a>
-
-    </div>
-    <div class="field">
-        <%= f.label :Email %>
-        <br/>
-        <%= f.email_field :admin %>
+	<div class="field">
+		<input type="hidden" value="0" id="theValue" />
+		<div id="myDiv">
+			<%= f.label :topics %>
+			<br/>
+			<div id="my0Div">
+				<input type="text" size="30" id="field0 " />  <a href="javascript:void(0)" onclick="removeElement(my0Div); return false;"> - </a><p></p>
+			</div>
+		</div>
+		<a href="javascript:void(0)" onclick="addElement();">+</a>
     </div>
     <div class="field">
         <%= f.label :Extra_Information %>
         <br/>
         <%= f.email_field :extra_info %>
+    </div>
+	<div class="field">
+        <%= f.label :Email %>
+        <br/>
+        <%= f.email_field :admin %>
     </div>
 
     <div class="actions">
