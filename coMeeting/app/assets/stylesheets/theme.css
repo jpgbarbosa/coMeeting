@@ -4,26 +4,27 @@ html, body {
 	height:100%;
 }
 #container {
-	min-height:100%;
 	position:relative;
+	min-height:100%;
+	padding-left:10%;
+	padding-right:10%;
+	background-color:#201F25;
 }
 #header {
 	padding:15px;
-	line-height:4em 
+	line-height:4em;
 }
 #body {
-	padding:15px;
-	padding-bottom:90px;   /* Height of the footer */
+	padding-bottom:90px;	/* Height of the footer plus extra space */
+	background-color:#000000
 }
 #footer {
 	position:absolute;
 	bottom:0;
-	width:100%;
-	height:70px;   /* Height of the footer */
-	
-	background-color:#616D7E;
+	height:70px;	/* Height of the footer */
+	width:80%;		/* 100% minus 10% for each margin */
+	background-color:#201F25;
 	color:#FFFFFF;
-
 }
 
 a:link {
@@ -43,17 +44,12 @@ a:link {
 	background-color:#413839;
 }
 
-.inner_wrapper {
-	padding-left:10px;
-	padding-top:5px;
-}
-
 .resize {
-	width: auto;
-	height: 200px;
+	width:auto;
+	height:200px;
 }
 
 .floatLeft {
-	float: left;
+	float:left;
 	padding-right:10px;
 }
