@@ -1,5 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 
+<%= @meeting.subject %>
+<br/>
+<%= @meeting.meeting_date %>
+<br/>
+<%= @meeting.duration %>
+<br/>
+<%= @meeting.local %>
+<br/>
+<%= @meeting.topics %>
+<br/>
+<%= @meeting.extra_info %>
+<br/>
+<%= @meeting.admin %>
+<br/>
+
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>

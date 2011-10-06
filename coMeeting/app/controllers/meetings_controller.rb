@@ -13,9 +13,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
-    @meeting = Meeting.find_by_link_admin(params[:link_admin])
-
-
+    @meeting = Meeting.find_by_link_admin(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @meeting }
@@ -29,6 +27,7 @@ class MeetingsController < ApplicationController
     time = Time.new
 
     @current_date = time.day.to_s + '/' + time.month.to_s + '/' + time.year.to_s
+    @current_topics = 0
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,12 +43,28 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-
     @meeting = Meeting.new(params[:meeting])
+    @meeting.link_admin = UUIDTools::UUID.timestamp_create().to_s
 
+    array = Array.new
+    size = params.length - 6
+    if(params[:meeting][:topics] != '')
+      array[0] = params[:meeting][:topics]
+      i=1
+    else
+      i=0
+    end
+
+    params.each_key do |key|
+      if key.starts_with? 'topics_'
+        array[i] = params[key]
+        i = i+ 1
+      end
+    end
+
+    @meeting.topics = array
     respond_to do |format|
       if @meeting.save
-        @meeting.link_admin = UUIDTools::UUID.timestamp_create().to_s
         UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
 
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }

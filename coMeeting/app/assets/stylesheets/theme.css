@@ -9,7 +9,8 @@ html, body {
 	min-height:100%;
 	padding-left:10%;
 	padding-right:10%;
-	background-color:#201F25;
+	/*background-color:#201F25;*/
+    background-color:#FFFFFF;
 }
 
 #header {
