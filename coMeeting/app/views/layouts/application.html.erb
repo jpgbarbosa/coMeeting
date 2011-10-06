@@ -13,24 +13,29 @@
 		<%= stylesheet_link_tag "application" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
+		
+		<link rel="alternate stylesheet" type="text/css" href="assets/blackTheme.css" title="blackTheme" />
+		<link rel="stylesheet" type="text/css" href="assets/whiteTheme.css" title="whiteTheme" />
 	</head>
 
 	<body>
 		<div id="container">
 			<div id="header">
 				<a href="/"><img class="floatLeft" src="/assets/logo-small.jpg"/></a>
-				<h4>coMeeting</h4>
+				coMeeting
+				<select id='themeSelection' onchange="setActiveStyleSheet(this.value); return false">
+					<option value="whiteTheme">White Theme</option>
+					<option value="blackTheme">Black Theme</option>
+				</select>
 			</div>
-			<div id="body">
+			<div id="content">
 			<%= yield %>
 			</div>
 			<div id="footer">
-				<div class="inner_wrapper">
-					<hr />
-					<div id="about-us"><a href="/about-us">About Us</a></div>
-					<br />
-					<div id="copyright">Copyright &#169; 2011 - Guilherme Sim&otilde;es, Jo&atilde;o Penetra, Jo&atilde;o Barbosa</div>
-				</div>
+				<hr />
+				<div id="about-us"><a href="/about-us">About Us</a></div>
+				<br />
+				<div id="copyright">Copyright &#169; 2011 - Guilherme Sim&otilde;es, Jo&atilde;o Penetra, Jo&atilde;o Barbosa</div>
 			</div>
 		</div>
 	</body>
