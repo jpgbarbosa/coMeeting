@@ -13,13 +13,20 @@
 		<%= stylesheet_link_tag "application" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
+		
+		<link rel="alternate stylesheet" type="text/css" href="assets/blackTheme.css" title="blackTheme" />
+		<link rel="stylesheet" type="text/css" href="assets/whiteTheme.css" title="whiteTheme" />
 	</head>
 
 	<body>
 		<div id="container">
 			<div id="header">
 				<a href="/"><img class="floatLeft" src="/assets/logo-small.jpg"/></a>
-				<h1>coMeeting</h1>
+				coMeeting
+				<select id='themeSelection' onchange="setActiveStyleSheet(this.value); return false">
+					<option value="whiteTheme">White Theme</option>
+					<option value="blackTheme">Black Theme</option>
+				</select>
 			</div>
 			<div id="content">
 			<%= yield %>
