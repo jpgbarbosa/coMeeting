@@ -1,3 +1,7 @@
+* {
+	margin:0;
+}
+
 html, body {
 	margin:0;
 	padding:0;
@@ -14,6 +18,7 @@ html, body {
 }
 
 #header {
+	line-height:6em;
 }
 
 img.header{
@@ -45,8 +50,8 @@ img.header{
 #footer {
 	position:absolute;
 	bottom:0;
-	height:70px;	/* Height of the footer */
-	width:80.1%;	/* don't ask me why */
+	height:70px;			/* Height of the footer */
+	width:80.0%;			/* don't ask me why */
 	background-color:#201F25;
 	color:#FFFFFF;
 }
@@ -75,8 +80,4 @@ a:link {
 .floatLeft {
 	float:left;
 	padding-right:10px;
-}
-
-h1 {
-	margin:0;
 }
