@@ -21,12 +21,20 @@
 	<body>
 		<div id="container">
 			<div id="header">
-				<a href="/"><img class="floatLeft" src="/assets/logo-small.jpg"/></a>
-				coMeeting
-				<select id='themeSelection' onchange="setActiveStyleSheet(this.value); return false">
-					<option value="whiteTheme">White Theme</option>
-					<option value="blackTheme">Black Theme</option>
-				</select>
+				<div id="logo">
+					<a href="/"><img class="header" src="/assets/header.jpg"/></a>
+				</div>
+				<div id="navigation">
+					<div id="title">
+						coMeeting
+					</div>
+					<div id="themeSelection">
+						<select onchange="setActiveStyleSheet(this.value); return false">
+							<option value="whiteTheme">White Theme</option>
+							<option value="blackTheme">Black Theme</option>
+						</select>
+					</div>
+				</div>
 			</div>
 			<div id="content">
 			<%= yield %>
