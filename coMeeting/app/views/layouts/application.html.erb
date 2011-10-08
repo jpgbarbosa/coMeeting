@@ -14,8 +14,8 @@
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		
-		<link rel="alternate stylesheet" type="text/css" href="assets/blackTheme.css" title="blackTheme" />
-		<link rel="stylesheet" type="text/css" href="assets/whiteTheme.css" title="whiteTheme" />
+		<link rel="alternate stylesheet" type="text/css" href="/assets/blackTheme.css" title="blackTheme" />
+		<link rel="stylesheet" type="text/css" href="/assets/whiteTheme.css" title="whiteTheme" />
 	</head>
 
 	<body>
@@ -29,7 +29,7 @@
 						coMeeting
 					</div>
 					<div id="themeSelection" align="right">
-						<select onchange="setActiveStyleSheet(this.value); return false">
+						<select id="themeSel" onchange="setActiveStyleSheet(this.value); return false">
 							<option value="whiteTheme">White Theme</option>
 							<option value="blackTheme">Black Theme</option>
 						</select>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<div id="content">
-			<%= yield %>
+				<%= yield %>
 			</div>
 			<div id="footer">
 				<hr />
