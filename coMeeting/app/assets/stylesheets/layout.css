@@ -6,7 +6,7 @@ table {
 	border-collapse:collapse;
 	border-spacing:0;
 }
-fieldset,img { 
+fieldset,img {
 	border:0;
 }
 address,caption,cite,code,dfn,em,strong,th,var {
@@ -38,18 +38,18 @@ html, body {
 body {
 	text-align: center;
 	overflow: auto;
-} */
+}
 .wrapper {
 	width: 700px;
 	margin: 0 auto;
 	text-align: left;
 }
-/*h1 {
+h1 {
 	font-size: 21px;
 	height: 47px;
 	line-height: 47px;
 	text-transform: uppercase;
-}        */
+}
 .navigationTabs {
 	height: 23px;
 	line-height: 23px;
@@ -133,7 +133,7 @@ body {
 }
 .tab dt {
 	margin-top: 16px;
-}
+}*/
 
 #colorSelector {
 	position: relative;

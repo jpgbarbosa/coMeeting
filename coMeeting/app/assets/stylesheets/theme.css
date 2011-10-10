@@ -1,10 +1,10 @@
 * {
 	margin:0;
+	padding:0;
 }
 
 html, body {
 	margin:0;
-	padding:0;
 	height:100%;
 }
 
@@ -20,7 +20,7 @@ html, body {
 	line-height:6em;
 }
 
-img.header{
+img.headerImage{
 	width:100%;
 	display:block;
 	margin-left:auto;
@@ -28,13 +28,16 @@ img.header{
 }
 
 #navigation {
+	padding-left:10px;
+	padding-right:10px;
 	line-height:3em;
 	color:#FF5B00;
-	background-color:#1A1921;
+	background-color:#0D0D11;
 }
 
 #title {
 	float:left;
+	font-size:20px;
 }
 
 #themeSelection {
@@ -42,6 +45,8 @@ img.header{
 }
 
 #content {
+	padding-left:10px;
+	padding-right:10px;
 	padding-top:10px;
 	padding-bottom:80px;	/* Height of the footer plus some extra space */
 }
@@ -50,7 +55,7 @@ img.header{
 	position:absolute;
 	bottom:0;
 	height:70px;			/* Height of the footer */
-	width:80.0%;			/* don't ask me why */
+	width:80.1%;			/* don't ask me why */
 	background-color:#201F25;
 	color:#FFFFFF;
 }

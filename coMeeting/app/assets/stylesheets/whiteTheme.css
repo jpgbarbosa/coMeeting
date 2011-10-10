@@ -15,3 +15,8 @@
 #content a:hover {
 	color:#7D7D7D;
 }
+
+#content input {
+	background-color:#FFFFFF;
+	color:#000000;
+}

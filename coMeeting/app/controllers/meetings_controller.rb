@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
     @meetings = Meeting.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render html: @meetings } # index.html.erb
       format.json { render json: @meetings }
     end
   end
@@ -28,7 +28,7 @@ class MeetingsController < ApplicationController
     @current_date = time.day.to_s + '/' + time.month.to_s + '/' + time.year.to_s
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render html: @meeting } # new.html.erb
       format.json { render json: @meeting }
     end
   end
@@ -57,13 +57,14 @@ class MeetingsController < ApplicationController
       if key.starts_with? 'topics_'
         array[i] = params[key]
         i = i+ 1
-      end
+        end
     end
+
 
     @meeting.topics = array
     respond_to do |format|
       if @meeting.save
-        UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
+        #UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
 
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render json: @meeting, status: :created, location: @meeting }

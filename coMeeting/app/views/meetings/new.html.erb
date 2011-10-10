@@ -1,5 +1,26 @@
-<h1>New meeting</h1>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", meetings_path  %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_meeting_path %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= t("web-app-theme.new", :default => "New")%>  Meeting</h2>
+    <div class="inner">
+        <link rel="stylesheet" href="/assets/datepicker.css" type="text/css" />
+        <link rel="stylesheet" media="screen" type="text/css" href="/assets/layout.css" />
+        <script type="text/javascript" src="/assets/jquery.js"></script>
+        <script type="text/javascript" src="/assets/datepicker.js"></script>
+        <script type="text/javascript" src="/assets/eye.js"></script>
+        <script type="text/javascript" src="/assets/utils.js"></script>
+        <script type="text/javascript" src="/assets/layout.js?ver=1.0.2"></script>
+        <script type="text/javascript" src="/assets/meetings.js"></script>
+      <%= form_for :meeting, :url => meetings_path, :html => { :class => :form } do |f| -%>
+        <%= render :partial => "form", :locals => {:f => f} %>
+      <% end -%>
+    </div>
+  </div>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', meetings_path %>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
