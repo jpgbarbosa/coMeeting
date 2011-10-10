@@ -42,7 +42,7 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     @meeting = Meeting.new(params[:meeting])
-    @meeting.link_admin = UUIDTools::UUID.timestamp_create().to_s
+    @meeting.link_admin = UUIDTools::UUID.random_create().to_s
 
     array = Array.new
     size = params.length - 6
@@ -64,7 +64,7 @@ class MeetingsController < ApplicationController
     @meeting.topics = array
     respond_to do |format|
       if @meeting.save
-        #UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
+        UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
 
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render json: @meeting, status: :created, location: @meeting }
