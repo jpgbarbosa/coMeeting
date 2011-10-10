@@ -25,9 +25,7 @@ class MeetingsController < ApplicationController
   def new
     @meeting = Meeting.new
     time = Time.new
-
     @current_date = time.day.to_s + '/' + time.month.to_s + '/' + time.year.to_s
-    @current_topics = 0
 
     respond_to do |format|
       format.html # new.html.erb
