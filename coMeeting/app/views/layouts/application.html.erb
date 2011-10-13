@@ -3,7 +3,22 @@
 <head>
   <title>coMeeting</title>
   <%= stylesheet_link_tag 'web_app_theme' %>
-  <%= javascript_include_tag :defaults, :cache => true %>
+  <script type="text/javascript" charset="utf-8" src="/assets/scroll.js"></script>
+
+  <script>
+
+// When the document is loaded...
+  $(document).ready(function()
+  {
+      // Scroll the whole document
+      $('#main').localScroll({
+         target:'body'
+      });
+
+  });
+  </script>
+ 
+  <!--TODO: what is this? <%= javascript_include_tag :defaults, :cache => true %> -->
   <%= csrf_meta_tag %>
 </head>
 <body>

@@ -1,64 +1,123 @@
-<div class="block">
+<!-- todo: not sure if we should put this piece of code here -->
+
+<script type="text/javascript" charset="utf-8" src="/assets/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="/assets/scroll.js"></script>
+<script>
+
+// When the document is loaded...
+$(document).ready(function()
+{
+    // Scroll the whole document
+    $('#main').localScroll({
+       target:'body'
+    });
+
+});
+</script>
+ 
+
+<div class="block" id="block-info">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", meetings_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_meeting_path %></li>
-      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", meeting_path %></li>
+        <!-- todo: implement js scroll by tag -->
+      <li class="active"> <a href="#block-info" >Info</a></li>
+      <li class="first"> <a href="#block-topics" >Topics</a></li>
+      <li> <a href="#block-topics" >Topics</a></li>
     </ul>
   </div>
   <div class="content">
     <div class="inner">
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.subject", :default => t("activerecord.labels.subject", :default => "Subject")) %>:</b>
-          <%= @meeting.subject %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.subject", :default => t("activerecord.labels.subject", :default => "Subject")) %>
+          :</b>
+        <%= @meeting.subject %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.local", :default => t("activerecord.labels.local", :default => "Local")) %>:</b>
-          <%= @meeting.local %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.local", :default => t("activerecord.labels.local", :default => "Local")) %>
+          :</b>
+        <%= @meeting.local %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.meeting_date", :default => t("activerecord.labels.meeting_date", :default => "Meeting date")) %>:</b>
-          <%= @meeting.meeting_date %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.meeting_date", :default => t("activerecord.labels.meeting_date", :default => "Meeting date")) %>
+          :</b>
+        <%= @meeting.meeting_date %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.meeting_time", :default => t("activerecord.labels.meeting_time", :default => "Meeting time")) %>:</b>
-          <%= @meeting.meeting_time %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.meeting_time", :default => t("activerecord.labels.meeting_time", :default => "Meeting time")) %>
+          :</b>
+        <%= @meeting.meeting_time %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.duration", :default => t("activerecord.labels.duration", :default => "Duration")) %>:</b>
-          <%= @meeting.duration %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.duration", :default => t("activerecord.labels.duration", :default => "Duration")) %>
+          :</b>
+        <%= @meeting.duration %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.topics", :default => t("activerecord.labels.topics", :default => "Topics")) %>:</b>
-          <%= @meeting.topics %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.extra_info", :default => t("activerecord.labels.extra_info", :default => "Extra info")) %>
+          :</b>
+        <%= @meeting.extra_info %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.extra_info", :default => t("activerecord.labels.extra_info", :default => "Extra info")) %>:</b>
-          <%= @meeting.extra_info %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.admin", :default => t("activerecord.labels.admin", :default => "Admin")) %>
+          :</b>
+        <%= @meeting.admin %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.admin", :default => t("activerecord.labels.admin", :default => "Admin")) %>:</b>
-          <%= @meeting.admin %>
-        </p>
+      <p>
+        <b><%= t("activerecord.attributes.meeting.proceedings", :default => t("activerecord.labels.proceedings", :default => "Proceedings")) %>
+          :</b>
+        <%= @meeting.proceedings %>
+      </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.meeting.proceedings", :default => t("activerecord.labels.proceedings", :default => "Proceedings")) %>:</b>
-          <%= @meeting.proceedings %>
-        </p>
       <div class="wat-cf">
         <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_meeting_path(@meeting), :class => "button" %>
         <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), meeting_path(@meeting), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
       </div>
     </div>
   </div>
+
+</div>
+
+<div class="block" id="block-topics">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><a href="#block-info" >Info</a></li>
+      <li class="active"><a href="#block-topics">Topics</a></li>
+      <li><%= link_to "#{t("web-app-theme.show", :default => "Show")}", meeting_path %></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">Topic</th>
+                    
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @meeting.topics.each do |topic| -%>
+            <tr class="<%= cycle("odd", "even") %>">
+              <td>
+                <%= topic %>
+              </td>
+              <td class="last">
+                <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", '/' %> |
+                <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", '/' %> |
+              </td>
+            </tr>
+        <% end -%>
+      </table>
+    </div>
+  </div>
+
+
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
