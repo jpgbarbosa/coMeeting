@@ -77,7 +77,7 @@ $(document).ready(function()
       </p>
 
       <div class="wat-cf">
-        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_meeting_path(@meeting), :class => "button" %>
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_meeting_path(@meeting_hash), :class => "button" %>
         <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), meeting_path(@meeting), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
       </div>
     </div>
@@ -88,7 +88,7 @@ $(document).ready(function()
 <div class="block" id="block-topics">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><a href="#block-info" >Info</a></li>
+      <li class="first"><a href="#block-info">Info</a></li>
       <li class="active"><a href="#block-topics">Topics</a></li>
       <li><%= link_to "#{t("web-app-theme.show", :default => "Show")}", meeting_path %></li>
     </ul>
