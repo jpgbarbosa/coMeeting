@@ -20,7 +20,7 @@ class MeetingsController < ApplicationController
 			format.json { render json: @meeting }
 		end
 	end
-	
+
 
 	# GET /meetings/new
 	# GET /meetings/new.json
@@ -72,8 +72,8 @@ class MeetingsController < ApplicationController
 			end
 		end
 	end
-	
-	
+
+
 	# GET /meetings/1/edit
 	def edit
 		@meeting_hash = params[:id]
