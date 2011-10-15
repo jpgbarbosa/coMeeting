@@ -100,11 +100,12 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1
 	# DELETE /meetings/1.json
 	def destroy
-		@meeting = Meeting.find(params[:id])
+		@meeting = Meeting.find_by_link_admin(params[:id])
 		@meeting.destroy
 
+		puts 'XXXXXXXXXX'
 		respond_to do |format|
-			format.html { redirect_to meetings_url }
+			format.html { redirect_to "/" }
 			format.json { head :ok }
 		end
 	end

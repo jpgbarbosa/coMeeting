@@ -43,7 +43,7 @@
             <%= f.label :topics, t("activerecord.attributes.meeting.topics", :default => "Topics"), :class => :label %>
 			<br/>
 			<div id="my0Div">
-				<%= f.text_field :topics, :class => "topic", :value => "" %>  <a href="#" onclick="removeElement(my0Div); return false;"> <img valign="top" alt="Cross" src="/assets/cross.png"> </a><p></p>
+				<%= f.text_field :topics, :class => "topic", :value => "" %>  <a href="#" onclick="removeElement(my0Div); return false;"> <img valign="top" alt="Cross" src="/assets/icons/cross.png"> </a><p></p>
 			</div>
 		</div>
 		<a href="#" onclick="addElement(); return false">+</a>
@@ -64,8 +64,8 @@
 
 <div class="group navform wat-cf">
   <button class="button" type="submit">
-    <%= image_tag("/assets/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save Changes") %>
+    <%= image_tag("/assets/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save Changes") %>
   </button>
   <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
-	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), meeting_path(@meeting.link_admin), :class => "text_button_padding link_button" %>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), :back, :class => "text_button_padding link_button" %>
 </div>
