@@ -6,7 +6,7 @@
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= t("web-app-theme.new", :default => "New")%>  Meeting</h2>
+    <h2 class="title"><%= t("web-app-theme.new", :default => "New")%>Meeting</h2>
     <div class="inner">
         <link rel="stylesheet" href="/assets/datepicker.css" type="text/css" />
         <link rel="stylesheet" media="screen" type="text/css" href="/assets/layout.css" />
@@ -17,9 +17,8 @@
         <script type="text/javascript" src="/assets/layout.js?ver=1.0.2"></script>
         <script type="text/javascript" src="/assets/meetings.js"></script>
       <%= form_for :meeting, :url => meetings_path, :html => { :class => :form } do |f| -%>
-        <%= render :partial => "form", :locals => {:f => f} %>
+        <%= render :partial => "createform", :locals => {:f => f} %>
       <% end -%>
-
     </div>
   </div>
 </div>
