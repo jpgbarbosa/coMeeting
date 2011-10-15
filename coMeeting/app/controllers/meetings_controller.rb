@@ -13,7 +13,6 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1
 	# GET /meetings/1.json
 	def show
-		@meeting_hash = params[:id]
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		respond_to do |format|
 			format.html # show.html.erb
@@ -43,18 +42,17 @@ class MeetingsController < ApplicationController
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
 
 		array = Array.new
-		size = params.length - 6
 		if(params[:meeting][:topics] != '')
 			array[0] = params[:meeting][:topics]
-			i=1
-			else
-		i=0
+			i = 1
+		else
+			i = 0
 		end
 
 		params.each_key do |key|
-			if key.starts_with? 'topics_'
+			if ((key.starts_with? 'topics_') && params[key] != '')
 				array[i] = params[key]
-				i = i+ 1
+				i = i + 1
 			end
 		end
 
@@ -76,7 +74,6 @@ class MeetingsController < ApplicationController
 
 	# GET /meetings/1/edit
 	def edit
-		@meeting_hash = params[:id]
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		respond_to do |format|
 			format.html # edit.html.erb
@@ -87,12 +84,11 @@ class MeetingsController < ApplicationController
 	# PUT /meetings/1
 	# PUT /meetings/1.json
 	def update
-		@meeting_hash = params[:id]
 		@meeting = Meeting.find_by_link_admin(params[:id])
 
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
-				format.html { redirect_to @meeting_hash, notice: 'Meeting was successfully updated.' }
+				format.html { redirect_to @meeting.link_admin, notice: 'Meeting was successfully updated.' }
 				format.json { head :ok }
 			else
 				format.html { render action: "edit" }

@@ -67,5 +67,5 @@
     <%= image_tag("/assets/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save Changes") %>
   </button>
   <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
-	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), '/', :class => "text_button_padding link_button" %>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), meeting_path(@meeting.link_admin), :class => "text_button_padding link_button" %>
 </div>
