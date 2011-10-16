@@ -13,8 +13,6 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1
 	# GET /meetings/1.json
 	def show
-		puts 'YYYYYYYYYYYYYYYYYY'
-
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting == nil
 			respond_to do |format|

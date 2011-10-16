@@ -9,10 +9,39 @@
 /* Write here your css for overriding the theme's rules */
 
 .form input.date_picker{
-  width: 7%;
+  width: 8%;
   border: 1px solid #e2e2e2;
 }
 .form input.topic{
   width: 60%;
   border: 1px solid #e2e2e2;
+}
+.resize {
+	width:auto;
+	height:200px;
+}
+.floatLeft {
+	float:left;
+	padding-right:10px;
+}
+h2 {
+	margin: 0;
+	padding: 0;
+}
+button.big_button {
+	font-size:20px;
+}
+a:link {
+	text-decoration:none
+}
+#footer a:link {
+	color:#FFFFFF;
+}
+#footer a:visited {
+	color:#FFFFFF;
+}
+#footer a:active {
+	color:#FFFFFF;
+}
+#footer a:hover {
 }
