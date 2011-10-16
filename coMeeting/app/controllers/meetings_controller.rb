@@ -16,10 +16,15 @@ class MeetingsController < ApplicationController
 		puts 'YYYYYYYYYYYYYYYYYY'
 
 		@meeting = Meeting.find_by_link_admin(params[:id])
-
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @meeting }
+		if @meeting == nil
+			respond_to do |format|
+				format.html { redirect_to root_path, notice: 'This is not the meeting you are looking for.' }
+			end
+		else
+			respond_to do |format|
+				format.html # show.html.erb
+				format.json { render json: @meeting }
+			end
 		end
 	end
 
