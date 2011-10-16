@@ -5,7 +5,7 @@ CoMeeting::Application.routes.draw do
 
 	resources :users
 	
-	get "/:page" => "static#show"
+	match ':page', :controller => 'static', :action => 'show', :as => 'static'
 	
 	root :to => 'home#index'
 	
