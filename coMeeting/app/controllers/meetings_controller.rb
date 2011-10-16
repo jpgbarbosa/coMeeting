@@ -132,7 +132,7 @@ class MeetingsController < ApplicationController
 		@meeting.destroy
 
 		respond_to do |format|
-			format.html { redirect_to "/" }
+			format.html { redirect_to root_path }
 			format.json { head :ok }
 		end
 	end
