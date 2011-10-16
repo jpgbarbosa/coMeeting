@@ -14,9 +14,9 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1.json
 	def show
 		puts 'YYYYYYYYYYYYYYYYYY'
-	
+
 		@meeting = Meeting.find_by_link_admin(params[:id])
-		
+
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @meeting }
@@ -45,7 +45,8 @@ class MeetingsController < ApplicationController
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
 
 		array = Array.new
-		if(params[:meeting][:topics] != '')
+
+		if(params[:meeting][:topics] != '' && params[:meeting][:topics] != nil)
 			array[0] = params[:meeting][:topics]
 			i = 1
 		else
@@ -53,16 +54,22 @@ class MeetingsController < ApplicationController
 		end
 
 		params.each_key do |key|
-			if ((key.starts_with? 'topics_') && params[key] != '')
+			if ((key.starts_with? 'topics_') && params[key] != '' && params[key] != nil)
 				array[i] = params[key]
 				i = i + 1
 			end
-		end
+    end
 
-		@meeting.topics = array
+    @meeting.topics = array
+
 		respond_to do |format|
 			if @meeting.save
-				UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
+        if true
+          format.html { redirect_to meeting_path(@meeting.link_admin), notice: 'Meeting was successfully created. Please check your email to continue the creation process.' }
+        else
+          UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
+        end
+
 
 				format.html { redirect_to '/', notice: 'Meeting was successfully created. Please check your email to continue the creation process.' }
 				format.json { render json: @meeting, status: :created, location: @meeting }
@@ -77,7 +84,7 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1/edit
 	def edit
 		@meeting = Meeting.find_by_link_admin(params[:id])
-		
+
 		respond_to do |format|
 			format.html # edit.html.erb
 			format.json { render json: @meeting }
@@ -89,11 +96,22 @@ class MeetingsController < ApplicationController
 	def update
 		@meeting = Meeting.find_by_link_admin(params[:id])
 
+    @meeting.topics = Array.new
+
+    i = 0
+		params.each_key do |key|
+			if ((key.starts_with? 'topics_') && params[key] != '' && params[key] != nil)
+				@meeting.topics[i] = params[key]
+				i = i + 1
+			end
+    end
+
+
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
-				format.html { redirect_to @meeting.link_admin, notice: 'Meeting was successfully updated.' }
+				format.html { redirect_to meeting_path(@meeting.link_admin), notice: 'Meeting was successfully updated.' }
 				format.json { head :ok }
-			else
+      else
 				format.html { render action: "edit" }
 				format.json { render json: @meeting.errors, status: :unprocessable_entity }
 			end
@@ -103,8 +121,6 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1
 	# DELETE /meetings/1.json
 	def destroy
-		puts 'XXXXXXXXXX'
-		
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		@meeting.destroy
 

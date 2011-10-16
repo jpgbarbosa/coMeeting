@@ -1,3 +1,8 @@
+function setValue(num){
+    document.getElementById('theValue').value = num;
+}
+
+
 function addElement() {
 	var ni = document.getElementById('myDiv');
 	var numi = document.getElementById('theValue');

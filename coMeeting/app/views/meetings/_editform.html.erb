@@ -13,7 +13,7 @@
 
   <div class="group">
     <%= f.label :meeting_date, t("activerecord.attributes.meeting.meeting_date", :default => "Meeting date"), :class => :label %>
-    <input class="date_picker" id="meeting_date" name="meeting[meeting_date]" type="text" size="10" value="<%=@current_date %>"/>
+    <input class="date_picker" id="meeting_date" name="meeting[meeting_date]" type="text" size="10" value="<%=@meeting.meeting_date %>"/>
       <p id="date"></p>
         <script>
         $('#meeting_date').keyup(function() {
@@ -42,13 +42,22 @@
 		<div id="myDiv">
             <%= f.label :topics, t("activerecord.attributes.meeting.topics", :default => "Topics"), :class => :label %>
 			<br/>
-			<div id="my0Div">
-				<%= f.text_field :topics, :class => "topic", :value => "" %>  <a href="#" onclick="removeElement(my0Div); return false;"> <img valign="top" alt="Cross" src="/assets/icons/cross.png"> </a><p></p>
-			</div>
+            <% num = 0 %>
+            <% @meeting.topics.each do |topic| -%>
+                <% name_id = "my" + num.to_s + "Div" %>
+                <div id=<%=name_id %>>
+                    <input value="<%=topic %>"class="topic" type="text" size="30" name ="topics_<%= num %>">  <a href="#" onclick="removeElement(<%=name_id %>); return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a><p></p>
+                </div>
+                <% num = num + 1 %>
+            <% end -%>
 		</div>
 		<a href="#" onclick="addElement(); return false">+</a>
     <span class="description">Add a new Topic</span>
   </div>
+
+  <script type="text/javascript">
+    setValue(<%= (num -1) %>);
+  </script>
 
   <div class="group">
     <%= f.label :extra_info, t("activerecord.attributes.meeting.extra_info", :default => "Extra info"), :class => :label %>

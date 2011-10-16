@@ -14,7 +14,7 @@ $(document).ready(function()
 
 });
 </script>
- 
+
 
 <div class="block" id="block-info">
   <div class="secondary-navigation">
@@ -78,7 +78,7 @@ $(document).ready(function()
 
       <div class="wat-cf">
         <%= link_to image_tag("/assets/icons/application_edit.png")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
-        <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin), :method => :delete, :class => "button", :confirm => "#{t("confirm", :default => "Are you sure?")}" %>
+        <%= link_to image_submit_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin), :method => :delete, :class => "button", :confirm => "#{t("confirm", :default => "Are you sure?")}" %>
 		<%= link_to("Del", {}, {:onclick => "return confirm('Are you sure?')", :method => :delete, :controller => "meetings", :action => "destroy", :remote => true}) %>
       </div>
     </div>
@@ -100,7 +100,7 @@ $(document).ready(function()
       <table class="table">
         <tr>
           <th class="first">Topic</th>
-                    
+
           <th class="last">&nbsp;</th>
         </tr>
         <% @meeting.topics.each do |topic| -%>
