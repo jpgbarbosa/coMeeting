@@ -1,12 +1,11 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><%= link_to "#{t("list", :default => "List")}", meetings_path  %></li>
-      <li class="active"><%= link_to "#{t("new", :default => "New")}", new_meeting_path %></li>
+      <li class="active"><%= link_to "#{t("new_meeting", :default => "New Meeting")}", new_meeting_path %></li>
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= t("new_meeting", :default => "New Meeting")%></h2>
+	<p>
     <div class="inner">
         <link rel="stylesheet" href="/assets/datepicker.css" type="text/css" />
         <link rel="stylesheet" media="screen" type="text/css" href="/assets/layout.css" />

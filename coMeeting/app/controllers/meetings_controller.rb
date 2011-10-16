@@ -1,4 +1,10 @@
 class MeetingsController < ApplicationController
+	before_filter :set_locale
+ 
+	def set_locale
+	  I18n.locale = params[:locale] || I18n.default_locale
+	end
+	
 	# GET /meetings
 	# GET /meetings.json
 	def index
@@ -13,8 +19,6 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1
 	# GET /meetings/1.json
 	def show
-		puts 'YYYYYYYYYYYYYYYYYY'
-
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting == nil
 			respond_to do |format|

@@ -13,7 +13,7 @@
 
   <div class="group">
     <%= f.label :meeting_date, t("form.date", :default => "Date"), :class => :label %>
-    <input class="date_picker" id="meeting_date" name="meeting[meeting_date]" type="text" size="10" value="<%=@meeting.meeting_date %>"/>
+    <input class="date_picker" id="meeting_date" name="meeting[meeting_date]" type="text" value="<%=@meeting.meeting_date %>"/>
       <p id="date"></p>
         <script>
         $('#meeting_date').keyup(function() {
@@ -71,10 +71,10 @@
     <span class="description">Ex: a simple text</span>
   </div>
 
-<div class="group navform wat-cf">
-  <button class="button" type="submit">
-    <%= image_tag("/assets/icons/tick.png") %> <%= t("save", :default => "Save Changes") %>
-  </button>
-  <span class="text_button_padding"><%= t("or", :default => "or") %></span>
-	<%= link_to t("cancel", :default => "Cancel"), :back, :class => "text_button_padding link_button" %>
-</div>
+	<div class="group navform wat-cf">
+	  <button class="button" type="submit">
+		<%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("save", :default => "Save Changes") %>
+	  </button>
+	  <span class="text_button_padding"><%= t("or", :default => "or") %></span>
+		<%= link_to t("cancel", :default => "Cancel"), meeting_path(@meeting.link_admin), :class => "text_button_padding link_button" %>
+	</div>

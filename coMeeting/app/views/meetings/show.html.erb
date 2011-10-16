@@ -15,13 +15,12 @@ $(document).ready(function()
 });
 </script>
 
-
 <div class="block" id="block-info">
   <div class="secondary-navigation">
     <ul class="wat-cf">
         <!-- todo: implement js scroll by tag -->
-      <li class="active"> <a href="#block-info"><%= t("info", :default => "Info") %></a></li>
-      <li class="first"> <a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
+      <li class="active"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
+      <li class="first"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
     </ul>
   </div>
   <div class="content">
@@ -76,31 +75,31 @@ $(document).ready(function()
       </p>
 
       <div class="wat-cf">
-        <%= link_to image_tag("/assets/icons/application_edit.png")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
+        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
         <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), @meeting.link_admin, {:method => :delete, :class => "button"} %>
         <%= button_to "Delete", @meeting.link_admin, :method => :delete, :class => "button" %>
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="block" id="block-topics">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><a href="#block-info">Info</a></li>
-      <li class="active"><a href="#block-topics">Topics</a></li>
+      <li class="first"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
+      <li class="active"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
     </ul>
   </div>
 
   <div class="content">
     <div class="inner">
       <table class="table">
+		<!-- What the hell is this for?
         <tr>
           <th class="first">Topic</th>
 
           <th class="last">&nbsp;</th>
-        </tr>
+        </tr>-->
         <% @meeting.topics.each do |topic| -%>
             <tr class="<%= cycle("odd", "even") %>">
               <td>
@@ -115,8 +114,6 @@ $(document).ready(function()
       </table>
     </div>
   </div>
-
-
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
