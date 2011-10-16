@@ -34,3 +34,6 @@ en:
     email:			"Admin Email"
     add_topic:		"Add a new topic"
     proceedings:	"Proceedings"
+  no_meeting:		"The meeting you're looking for doesn't exist!"
+  created_meeting:	"Meeting successfully created. Please check your email to continue the creation process."
+  updated_meeting:	"Meeting successfully updated."

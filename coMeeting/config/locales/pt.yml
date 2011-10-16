@@ -34,3 +34,6 @@ pt:
     email:			"Email"
     add_topic:		"Adicionar um novo tópico"
     proceedings:	"?"
+  no_meeting: "A reunião a que tentou aceder não existe!"
+  created_meeting:	"Reunião criada com sucesso. Por favor verifique o seu email para continuar o processo de criação da reunião."
+  updated_meeting:	"Reunião alterada com sucesso."

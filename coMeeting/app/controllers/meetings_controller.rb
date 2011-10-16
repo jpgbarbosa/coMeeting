@@ -22,7 +22,7 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting == nil
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: 'This is not the meeting you are looking for.' }
+				format.html { redirect_to root_path, notice: t("no_meeting", :default => "The meeting you're looking for doesn't exist!") }
 			end
 		else
 			respond_to do |format|
@@ -67,20 +67,18 @@ class MeetingsController < ApplicationController
 				array[i] = params[key]
 				i = i + 1
 			end
-    end
+		end
 
-    @meeting.topics = array
+		@meeting.topics = array
 
 		respond_to do |format|
 			if @meeting.save
-        if true
-          format.html { redirect_to meeting_path(@meeting.link_admin), notice: 'Meeting was successfully created. Please check your email to continue the creation process.' }
-        else
-          UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
-        end
-
-
-				format.html { redirect_to '/', notice: 'Meeting was successfully created. Please check your email to continue the creation process.' }
+				if true
+					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
+				else
+				  UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
+				end
+				format.html { redirect_to root_path, notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 				format.json { render json: @meeting, status: :created, location: @meeting }
 			else
 				format.html { render action: "new" }
@@ -118,7 +116,7 @@ class MeetingsController < ApplicationController
 
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
-				format.html { redirect_to meeting_path(@meeting.link_admin), notice: 'Meeting was successfully updated.' }
+				format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("updated_meeting", :default => "Meeting successfully updated.") }
 				format.json { head :ok }
       else
 				format.html { render action: "edit" }
