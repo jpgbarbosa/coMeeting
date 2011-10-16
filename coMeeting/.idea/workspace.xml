@@ -89,7 +89,7 @@
       <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="8" selection-start="2681" selection-end="2681" vertical-scroll-proportion="0.56330276">
+            <state line="81" column="30" selection-start="2959" selection-end="2959" vertical-scroll-proportion="0.3761468">
               <folding />
             </state>
           </provider>
@@ -706,7 +706,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/meetings/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="8" selection-start="2681" selection-end="2681" vertical-scroll-proportion="0.56330276">
+        <state line="81" column="30" selection-start="2959" selection-end="2959" vertical-scroll-proportion="0.3761468">
           <folding />
         </state>
       </provider>
