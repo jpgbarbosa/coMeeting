@@ -20,58 +20,57 @@ $(document).ready(function()
   <div class="secondary-navigation">
     <ul class="wat-cf">
         <!-- todo: implement js scroll by tag -->
-      <li class="active"> <a href="#block-info" >Info</a></li>
-      <li class="first"> <a href="#block-topics" >Topics</a></li>
-      <li> <a href="#block-topics" >Topics</a></li>
+      <li class="active"> <a href="#block-info"><%= t("info", :default => "Info") %></a></li>
+      <li class="first"> <a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
     </ul>
   </div>
   <div class="content">
     <div class="inner">
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.subject", :default => t("activerecord.labels.subject", :default => "Subject")) %>
+        <b><%= t("form.subject", :default => "Subject") %>
           :</b>
         <%= @meeting.subject %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.local", :default => t("activerecord.labels.local", :default => "Local")) %>
+        <b><%= t("form.place", :default => "Place") %>
           :</b>
         <%= @meeting.local %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.meeting_date", :default => t("activerecord.labels.meeting_date", :default => "Meeting date")) %>
+        <b><%= t("form.date", :default => "Date") %>
           :</b>
         <%= @meeting.meeting_date %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.meeting_time", :default => t("activerecord.labels.meeting_time", :default => "Meeting time")) %>
+        <b><%= t("form.time", :default => "Time") %>
           :</b>
         <%= @meeting.meeting_time %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.duration", :default => t("activerecord.labels.duration", :default => "Duration")) %>
+        <b><%= t("form.duration", :default => "Duration") %>
           :</b>
         <%= @meeting.duration %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.extra_info", :default => t("activerecord.labels.extra_info", :default => "Extra info")) %>
+        <b><%= t("form.extra_info", :default => "Extra info") %>
           :</b>
         <%= @meeting.extra_info %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.admin", :default => t("activerecord.labels.admin", :default => "Admin")) %>
+        <b><%= t("form.email", :default => "Admin Email") %>
           :</b>
         <%= @meeting.admin %>
       </p>
 
       <p>
-        <b><%= t("activerecord.attributes.meeting.proceedings", :default => t("activerecord.labels.proceedings", :default => "Proceedings")) %>
+        <b><%= t("form.proceedings", :default => "Proceedings") %>
           :</b>
         <%= @meeting.proceedings %>
       </p>
@@ -91,7 +90,6 @@ $(document).ready(function()
     <ul class="wat-cf">
       <li class="first"><a href="#block-info">Info</a></li>
       <li class="active"><a href="#block-topics">Topics</a></li>
-      <li><%= link_to "#{t("show", :default => "Show")}", meeting_path %></li>
     </ul>
   </div>
 

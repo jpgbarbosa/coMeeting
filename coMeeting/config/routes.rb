@@ -5,6 +5,8 @@ CoMeeting::Application.routes.draw do
 
 	resources :users
 	
+	get "/:page" => "static#show"
+	
 	root :to => 'home#index'
 	
 	match '/:anything' => redirect('/'), :constraints => { :anything => /.*/ }
