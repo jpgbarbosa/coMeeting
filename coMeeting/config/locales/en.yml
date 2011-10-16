@@ -1,5 +1,21 @@
-# Sample localization file for English. Add more files in this directory for other locales.
+# Localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  hello:		"Hello world"
+  edit:			"Edit"
+  delete:		"Delete"
+  confirm:		"Confirm"
+  show:			"Show"
+  new:			"New"
+  list:			"List"
+  all:			"All"
+  created_at:	"Created at"
+  create:		"Create"
+  or:			"or"
+  cancel:		"Cancel"
+  save:			"Save Changes"
+  profile:		"Profile"
+  settings:		"Settings"
+  logout:		"Logout"
+  confirm:		"Are you sure?"

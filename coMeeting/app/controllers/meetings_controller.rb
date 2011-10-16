@@ -13,7 +13,10 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1
 	# GET /meetings/1.json
 	def show
+		puts 'YYYYYYYYYYYYYYYYYY'
+	
 		@meeting = Meeting.find_by_link_admin(params[:id])
+		
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @meeting }
@@ -56,7 +59,6 @@ class MeetingsController < ApplicationController
 			end
 		end
 
-
 		@meeting.topics = array
 		respond_to do |format|
 			if @meeting.save
@@ -75,6 +77,7 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1/edit
 	def edit
 		@meeting = Meeting.find_by_link_admin(params[:id])
+		
 		respond_to do |format|
 			format.html # edit.html.erb
 			format.json { render json: @meeting }
@@ -100,10 +103,11 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1
 	# DELETE /meetings/1.json
 	def destroy
+		puts 'XXXXXXXXXX'
+		
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		@meeting.destroy
 
-		puts 'XXXXXXXXXX'
 		respond_to do |format|
 			format.html { redirect_to "/" }
 			format.json { head :ok }

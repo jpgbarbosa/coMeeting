@@ -1,0 +1,21 @@
+# Localization file for Portuguese.
+
+
+pt:
+  hello:		"Ola mundo"
+  edit:			"Editar"
+  delete:		"Eliminar"
+  confirm:		"Confirmar"
+  show:			"Mostrar"
+  new:			"Novo"
+  list:			"Listar"
+  all:			"Tudo"
+  created_at:	"Criado em"
+  create:		"Criar"
+  or:			"ou"
+  cancel:		"Cancelar"
+  save:			"Gravar alteracoes"
+  profile:		"Perfil"
+  settings:		"Configuracoes"
+  logout:		"Sair"
+  confirm:		"Tem a certeza?"

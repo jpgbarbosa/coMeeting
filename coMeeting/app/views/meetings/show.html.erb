@@ -77,8 +77,9 @@ $(document).ready(function()
       </p>
 
       <div class="wat-cf">
-        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
-        <%= link_to image_tag("/assets/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), meeting_path(@meeting.link_admin), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+        <%= link_to image_tag("/assets/icons/application_edit.png")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
+        <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin), :method => :delete, :class => "button", :confirm => "#{t("confirm", :default => "Are you sure?")}" %>
+		<%= link_to("Del", {}, {:onclick => "return confirm('Are you sure?')", :method => :delete, :controller => "meetings", :action => "destroy", :remote => true}) %>
       </div>
     </div>
   </div>
@@ -90,7 +91,7 @@ $(document).ready(function()
     <ul class="wat-cf">
       <li class="first"><a href="#block-info">Info</a></li>
       <li class="active"><a href="#block-topics">Topics</a></li>
-      <li><%= link_to "#{t("web-app-theme.show", :default => "Show")}", meeting_path %></li>
+      <li><%= link_to "#{t("show", :default => "Show")}", meeting_path %></li>
     </ul>
   </div>
 
@@ -108,8 +109,8 @@ $(document).ready(function()
                 <%= topic %>
               </td>
               <td class="last">
-                <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", '/' %> |
-                <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", '/' %> |
+                <%= link_to "#{t("edit", :default => "Edit")}", '/' %> |
+                <%= link_to "#{t("delete", :default => "Delete")}", '/' %> |
               </td>
             </tr>
         <% end -%>
