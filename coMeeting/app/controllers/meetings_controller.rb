@@ -2,7 +2,7 @@ class MeetingsController < ApplicationController
 	before_filter :set_locale
  
 	def set_locale
-	  I18n.locale = params[:locale] || I18n.default_locale
+		I18n.locale = params[:locale] || I18n.default_locale
 	end
 	
 	# GET /meetings
@@ -22,7 +22,8 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting == nil
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: t("no_meeting", :default => "The meeting you're looking for doesn't exist!") }
+				flash[:error] = t("no_meeting", :default => "The meeting you're looking for doesn't exist!")
+				format.html { redirect_to root_path }
 			end
 		else
 			respond_to do |format|
