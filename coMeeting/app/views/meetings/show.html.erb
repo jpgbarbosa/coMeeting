@@ -80,7 +80,8 @@ $(document).ready(function()
 		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), {
 																							:controller => :meetings,
 																							:action => :destroy,
-																							:id => @meeting.link_admin
+																							:id => @meeting.link_admin,
+																							:method => :post
 																						}, {
 																							:onclick => "return confirm('"+t('confirm', :default => 'Are you sure?')+"')",
 																							:class => "button"
