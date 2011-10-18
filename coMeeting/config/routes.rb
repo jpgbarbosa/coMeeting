@@ -1,4 +1,6 @@
 CoMeeting::Application.routes.draw do
+	match 'meetings/destroy', :action => 'destroy', :controller => 'meetings'
+	
 	resources :meetings
 
 	resources :participations

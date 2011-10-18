@@ -2,38 +2,40 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello:		"Hello world"
-  edit:			"Edit"
-  delete:		"Delete"
-  confirm:		"Confirm"
-  show:			"Show"
-  new:			"New"
-  list:			"List"
-  all:			"All"
-  created_at:	"Created at"
-  or:			"or"
-  profile:		"Profile"
-  settings:		"Settings"
-  logout:		"Logout"
-  confirm:		"Are you sure?"
-  about_us:		"About Us"
-  info:			"Info"
-  topics:		"Topics"
-  new_meeting:	"New Meeting"
-  edit_meeting:	"Edit Meeting"
-  cancel:		"Cancel"
-  save:			"Save Changes"
-  create:		"Create"
+  hello:				Hello world
+  edit:					Edit
+  delete:				Delete
+  confirm:				Confirm
+  show:					Show
+  new:					New
+  list:					List
+  all:					All
+  created_at:			Created at
+  or:					or
+  profile:				Profile
+  settings:				Settings
+  logout:				Logout
+  confirm:				Are you sure?
+  about_us:				About Us
+  info:					Info
+  topics:				Topics
+  new_meeting:			New Meeting
+  edit_meeting:			Edit Meeting
+  cancel:				Cancel
+  save:					Save Changes
+  create:				Create
   form:
-    subject:		"Subject"
-    place:			"Place"
-    date:			"Date"
-    time:			"Time"
-    duration:		"Duration"
-    extra_info:		"Extra Info"
-    email:			"Admin Email"
-    add_topic:		"Add a new topic"
-    proceedings:	"Proceedings"
-  no_meeting:		"The meeting you're looking for doesn't exist!"
-  created_meeting:	"Meeting successfully created. Please check your email to continue the creation process."
-  updated_meeting:	"Meeting successfully updated."
+    subject:			Subject
+    place:				Place
+    date:				Date
+    time:				Time
+    duration:			Duration
+    extra_info:			Extra Info
+    email:				Admin Email
+    add_topic:			Add a new topic
+    proceedings:		Proceedings
+  no_show_meeting:		The meeting you're looking for doesn't exist!
+  created_meeting:		Meeting successfully created. Please check your email to continue the creation process.
+  updated_meeting:		Meeting successfully updated.
+  deleted_meeting:		Meeting successfully deleted.
+  no_deleted_meeting:	The meeting you tried deleting doesn't exist!

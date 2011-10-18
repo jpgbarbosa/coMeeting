@@ -76,8 +76,15 @@ $(document).ready(function()
 
       <div class="wat-cf">
         <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
-        <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), @meeting.link_admin, {:method => :delete, :class => "button"} %>
-        <%= button_to "Delete", @meeting.link_admin, :method => :delete, :class => "button" %>
+																																	
+		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), {
+																							:controller => :meetings,
+																							:action => :destroy,
+																							:id => @meeting.link_admin
+																						}, {
+																							:onclick => "return confirm('"+t('confirm', :default => 'Are you sure?')+"')",
+																							:class => "button"
+																						} %>
       </div>
     </div>
   </div>

@@ -45,3 +45,34 @@ a:link {
 }
 #footer a:hover {
 }
+
+
+
+
+
+input.button {
+  background-color: #f4f4f4;
+  background-image: url("/web-app-theme/themes/activo/images/button-background.png");
+  border: 1px solid #c3c4ba;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: normal;
+}
+
+input.button:link, input.button:visited, input.button:hover, input.button:active {
+  font-weight: normal;
+  background-color: #f4f4f4;
+}
+
+input.button:hover {
+  background-color: #eee;
+  border: 1px solid #818171;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+input.button:active {
+  outline: none;
+  background-color: #ddd;
+  background-image: url("/web-app-theme/themes/activo/images/button-background-active.png");
+}
