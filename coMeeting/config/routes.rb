@@ -1,17 +1,16 @@
 CoMeeting::Application.routes.draw do
-	scope "/:locale" do
-	resources :meetings
-
-	resources :participations
-
-	resources :users
-	
-  # get "/:page" => "static#show"
-	match ':page', :controller => 'static', :action => 'show', :as => 'static'
-	
-	end
-	
 	scope "(:locale)", :locale => /en|pt/ do
+		resources :meetings
+
+		resources :participations
+
+		resources :users
+		
+	  # get "/:page" => "static#show"
+	  # match ':page', :controller => 'static', :action => 'show', :as => 'static'
+	  
+		match '/:locale' => 'home#index'
+		
 		root :to => 'home#index'
 	end
 	
