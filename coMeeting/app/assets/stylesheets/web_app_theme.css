@@ -29,8 +29,8 @@
 	padding-right:10px;
 }
 
-button.big_button {
-	font-size:20px;
+.big_button {
+	font-size:20px !important;
 }
 
 a:link {
