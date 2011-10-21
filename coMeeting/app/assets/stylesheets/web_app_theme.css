@@ -9,25 +9,26 @@
 /* Write here your css for overriding the theme's rules */
 
 .form input.date_picker{
-  width: 8%;
-  border: 1px solid #e2e2e2;
+  width:8%;
+  border:1px solid #e2e2e2;
 }
+
 .form input.topic{
   width: 60%;
   border: 1px solid #e2e2e2;
 }
+
 .resize {
 	width:auto;
 	height:200px;
+
 }
+
 .floatLeft {
 	float:left;
 	padding-right:10px;
 }
-h2 {
-	margin: 0;
-	padding: 0;
-}
+
 button.big_button {
 	font-size:20px;
 }
@@ -37,15 +38,15 @@ a:link {
 }
 
 .flash .message {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
   text-align: center;
   margin: 0 auto 15px;
   color: white;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
-
 .flash .error, .flash .error-list {
   border: 1px solid #B75442;
   background: #EA664F url("/assets/icons/error.png") no-repeat 10px center;
@@ -62,7 +63,11 @@ a:link {
 }
 
 #user-navigation ul li {
-  padding: 0px 20px;
+  padding:0px 20px;
+}
+
+ul.drop_item li {
+	float:right !important
 }
 
 li.drop_menu {
@@ -73,18 +78,22 @@ li.drop_menu:hover > ul {
     opacity:1;
     visibility:visible;
 	background:#E5E5E5;
+	float:right
 }
 
-ul .drop_item {
+ul.drop_item {
     opacity:0;
     visibility:hidden;
-    padding-right:100;
-    width:100px;
 	position:absolute;
 	top:100;
 	right:0;
-	line-height: 2;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	line-height:2;
+
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border-radius: 9px;
 }
