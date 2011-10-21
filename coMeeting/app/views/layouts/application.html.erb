@@ -29,8 +29,8 @@
           <!--<li><a href="#"><%= t("profile", :default => "Profile") %></a></li>
           <li><a href="#"><%= t("settings", :default => "Settings") %></a></li>
           <li><a href="/logout" class="logout"><%= t("logout", :default => "Logout") %></a></li>-->
-		  <li class="drop_menu"><%= image_tag("/assets/icons/globe.png", :alt => "") %>
-			  <ul class="drop_item">
+		  <li id="drop_menu"><%= image_tag("/assets/icons/globe.png", :alt => "") + t("set_language", :default => "English") %>
+			  <ul id="drop_items">
 				<li><%= link_to "English", url_for( :locale => "en" ) %></li>
 				<li><%= link_to "Portugu&#234;s".html_safe, url_for( :locale => "pt" ) %></li>
 			  </ul>

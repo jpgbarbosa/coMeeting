@@ -3,6 +3,7 @@
 
 en:
   hello:				Hello world
+  set_language:			English
   edit:					Edit
   delete:				Delete
   confirm:				Confirm

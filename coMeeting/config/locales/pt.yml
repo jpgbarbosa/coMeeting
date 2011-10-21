@@ -3,6 +3,7 @@
 
 pt:
   hello:				Olá mundo
+  set_language:			Português
   edit:					Editar
   delete:				Eliminar
   confirm:				Confirmar
