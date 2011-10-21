@@ -7,8 +7,7 @@ pt:
   delete:				Eliminar
   confirm:				Confirmar
   show:					Mostrar
-  new:					Novo
-  list:					Listar
+  list:					Lista
   all:					Tudo
   created_at:			Criado em
   or:					ou
@@ -19,6 +18,7 @@ pt:
   about_us:				Sobre Nós
   info:					Info
   topics:				Tópicos
+  meetings:				Reuniões
   new_meeting:			Nova Reunião
   edit_meeting:			Editar Reunião
   cancel:				Cancelar

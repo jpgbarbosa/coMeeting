@@ -2,7 +2,7 @@
   <div class="secondary-navigation">
     <ul class="wat-cf">
       <li class="first active"><%= link_to "#{t("list", :default => "List")}", meetings_path  %></li>
-      <li><%= link_to "#{t("new", :default => "New")}", new_meeting_path %></li>
+      <li><%= link_to "#{t("new_meeting", :default => "New Meeting")}", new_meeting_path %></li>
     </ul>
   </div>          
   <div class="content">          
@@ -23,15 +23,15 @@
             <%= meeting.id %>
           </td>
                     <td>
-            <%= link_to meeting.subject, meeting_path(meeting) %>
+            <%= link_to meeting.subject, meeting_path(meeting.link_admin) %>
           </td>
                     <td>
             <%= meeting.created_at %>
           </td>
           <td class="last">
-            <%= link_to "#{t("show", :default => "Show")}", meeting_path(meeting) %> |
-            <%= link_to "#{t("edit", :default => "Edit")}", edit_meeting_path(meeting) %> |
-            <%= link_to "#{t("delete", :default => "Delete")}", meeting_path(meeting), :method => :delete, :confirm => "#{t("confirm", :default => "Are you sure?")}" %>
+            <%= link_to "#{t("show", :default => "Show")}", meeting_path(meeting.link_admin) %> |
+            <%= link_to "#{t("edit", :default => "Edit")}", edit_meeting_path(meeting.link_admin) %> |
+            <%= link_to "#{t("delete", :default => "Delete")}", meeting_path(meeting.link_admin), :method => :delete, :confirm => "#{t("confirm", :default => "Are you sure?")}" %>
           </td>
         </tr>          
         <% end -%>

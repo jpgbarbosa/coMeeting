@@ -7,7 +7,6 @@ en:
   delete:				Delete
   confirm:				Confirm
   show:					Show
-  new:					New
   list:					List
   all:					All
   created_at:			Created at
@@ -19,6 +18,7 @@ en:
   about_us:				About Us
   info:					Info
   topics:				Topics
+  meetings:				Meetings
   new_meeting:			New Meeting
   edit_meeting:			Edit Meeting
   cancel:				Cancel

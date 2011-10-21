@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>coMeeting</title>
+  <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
   <%= stylesheet_link_tag 'web_app_theme' %>
-  <!--<%= javascript_include_tag :all, :cache => true %>-->
-  <%= javascript_include_tag :defaults, :cache => true %>
+  <%= javascript_include_tag "application", :cache => true %>
   <%= csrf_meta_tag %>
 
   <script>
@@ -29,6 +29,12 @@
           <!--<li><a href="#"><%= t("profile", :default => "Profile") %></a></li>
           <li><a href="#"><%= t("settings", :default => "Settings") %></a></li>
           <li><a href="/logout" class="logout"><%= t("logout", :default => "Logout") %></a></li>-->
+		  <li class="drop_menu"><%= image_tag("/assets/icons/globe.png", :alt => "") %>
+			  <ul class="drop_item">
+				<li><%= link_to "English", url_for( :locale => "en" ) %></li>
+				<li><%= link_to "Portuguese", url_for( :locale => "pt" ) %></li>
+			  </ul>
+		  </li>
         </ul>
       </div>
       <div id="main-navigation">
@@ -49,7 +55,7 @@
         <%= yield %>
         <div id="footer">
           <div class="block">
-            <p>Copyright &copy; <%= Time.now.year %> coMeeting</p>
+            <p>Copyright &copy; 2011 coMeeting</p>
           </div>
         </div>
       </div>
