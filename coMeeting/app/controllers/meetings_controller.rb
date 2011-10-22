@@ -1,10 +1,10 @@
 class MeetingsController < ApplicationController
 	before_filter :set_locale
- 
+
 	def set_locale
 		I18n.locale = params[:locale] || I18n.default_locale
 	end
-	
+
 	# GET /meetings
 	# GET /meetings.json
 	def index
@@ -76,6 +76,7 @@ class MeetingsController < ApplicationController
 			if @meeting.save
 				if true
 					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
+          UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
 				else
 				  UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
 				end
@@ -130,7 +131,7 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1.json
 	def destroy
 		@meeting = Meeting.find_by_link_admin(params[:id])
-		
+
 		if @meeting == nil
 			respond_to do |format|
 				flash[:error] = t("no_deleted_meeting", :default => "The meeting you tried deleting doesn't exist!")

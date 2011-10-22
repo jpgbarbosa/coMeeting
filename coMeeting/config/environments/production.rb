@@ -57,4 +57,15 @@ CoMeeting::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  #SMTP seetings to send emails
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+  	:address => "smtp.sapo.pt",
+	  :port => 25,
+   	:domain => "sapo.pt",
+   	:authentication => :login,
+   	:user_name => "airplanemanager@sapo.pt",
+   	:password => "1olaadeus",
+  }
 end
