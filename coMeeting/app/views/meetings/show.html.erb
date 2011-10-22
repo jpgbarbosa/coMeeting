@@ -1,7 +1,4 @@
 <!-- todo: not sure if we should put this piece of code here -->
-
-<script type="text/javascript" charset="utf-8" src="/assets/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="/assets/scroll.js"></script>
 <script>
 
 // When the document is loaded...
@@ -75,9 +72,12 @@ $(document).ready(function()
       </p>
 
       <div class="wat-cf">
-        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
-        <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), @meeting.link_admin, {:method => :delete, :class => "button"} %>
-        <%= button_to "Delete", @meeting.link_admin, :method => :delete, :class => "button" %>
+        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
+																											:class => "button" %>
+																											
+		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin),
+																											:method => :delete,
+																											:confirm => "#{t("confirm", :default => "Are you sure?")}", :class => "button" %>
       </div>
     </div>
   </div>

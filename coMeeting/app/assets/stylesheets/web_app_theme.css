@@ -9,39 +9,100 @@
 /* Write here your css for overriding the theme's rules */
 
 .form input.date_picker{
-  width: 8%;
-  border: 1px solid #e2e2e2;
+	width:8%;
+	border:1px solid #e2e2e2;
 }
+
 .form input.topic{
-  width: 60%;
-  border: 1px solid #e2e2e2;
+	width:60%;
+	border:1px solid #e2e2e2;
 }
+
 .resize {
 	width:auto;
 	height:200px;
+
 }
+
 .floatLeft {
 	float:left;
 	padding-right:10px;
 }
-h2 {
-	margin: 0;
-	padding: 0;
+
+.big_button {
+	font-size:20px !important;
 }
-button.big_button {
-	font-size:20px;
-}
+
 a:link {
 	text-decoration:none
 }
-#footer a:link {
-	color:#FFFFFF;
+
+.flash .message {
+	text-align: center;
+	margin: 0 auto 15px;
+	color: white;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
-#footer a:visited {
-	color:#FFFFFF;
+.flash .error, .flash .error-list {
+	border: 1px solid #B75442;
+	background: #EA664F url("/assets/icons/error.png") no-repeat 10px center;
 }
-#footer a:active {
-	color:#FFFFFF;
+	.flash .warning {
+	border: 1px solid #bb9004;
+	background: #f9c006 url("/assets/icons/warning.png") no-repeat 10px center;
 }
-#footer a:hover {
+	.flash .notice {
+	color: #28485e;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+	border: 1px solid #8a9daa;
+	background: #b8d1e2 url("/assets/icons/notice.png") no-repeat 10px center;
 }
+
+#user-navigation ul li {
+	padding:0px 20px;
+}
+
+#drop_menu {
+	position:relative;
+	line-height:20px;
+	cursor:pointer;
+}
+#drop_menu img {
+	vertical-align:middle;
+	padding-right:10px;
+	
+}
+
+#drop_items {
+	position:absolute;
+    opacity:0;
+    visibility:hidden;
+	top:100;
+	right:0;
+	line-height:2em;
+	width:100px;
+
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border-radius: 9px;
+}
+
+#drop_items li {
+	float:right !important
+}
+
+#drop_menu:hover > ul {
+    opacity:1;
+    visibility:visible;
+	background:#E5E5E5;
+	float:right
+}
+

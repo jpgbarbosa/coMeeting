@@ -1,14 +1,18 @@
 CoMeeting::Application.routes.draw do
-	resources :meetings
+	scope "(:locale)", :locale => /en|pt/ do
+		resources :meetings
 
-	resources :participations
+		resources :participations
 
-	resources :users
-	
-  # get "/:page" => "static#show"
-	match ':page', :controller => 'static', :action => 'show', :as => 'static'
-	
-	root :to => 'home#index'
+		resources :users
+		
+	  # get "/:page" => "static#show"
+	  # match ':page', :controller => 'static', :action => 'show', :as => 'static'
+	  
+		match '/:locale' => 'home#index'
+		
+		root :to => 'home#index'
+	end
 	
 	match '/:anything' => redirect('/'), :constraints => { :anything => /.*/ }
   # The priority is based upon order of creation:

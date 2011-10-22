@@ -2,9 +2,7 @@
   <div class="content">
     <div class="inner">
 		<p>
-		<button class="button big_button" type="submit">
-			<%= link_to "#{t("new_meeting", :default => "New Meeting")}", new_meeting_path %>
-		</button>
+		<%= link_to "#{t("new_meeting", :default => "New Meeting")}", new_meeting_path, :class => "button big_button" %>
 		<br />
 		</p>
     </div>

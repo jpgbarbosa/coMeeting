@@ -284,17 +284,3 @@ input.inputDate {
 #widgetCalendar .datepicker a:hover{
 	color: #b6f063;
 }
-
-/* a:link has to be defined in this exact order */
-a:link {
-	text-decoration:none
-}
-a:visited {
-
-}
-a:active {
-
-}
-a:hover {
-
-}

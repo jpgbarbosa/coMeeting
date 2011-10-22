@@ -2,7 +2,7 @@ class MeetingsController < ApplicationController
 	before_filter :set_locale
  
 	def set_locale
-	  I18n.locale = params[:locale] || I18n.default_locale
+		I18n.locale = params[:locale] || I18n.default_locale
 	end
 	
 	# GET /meetings
@@ -22,7 +22,8 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting == nil
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: t("no_meeting", :default => "The meeting you're looking for doesn't exist!") }
+				flash[:error] = t("no_show_meeting", :default => "The meeting you're looking for doesn't exist!")
+				format.html { redirect_to root_path }
 			end
 		else
 			respond_to do |format|
@@ -103,15 +104,15 @@ class MeetingsController < ApplicationController
 	def update
 		@meeting = Meeting.find_by_link_admin(params[:id])
 
-    @meeting.topics = Array.new
+		@meeting.topics = Array.new
 
-    i = 0
-		params.each_key do |key|
-			if ((key.starts_with? 'topics_') && params[key] != '' && params[key] != nil)
-				@meeting.topics[i] = params[key]
-				i = i + 1
-			end
-    end
+		i = 0
+			params.each_key do |key|
+				if ((key.starts_with? 'topics_') && params[key] != '' && params[key] != nil)
+					@meeting.topics[i] = params[key]
+					i = i + 1
+				end
+		end
 
 
 		respond_to do |format|
@@ -129,11 +130,18 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1.json
 	def destroy
 		@meeting = Meeting.find_by_link_admin(params[:id])
-		@meeting.destroy
-
-		respond_to do |format|
-			format.html { redirect_to root_path }
-			format.json { head :ok }
+		
+		if @meeting == nil
+			respond_to do |format|
+				flash[:error] = t("no_deleted_meeting", :default => "The meeting you tried deleting doesn't exist!")
+				format.html { redirect_to root_path }
+			end
+		else
+			@meeting.destroy
+			respond_to do |format|
+				format.html { redirect_to root_path, notice: t("deleted_meeting", :default => "Meeting successfully deleted.") }
+				format.json { head :ok }
+			end
 		end
 	end
 end
