@@ -75,9 +75,19 @@ $(document).ready(function()
         <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
 																											:class => "button" %>
 																											
+		<!--
 		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin),
 																											:method => :delete,
 																											:confirm => "#{t("confirm", :default => "Are you sure?")}", :class => "button" %>
+		-->
+		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), {
+																							:controller => :meetings,
+																							:action => :destroy,
+																							:id => @meeting.link_admin
+																						}, {
+																							:confirm => "#{t("confirm", :default => "Are you sure?")}", 
+																							:class => "button"
+																						} %>
       </div>
     </div>
   </div>

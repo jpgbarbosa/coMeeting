@@ -1,5 +1,7 @@
 CoMeeting::Application.routes.draw do
 	scope "(:locale)", :locale => /en|pt/ do
+		match 'meetings/destroy', :action => 'destroy', :controller => 'meetings'
+		
 		resources :meetings
 
 		resources :participations
