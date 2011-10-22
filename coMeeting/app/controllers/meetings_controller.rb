@@ -1,5 +1,4 @@
 class MeetingsController < ApplicationController
-	
 	# GET /meetings
 	# GET /meetings.json
 	def index
@@ -125,7 +124,7 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1.json
 	def destroy
 		@meeting = Meeting.find_by_link_admin(params[:id])
-		
+
 		if @meeting == nil
 			respond_to do |format|
 				flash[:error] = t("no_deleted_meeting", :default => "The meeting you tried deleting doesn't exist!")
