@@ -8,8 +8,6 @@ CoMeeting::Application.routes.draw do
 		
 	  # get "/:page" => "static#show"
 	  # match ':page', :controller => 'static', :action => 'show', :as => 'static'
-	  
-		match '/:locale' => 'home#index'
 		
 		root :to => 'home#index'
 	end
