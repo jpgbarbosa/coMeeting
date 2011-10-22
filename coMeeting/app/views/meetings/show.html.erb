@@ -85,7 +85,7 @@ $(document).ready(function()
 																							:action => :destroy,
 																							:id => @meeting.link_admin
 																						}, {
-																							:confirm => "#{t("confirm", :default => "Are you sure?")}", 
+																							:onclick => "return confirm('"+t('confirm', :default => 'Are you sure?')+"')",
 																							:class => "button"
 																						} %>
       </div>
