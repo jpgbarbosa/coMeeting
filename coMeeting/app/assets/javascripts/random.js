@@ -7,3 +7,11 @@ function disableEnter(e){
 
     return (key != 13);
 }
+
+$(document).ready(function() {
+  setTimeout(hideFlashMessages, 2000);
+});
+
+function hideFlashMessages() {
+  $('div.message').fadeOut(2500)
+}

@@ -14,7 +14,7 @@ CoMeeting::Application.routes.draw do
 		root :to => 'home#index'
 	end
 	
-	match '/:anything' => redirect('/'), :constraints => { :anything => /.*/ }
+	match '/:anything' => redirect("/"), :constraints => { :anything => /.*/ }
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
