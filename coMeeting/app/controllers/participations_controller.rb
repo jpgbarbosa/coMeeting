@@ -62,17 +62,18 @@ class ParticipationsController < ApplicationController
     else
       #Create Participation
       participation = Participation.new
-      participation.is_attending = false
+      participation.is_attending = 0
+      participation.meeting_id = meeting_id
+      participation.user_id = user_id
 
-
-
+      if participation.save
+        format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participant", :default => 'Invitation was sent.' ) }
+        #format.json { render json: @meeting_path, status: :created, location: @participation }
+      else
+        format.html { redirect_to meeting_path(meeting_id), notice: t("uninvited_participant", :default => 'Invitation was not sent. Please try again.' ) }
+        #format.json { render json: @participation.errors, status: :unprocessable_entity }
+      end
     end
-
-
-
-
-
-
     """respond_to do |format|
       if @participation.save
         format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
