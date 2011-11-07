@@ -26,12 +26,8 @@
       <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="35" selection-start="3933" selection-end="3945" vertical-scroll-proportion="-11.769231">
-              <folding>
-                <element signature="tag#div#0" expanded="false" />
-                <element signature="tag#div#1" expanded="false" />
-                <element signature="tag#div#2" expanded="false" />
-              </folding>
+            <state line="18" column="10" selection-start="404" selection-end="600" vertical-scroll-proportion="60.807693">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -39,16 +35,7 @@
       <file leaf-file-name="meetings.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/meetings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="28" selection-start="2020" selection-end="2020" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/layout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="23" selection-start="371" selection-end="371" vertical-scroll-proportion="0.26638177">
+            <state line="45" column="69" selection-start="1607" selection-end="1617" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -57,7 +44,25 @@
       <file leaf-file-name="_form.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/participations/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="14" column="61" selection-start="407" selection-end="562" vertical-scroll-proportion="-9.153846">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="participation.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/participation.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="participations_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/participations_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="20" selection-start="1559" selection-end="1579" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -66,7 +71,7 @@
       <file leaf-file-name="_form.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="21" selection-start="2262" selection-end="2262" vertical-scroll-proportion="0.0">
+            <state line="52" column="21" selection-start="2262" selection-end="2262" vertical-scroll-proportion="-11.769231">
               <folding />
             </state>
           </provider>
@@ -75,25 +80,16 @@
       <file leaf-file-name="_editform.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/_editform.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="35" selection-start="1711" selection-end="2174" vertical-scroll-proportion="0.0">
+            <state line="24" column="8" selection-start="947" selection-end="947" vertical-scroll-proportion="-15.692307">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/meetings/new.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="meeting.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="meeting.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/meeting.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="41" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+            <state line="11" column="41" selection-start="352" selection-end="352" vertical-scroll-proportion="0.26638177">
               <folding />
             </state>
           </provider>
@@ -102,7 +98,7 @@
       <file leaf-file-name="meetings_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="16" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0">
+            <state line="51" column="9" selection-start="1115" selection-end="1124" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,11 +134,11 @@
         <option value="$PROJECT_DIR$/db/migrate/20111030224747_remove_meeting_id_from_meetings.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20111030225008_add_meeting_id_to_participations.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/participations_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/meetings/show.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/meetings_controller.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/meetings.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/layout.js" />
+        <option value="$PROJECT_DIR$/app/views/meetings/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/meetings.js" />
+        <option value="$PROJECT_DIR$/app/controllers/participations_controller.rb" />
       </list>
     </option>
   </component>
@@ -424,46 +420,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coMeeting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coMeeting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coMeeting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coMeeting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -798,33 +754,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.25277779" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/participation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/participations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="4" selection-start="947" selection-end="947" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/participations/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/meetings/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="21" selection-start="2262" selection-end="2262" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/meetings/_editform.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="35" selection-start="1711" selection-end="2174" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/meetings/new.html.erb">
@@ -832,14 +764,37 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/meeting.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/layout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="41" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0" />
+        <state line="11" column="23" selection-start="371" selection-end="371" vertical-scroll-proportion="0.26638177">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/meetings/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="21" selection-start="2262" selection-end="2262" vertical-scroll-proportion="-11.769231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/participation.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/meetings/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="10" selection-start="404" selection-end="600" vertical-scroll-proportion="60.807693">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="16" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" />
+        <state line="51" column="9" selection-start="1115" selection-end="1124" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
@@ -849,30 +804,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/participations/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="14" column="61" selection-start="407" selection-end="562" vertical-scroll-proportion="-9.153846">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/meetings/show.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/meetings/_editform.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="35" selection-start="3933" selection-end="3945" vertical-scroll-proportion="-11.769231">
-          <folding>
-            <element signature="tag#div#0" expanded="false" />
-            <element signature="tag#div#1" expanded="false" />
-            <element signature="tag#div#2" expanded="false" />
-          </folding>
+        <state line="24" column="8" selection-start="947" selection-end="947" vertical-scroll-proportion="-15.692307">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/meetings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="28" selection-start="2020" selection-end="2020" vertical-scroll-proportion="0.0">
+        <state line="45" column="69" selection-start="1607" selection-end="1617" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/layout.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/participations_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="371" selection-end="371" vertical-scroll-proportion="0.26638177">
+        <state line="64" column="20" selection-start="1559" selection-end="1579" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/meeting.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="41" selection-start="352" selection-end="352" vertical-scroll-proportion="0.26638177">
           <folding />
         </state>
       </provider>

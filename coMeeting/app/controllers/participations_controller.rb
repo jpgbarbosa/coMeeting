@@ -40,17 +40,48 @@ class ParticipationsController < ApplicationController
   # POST /participations
   # POST /participations.json
   def create
-    @participation = Participation.new(params[:participation])
+    #@participation = Participation.new(params[:participation])
 
-    respond_to do |format|
+    meeting_id = params[:participation][:meeting_id]
+    email = params[:participation][:person]
+    user_id = User.find_by_mail(email)
+    participations = Participation.find_all_by_meeting_id(meeting_id)
+    invited = false
+
+    if participations != nil
+      participations.each do |part|
+        if part.user_id == user_id
+          #User is already invited
+          invited = true
+        end
+      end
+    end
+
+    if invited
+      #Resend invite
+    else
+      #Create Participation
+      participation = Participation.new
+      participation.is_attending = false
+
+
+
+    end
+
+
+
+
+
+
+    """respond_to do |format|
       if @participation.save
         format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
         format.json { render json: @participation, status: :created, location: @participation }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
-    end
+    end"""
   end
 
   # PUT /participations/1

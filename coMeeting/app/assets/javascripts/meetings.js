@@ -12,7 +12,7 @@ function addElement() {
 	var divIdName = 'my' + num + 'Div';
 	newdiv.setAttribute('id', divIdName);
 
-	newdiv.innerHTML = '<input class=\'topic\' type=\'text\' size=\'30\' name =\'topics_' + num + '\' id=\'field_' + num + '\'>  <a href=\'#\' onclick=\'removeElement(' + divIdName + '); return false;\'> <img valign=\'top\' alt=\'Cross\' src=\'/assets/icons/cross.png\'> </a><p></p>';
+	newdiv.innerHTML = "<input class='topic' type='text' size='30' name ='topics_' + num + '' id='field_' + num + ''>  <a href='#' onclick='removeElement(' + divIdName + '); return false;'> <img valign='top' alt='Cross' src='/assets/icons/cross.png'> </a><p></p>";
 	ni.appendChild(newdiv);
 
 	window.scrollBy(0,42); // horizontal and vertical scroll increments
@@ -41,10 +41,17 @@ function addPerson(){
     newDiv.setAttribute('id',divName);
     var url = document.location.href;
     var parts = url.split('/');
-    newDiv.innerHTML = '<input class=\'person\' type=\'text\' size=\'30\' name =\'person_' + num + '\' id=\'field_' + divName + '\'>  <a href=\'#\' onclick=\'removePerson(' + divName + '); return false;\'> <img valign=\'top\' alt=\'Cross\' src=\'/assets/icons/cross.png\'> </a><a href=\'/en/participations/create/'+ parts[5] + '\' > <img valign=\'top\' src=\'/assets/icons/tick.png\'> </a><p></p>';
+    var meeting_id = parts[5];
+    newDiv.innerHTML = "<form accept-charset='UTF-8' action='/en/participations' class='form' id='create_participation_"+ num + "' method='post'>" +
+        "<input type='hidden' name='meeting_id' value='" + meeting_id + "'/>" +
+        "<input class='person' type='text' size='30' name ='person' id='field'>  <a href='#' onclick='removePerson(" + divName + "); return false;'> <img valign='top' alt='Cross' src='/assets/icons/cross.png'> </a>" +
+        "<a href='#' > <input type='image' valign='top' src='/assets/icons/email_go.png' onclick='createParticipation("+num +"); return false; '> </a><p></p>" +
+        "</form>";
+
     myDiv.appendChild(newDiv);
 
-    window.scrollTo(0,newDiv.value);
+    document.getElementById(divName).scrollIntoView();
+
 }
 
 function removePerson(divNum){
@@ -52,4 +59,10 @@ function removePerson(divNum){
     var oldDiv = document.getElementById(divNum.id);
 
     div.removeChild(oldDiv);
+}
+
+
+function createParticipation(num){
+    var name = 'create_participation_' + num;
+    document.forms[name].submit();
 }
