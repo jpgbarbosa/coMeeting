@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111030225008) do
+ActiveRecord::Schema.define(:version => 20111107181347) do
 
   create_table "meetings", :force => true do |t|
     t.string   "subject"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20111030225008) do
 
   create_table "participations", :force => true do |t|
     t.string   "token"
-    t.boolean  "is_attending"
+    t.integer  "is_attending"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

@@ -78,7 +78,7 @@ class MeetingsController < ApplicationController
 				if true
 					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 				else
-				  UserMailer.admin_email(@meeting.admin, "New meeting created", @meeting.link_admin).deliver
+				  UserMailer.admin_email(@meeting.admin, @meeting.link_admin).deliver
 				end
 				format.html { redirect_to root_path, notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 				format.json { render json: @meeting, status: :created, location: @meeting }

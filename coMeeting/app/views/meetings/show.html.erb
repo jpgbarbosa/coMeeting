@@ -146,9 +146,20 @@ $(document).ready(function()
                   <td>
                     <%=participation.user.mail %>
                   </td>
-                  <td class="last">
-                     <%= link_to "#{t("resend",:default => "Resend Invite")}", '/' %>
-                  </td>
+                  <% if participation.is_attending == -1 %>
+                     <p>The user is not attending</p>
+                  <% elsif participation.is_attending == 0 %>
+                     <td>The user has not answered</td>
+                     <td class="last">
+                         <%= form_for :participation, :url => participations_path, :html => { :class => :form } do |f| -%>
+                           <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
+                           <input type='hidden' name='person' value='<%= participation.user.mail %>' />
+                           <%= image_submit_tag("/assets/icons/email_go.png") %>
+                         <% end -%>
+                     </td>
+                  <% elsif participation.is_attending == 1 %>
+                    <p>The user is attending</p>
+                  <% end %>
                 </tr>
             <% end %>
         <% end %>
