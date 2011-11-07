@@ -51,11 +51,11 @@ a:link {
 	border: 1px solid #B75442;
 	background: #EA664F url("/assets/icons/error.png") no-repeat 10px center;
 }
-	.flash .warning {
+.flash .warning {
 	border: 1px solid #bb9004;
 	background: #f9c006 url("/assets/icons/warning.png") no-repeat 10px center;
 }
-	.flash .notice {
+.flash .notice {
 	color: #28485e;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 	border: 1px solid #8a9daa;
