@@ -8,6 +8,6 @@ class Meeting < ActiveRecord::Base
   validates :meeting_date, :presence => true
   validates :admin, :presence => true
 
-  has_many :participations
-  has_many :users, :through => :participations
+  has_many :participations, :class_name => "Participation"
+  has_many :users, :class_name => "User", :through => :participations
 end

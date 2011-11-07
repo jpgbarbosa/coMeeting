@@ -10,7 +10,11 @@
       </ul>
     </div>
   <% end %>
-
+   <div class="group">
+    <%= f.label :is_attending, t("form.attending", :default => "Attending"), :class => :label %>
+    <%= f.text_field :is_attending, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -14,6 +14,13 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1.json
 	def show
 		@meeting = Meeting.find_by_link_admin(params[:id])
+    #@meeting = Meeting.find(params[:id])
+    if @meeting != nil
+      @participations = @meeting.participations
+    end
+
+
+
 		if @meeting == nil
 			respond_to do |format|
 				flash[:error] = t("no_show_meeting", :default => "The meeting you're looking for doesn't exist!")

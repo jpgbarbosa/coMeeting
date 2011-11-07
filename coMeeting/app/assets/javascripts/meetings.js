@@ -29,3 +29,27 @@ function removeElement(divNum) {
 		olddiv.children[0].value ="";
 	}
 }
+
+function addPerson(){
+    var myDiv = document.getElementById('myDiv');
+    var val = document.getElementById('theValue');
+    var num = (val.value - 1) + 2;
+    val.value = num;
+
+    var newDiv = document.createElement('div');
+    var divName = 'my' + num + 'Div';
+    newDiv.setAttribute('id',divName);
+    var url = document.location.href;
+    var parts = url.split('/');
+    newDiv.innerHTML = '<input class=\'person\' type=\'text\' size=\'30\' name =\'person_' + num + '\' id=\'field_' + divName + '\'>  <a href=\'#\' onclick=\'removePerson(' + divName + '); return false;\'> <img valign=\'top\' alt=\'Cross\' src=\'/assets/icons/cross.png\'> </a><a href=\'/en/participations/create/'+ parts[5] + '\' > <img valign=\'top\' src=\'/assets/icons/tick.png\'> </a><p></p>';
+    myDiv.appendChild(newDiv);
+
+    window.scrollTo(0,newDiv.value);
+}
+
+function removePerson(divNum){
+    var div = document.getElementById('myDiv');
+    var oldDiv = document.getElementById(divNum.id);
+
+    div.removeChild(oldDiv);
+}

@@ -18,6 +18,7 @@ $(document).ready(function()
         <!-- todo: implement js scroll by tag -->
       <li class="active"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
       <li class="first"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
+      <li class="first"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
     </ul>
   </div>
   <div class="content">
@@ -74,7 +75,7 @@ $(document).ready(function()
       <div class="wat-cf">
         <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
 																											:class => "button" %>
-																											
+
 		<!--
 		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin),
 																											:method => :delete,
@@ -98,6 +99,7 @@ $(document).ready(function()
     <ul class="wat-cf">
       <li class="first"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
       <li class="active"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
+      <li class="first"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
     </ul>
   </div>
 
@@ -122,6 +124,41 @@ $(document).ready(function()
             </tr>
         <% end -%>
       </table>
+    </div>
+  </div>
+</div>
+
+<div class="block" id="block-people">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
+      <li class="first"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
+      <li class="active"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="inner">
+      <table class="table">
+        <% if @participations.present? %>
+            <% @participations.each do |participation| %>
+                <tr class="<%= cycle("odd","even") %>">
+                  <td>
+                    <%=participation.user.mail %>
+                  </td>
+                  <td class="last">
+                     <%= link_to "#{t("resend",:default => "Resend Invite")}", '/' %>
+                  </td>
+                </tr>
+            <% end %>
+        <% end %>
+      </table>
+      <input type="hidden" value="0" id="theValue" />
+		<div id="myDiv">
+
+		</div>
+		<a href="#" onclick="return addPerson();">+</a>
+    <span class="description">Add a new Person</span>
     </div>
   </div>
 </div>

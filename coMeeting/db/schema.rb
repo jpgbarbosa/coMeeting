@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010142345) do
+ActiveRecord::Schema.define(:version => 20111030225008) do
 
   create_table "meetings", :force => true do |t|
     t.string   "subject"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20111010142345) do
     t.string   "proceedings"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "extra_info"
     t.string   "meeting_date"
+    t.string   "extra_info"
     t.text     "topics"
     t.string   "duration"
     t.time     "meeting_time"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20111010142345) do
     t.boolean  "is_attending"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "meeting_id"
   end
 
   create_table "users", :force => true do |t|
