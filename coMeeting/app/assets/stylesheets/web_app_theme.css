@@ -18,6 +18,15 @@
 	border:1px solid #e2e2e2;
 }
 
+.form input.person{
+    width:95%;
+    border:1px solid #e2e2e2;
+}
+
+.form input.putas:hover {
+    text-align: left;
+}
+
 .resize {
 	width:auto;
 	height:200px;
@@ -74,7 +83,7 @@ a:link {
 #drop_menu img {
 	vertical-align:middle;
 	padding-right:10px;
-	
+
 }
 
 #drop_items {

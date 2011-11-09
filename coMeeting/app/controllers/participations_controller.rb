@@ -65,17 +65,15 @@ class ParticipationsController < ApplicationController
 
     if invited
       #Resend invite
-      if false
-        UserMailer.invitation_email(email, @participation.token).deliver
-      else
-        respond_to do |format|
-          format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participatn", :default => "Re invitation was sent.") }
-          #format.json { render json: @meeting_path, status: :created, location: @participation }
 
-        end
+      #CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
+      #UserMailer.invitation_email(email, @participation.token).deliver
+      respond_to do |format|
+        format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participatn", :default => "Reinvitation was sent.") }
+        #format.json { render json: @meeting_path, status: :created, location: @participation }
       end
+
     else
-      puts "ENVIAAAAAAAAAARRRRR"
       #Create Participation
       @participation = Participation.new
       @participation.is_attending = 0
@@ -90,32 +88,21 @@ class ParticipationsController < ApplicationController
 
       @participation.user_id = user_id
       @participation.token = UUIDTools::UUID.random_create().to_s
-      UserMailer.invitation_email(email, @participation.token).deliver
+
+      #CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
+      #UserMailer.invitation_email(email, @participation.token).deliver
+
 
       respond_to do |format|
-      if @participation.save
-        format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participatn", :default => "Invitation was sent.") }
-        #format.json { render json: @meeting_path, status: :created, location: @participation }
-      else
-        format.html { redirect_to meeting_path(meeting_id), notice: t("uninvited_participant", :default => 'Invitation was not sent. Please try again.' ) }
-        #format.json { render json: @participation.errors, status: :unprocessable_entity }
+        if @participation.save
+          format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participatn", :default => "Invitation was sent.") }
+          #format.json { render json: @meeting_path, status: :created, location: @participation }
+        else
+          format.html { redirect_to meeting_path(meeting_id), notice: t("uninvited_participant", :default => 'Invitation was not sent. Please try again.' ) }
+          #format.json { render json: @participation.errors, status: :unprocessable_entity }
+        end
       end
     end
-
-
-    end
-
-
-
-    """respond_to do |format|
-      if @participation.save
-        format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
-        format.json { render json: @participation, status: :created, location: @participation }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
-    end"""
   end
 
   # PUT /participations/1
