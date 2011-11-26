@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20111109193842) do
     t.string   "proceedings"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "meeting_date"
     t.string   "extra_info"
+    t.string   "meeting_date"
     t.text     "topics"
     t.datetime "duration",     :limit => 255
     t.time     "meeting_time"

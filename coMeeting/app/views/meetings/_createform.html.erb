@@ -38,15 +38,14 @@
   </div>
 
   <div class="group">
-    <input type="hidden" value="1" id="theValue" />
-		<div id="myDiv">
-            <%= f.label :topics, t("topics", :default => "Topics"), :class => :label %>
-			<br/>
-			<div id="my0Div">
-				<%= f.text_field :topics, :class => "topic", :value => "" %>  <a href="#" onclick="removeElement(my0Div); return false;"> <img valign="top" alt="Cross" src="/assets/icons/cross.png"> </a><p></p>
+    <input type="hidden" id="currentNumber" value="1" />
+		<div id="topicsDiv">
+            <%= f.label :topics, t("topics", :default => "Topics"), :class => :label %><br/>
+			<div id="topic0">
+				<%= f.text_field :topics, :class => "topic", :name => "meeting[topics][]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeTopic(topic0);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a><p></p>
 			</div>
 		</div>
-		<a href="#" onclick="addElement(); return false">+</a>
+		<a href="#" onclick="addTopic();return false;">+</a>
     <span class="description"><%= t("form.add_topic", :default => "Add a new Topic")%></span>
   </div>
 

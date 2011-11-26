@@ -1,27 +1,25 @@
 
-function addElement() {
-    var div = document.getElementById('theValue');
-	var ni = document.getElementById('myDiv');
-	var numi = document.getElementById('theValue');
-	var num = (div.value - 1) + 1;
-	numi.value = num;
-	var newdiv = document.createElement('div');
-	var divIdName = 'my' + num + 'Div';
-	newdiv.setAttribute('id', divIdName);
+function addTopic() {
+    var numberDiv = document.getElementById('currentNumber');
+	var mainDiv = document.getElementById("topicsDiv");
+	var num = (numberDiv.value - 1) + 1;
+	var divIdName = "topic" + num;
+	var newDiv = document.createElement("div");
+	newDiv.setAttribute("id", divIdName);
 
-	newdiv.innerHTML = "<input class='topic' type='text' size='30' name ='topics_" + num + "' id='field_" + num + "'>  <a href='#' onclick='removeElement(" + divIdName + "); return false; '> <img valign='top' alt='Cross' src='/assets/icons/cross.png'> </a><p></p>";
-	ni.appendChild(newdiv);
+	newDiv.innerHTML = "<input class='topic' id='meeting_topics' name='meeting[topics][]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeTopic(" + divIdName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a><p></p>";
+	mainDiv.appendChild(newDiv);
 
-    div.value = num + 1;
-	window.scrollBy(0,42); // horizontal and vertical scroll increments
+    numberDiv.value = num + 1;
+	window.scrollBy(0, 42); // horizontal and vertical scroll increments
 }
 
-function removeElement(divNum) {
+function removeTopic(divNum) {
 
-	var d = document.getElementById('myDiv');
+	var mainDiv = document.getElementById('topicsDiv');
 	var olddiv = document.getElementById(divNum.id);
-	if(d.childElementCount > 3){
-		d.removeChild(olddiv);
+	if(mainDiv.childElementCount > 3){
+		mainDiv.removeChild(olddiv);
 	}
 	else{
 		olddiv.children[0].value ="";
@@ -42,8 +40,8 @@ function addPerson(){
     var meeting_id = parts[5];
     newDiv.innerHTML = "<form accept-charset='UTF-8' action='/en/participations' class='form' id='create_participation_"+ num + "' method='post'>" +
         "<input type='hidden' name='meeting_id' value='" + meeting_id + "'/>" +
-        "<input class='person' type='text' size='30' name ='person' id='field'>  <a href='#' onclick='removePerson(" + divName + "); return false;'> <img valign='top' alt='Cross' src='/assets/icons/cross.png'> </a>" +
-        "<a href='#' > <img valign='top' src='/assets/icons/email_go.png' onclick='createParticipation("+num +"); return false; '> </a><p></p>" +
+        "<input class='person' type='text' size='30' name ='person' id='field'>  <a href='#' tabindex='-1' onclick='removePerson(" + divName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>" +
+        "<a href='#' tabindex='-1' onclick='createParticipation("+num +");return false;'> <img valign='top' src='/assets/icons/email_go.png'> </a><p></p>" +
         "</form>";
 
     myDiv.appendChild(newDiv);

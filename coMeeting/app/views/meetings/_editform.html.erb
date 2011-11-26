@@ -38,21 +38,21 @@
   </div>
 
   <div class="group">
-		<div id="myDiv">
+		<div id="topicsDiv">
             <%= f.label :topics, t("topics", :default => "Topics"), :class => :label %>
 			<br/>
             <% num = 0 %>
             <% @meeting.topics.each do |topic| -%>
-                <% name_id = "my#{num}Div" %>
+                <% name_id = "topic#{num}" %>
                 <div id=<%=name_id %>>
-                    <input value="<%=topic %>"class="topic" type="text" size="30" name ="topics_<%= num %>">  <a href="#" onclick="removeElement(<%=name_id %>); return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a><p></p>
+					<%= f.text_field :topics, :class => "topic", :name => "meeting[topics][]", :value => topic %>  <a href="#" onclick="removeTopic(<%= name_id %>);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a><p></p>
                 </div>
                 <% num = num + 1 %>
             <% end -%>
 		</div>
-		<a href="#" onclick="addElement(); return false">+</a>
-		<input type="hidden" value="<%=num%>" id="theValue" />
-    <span class="description">Add a new Topic</span>
+		<a href="#" onclick="addTopic();return false">+</a>
+		<input type="hidden" id="currentNumber" value="<%=num%>" />
+    <span class="description"><%= t("form.add_topic", :default => "Add a new Topic")%></span>
   </div>
 
   <div class="group">

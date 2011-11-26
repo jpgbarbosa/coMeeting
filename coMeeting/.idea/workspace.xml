@@ -26,7 +26,7 @@
       <file leaf-file-name="_createform.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/_createform.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="78" selection-start="2625" selection-end="2625" vertical-scroll-proportion="-16.384615">
+            <state line="60" column="78" selection-start="2664" selection-end="2664" vertical-scroll-proportion="-16.384615">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="_editform.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/_editform.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="6" selection-start="2891" selection-end="3043" vertical-scroll-proportion="-18.307692">
+            <state line="70" column="6" selection-start="2926" selection-end="3078" vertical-scroll-proportion="-18.307692">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="meetings.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/meetings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="30" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0">
+            <state line="39" column="30" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -59,19 +59,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/participations/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="29" selection-start="296" selection-end="296" vertical-scroll-proportion="0.35897437">
+            <state line="14" column="29" selection-start="296" selection-end="296" vertical-scroll-proportion="-9.153846">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="meetings_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="meetings_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="67" selection-start="2970" selection-end="3003" vertical-scroll-proportion="0.0">
+            <state line="53" column="12" selection-start="1151" selection-end="1151" vertical-scroll-proportion="0.40783745">
               <folding />
             </state>
           </provider>
@@ -115,12 +115,12 @@
         <option value="C:/Ruby192/lib/ruby/gems/1.9.1/gems/web-app-theme-0.8.0/app/assets/stylesheets/web-app-theme/themes/drastic-dark/style.css" />
         <option value="C:/Ruby192/lib/ruby/gems/1.9.1/gems/web-app-theme-0.8.0/app/assets/stylesheets/web-app-theme/themes/activo/style.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/web_app_theme.css" />
-        <option value="$PROJECT_DIR$/app/controllers/meetings_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/meetings/_createform.html.erb" />
         <option value="$PROJECT_DIR$/app/models/meeting.rb" />
         <option value="$PROJECT_DIR$/app/views/meetings/show.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/participations_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/participations/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/meetings_controller.rb" />
       </list>
     </option>
   </component>
@@ -806,7 +806,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/meetings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="30" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0">
+        <state line="39" column="30" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -834,21 +834,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/meetings/_createform.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="78" selection-start="2625" selection-end="2625" vertical-scroll-proportion="-16.384615">
+        <state line="60" column="78" selection-start="2664" selection-end="2664" vertical-scroll-proportion="-16.384615">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/meetings/_editform.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="6" selection-start="2891" selection-end="3043" vertical-scroll-proportion="-18.307692">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="67" selection-start="2970" selection-end="3003" vertical-scroll-proportion="0.0">
+        <state line="70" column="6" selection-start="2926" selection-end="3078" vertical-scroll-proportion="-18.307692">
           <folding />
         </state>
       </provider>
@@ -876,7 +869,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/participations/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="296" selection-end="296" vertical-scroll-proportion="0.35897437">
+        <state line="14" column="29" selection-start="296" selection-end="296" vertical-scroll-proportion="-9.153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="12" selection-start="1151" selection-end="1151" vertical-scroll-proportion="0.40783745">
           <folding />
         </state>
       </provider>
