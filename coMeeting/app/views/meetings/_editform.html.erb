@@ -45,7 +45,7 @@
             <% @meeting.topics.each do |topic| -%>
                 <% name_id = "topic#{num}" %>
                 <div id=<%=name_id %>>
-					<%= f.text_field :topics, :class => "topic", :name => "meeting[topics][]", :value => topic %>  <a href="#" onclick="removeTopic(<%= name_id %>);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a><p></p>
+					<%= f.text_field :topics, :class => "topic", :name => "meeting[topics][]", :value => topic %>  <a href="#" tabindex="-1" onclick="removeTopic(<%= name_id %>);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a><p></p>
                 </div>
                 <% num = num + 1 %>
             <% end -%>
