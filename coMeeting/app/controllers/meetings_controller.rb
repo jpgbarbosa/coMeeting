@@ -57,9 +57,6 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
 
-		#@meeting.topics = Array.new
-
-
 		respond_to do |format|
 			if @meeting.save
 				if params[:meeting][:admin] == ''
@@ -91,17 +88,6 @@ class MeetingsController < ApplicationController
 	# PUT /meetings/1.json
 	def update
 		@meeting = Meeting.find_by_link_admin(params[:id])
-
-		@meeting.topics = Array.new
-
-		i = 0
-			params.each_key do |key|
-				if ((key.starts_with? 'topics_') && params[key] != '' && params[key] != nil)
-					@meeting.topics[i] = params[key]
-					i = i + 1
-				end
-		end
-
 
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
