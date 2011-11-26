@@ -15,6 +15,12 @@ class ParticipationsController < ApplicationController
   def show
     @participation = Participation.find_by_token(params[:id])
 
+    @meeting = Meeting.find(@participation.meeting_id)
+
+    if @meeting != nil
+      @participations = @meeting.participations
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @participation }
@@ -69,7 +75,7 @@ class ParticipationsController < ApplicationController
       #CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
       #UserMailer.invitation_email(email, @participation.token).deliver
       respond_to do |format|
-        format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participatn", :default => "Reinvitation was sent.") }
+        format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participant", :default => "Re-invitation was sent.") }
         #format.json { render json: @meeting_path, status: :created, location: @participation }
       end
 
@@ -108,11 +114,19 @@ class ParticipationsController < ApplicationController
   # PUT /participations/1
   # PUT /participations/1.json
   def update
-    @participation = Participation.find(params[:id])
+    @participation = Participation.find_by_token(params[:id])
+
+    b = params[:b]
+
+    if b == 'y'
+      @participation.is_attending = 1
+    elsif b == 'n'
+      @participation.is_attending = -1
+    end
 
     respond_to do |format|
-      if @participation.update_attributes(params[:participation])
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
+      if (b == 'y' || b == 'n') && (@participation.save)
+        format.html { redirect_to participation_path(@participation.token), notice: 'Participation was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
