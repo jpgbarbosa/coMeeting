@@ -14,10 +14,10 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1.json
 	def show
 		@meeting = Meeting.find_by_link_admin(params[:id])
-    #@meeting = Meeting.find(params[:id])
-    if @meeting != nil
-      @participations = @meeting.participations
-    end
+		#@meeting = Meeting.find(params[:id])
+		if @meeting != nil
+		  @participations = @meeting.participations
+		end
 
 
 
@@ -52,29 +52,19 @@ class MeetingsController < ApplicationController
 	# POST /meetings
 	# POST /meetings.json
 	def create
+		p 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+		p params[:meeting]
+	
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
+		
+		#@meeting.topics = Array.new
 
-		array = Array.new
-
-		if(params[:meeting][:topics] != '' && params[:meeting][:topics] != nil)
-			array[0] = params[:meeting][:topics]
-			i = 1
-		else
-			i = 0
-		end
-
-		params.each_key do |key|
-			if ((key.starts_with? 'topics_') && params[key] != '' && params[key] != nil)
-				array[i] = params[key]
-				i = i + 1
-			end
-		end
-
-		@meeting.topics = array
 
 		respond_to do |format|
+			p 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ'
 			if @meeting.save
+				p 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY'
 				if true
 					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 				else
