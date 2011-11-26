@@ -19,8 +19,6 @@ class MeetingsController < ApplicationController
 		  @participations = @meeting.participations
 		end
 
-
-
 		if @meeting == nil
 			respond_to do |format|
 				flash[:error] = t("no_show_meeting", :default => "The meeting you're looking for doesn't exist!")
@@ -52,20 +50,15 @@ class MeetingsController < ApplicationController
 	# POST /meetings
 	# POST /meetings.json
 	def create
-		p 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 		p params[:meeting]
-	
+
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
-		
-		#@meeting.topics = Array.new
 
 		respond_to do |format|
-			p 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ'
 			if @meeting.save
-				p 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY'
-				if true
-					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
+				if params[:meeting][:admin] == ''
+					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created.") }
 				else
 				  UserMailer.admin_email(@meeting.admin, @meeting.link_admin).deliver
 				end
