@@ -31,12 +31,14 @@ pt:
   deleted_meeting:		"Reunião eliminada com sucesso."
   no_deleted_meeting:	"A reunião que tentou eliminar não existe!"
   form:
+    email:
+      label:			"Email do Administrador"
+      description:		"Se preencheres este campo, receberás um email para te autenticares. Se o deixares em branco, todos os participantes da reunião serão avisados de que não confirmaste a tua identidade."
     subject:			"Assunto"
     place:				"Local"
     date:				"Data"
-    time:				"Hora"
+    time:				"Hora de início"
     duration:			"Duração"
-    extra_info:			"Informacão Extra"
-    email:				"Email"
+    extra_info:			"Informações extra"
     add_topic:			"Adicionar um novo tópico"
     proceedings:		"?"

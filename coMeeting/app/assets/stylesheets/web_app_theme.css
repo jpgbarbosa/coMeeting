@@ -13,9 +13,8 @@
 	border:1px solid #e2e2e2;
 }
 
-.form input.topic{
-	width:60%;
-	border:1px solid #e2e2e2;
+.form input.short{
+	width:95%;
 }
 
 .form input.person{

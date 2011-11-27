@@ -31,12 +31,14 @@ en:
   deleted_meeting:      "Meeting successfully deleted."
   no_deleted_meeting:   "The meeting you tried deleting doesn't exist!"
   form:
+    email:
+      label:			"Admin Email"
+      description:		"If you fill this field, you will receive an email to confirm your identity. If you leave it blank, all people invited to the meeting will know you didn't authenticate yourself."
     subject:			"Subject"
     place:				"Place"
     date:				"Date"
     time:				"Time"
     duration:			"Duration"
     extra_info:			"Extra Info"
-    email:				"Admin Email"
     add_topic:			"Add a new topic"
     proceedings:		"Proceedings"

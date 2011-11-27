@@ -50,8 +50,6 @@ class MeetingsController < ApplicationController
 	# POST /meetings
 	# POST /meetings.json
 	def create
-		p params[:meeting]
-
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
 

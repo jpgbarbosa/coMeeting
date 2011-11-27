@@ -1,5 +1,4 @@
 class Meeting < ActiveRecord::Base
-
   serialize :topics, Array
   attr_accessor :timezone
 

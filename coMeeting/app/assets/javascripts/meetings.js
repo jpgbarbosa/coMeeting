@@ -1,60 +1,59 @@
 
 function addTopic() {
-    var numberDiv = document.getElementById('currentNumber');
+    var numberDiv = document.getElementById('newTopicNumber');
 	var mainDiv = document.getElementById("topicsDiv");
 	var num = (numberDiv.value - 1) + 1;
-	var divIdName = "topic" + num;
-	var newDiv = document.createElement("div");
-	newDiv.setAttribute("id", divIdName);
+	var divName = 'topic' + num;
+	var newDiv = document.createElement('div');
+	newDiv.setAttribute('id', divName);
 
-	newDiv.innerHTML = "<input class='topic' id='meeting_topics' name='meeting[topics][]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeTopic(" + divIdName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a><p></p>";
+	newDiv.innerHTML = "<p></p><input class='short text_field' id='meeting_topics' name='meeting[topics][]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeTopic(" + divName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	mainDiv.appendChild(newDiv);
 
     numberDiv.value = num + 1;
-	window.scrollBy(0, 42); // horizontal and vertical scroll increments
+	document.getElementById(divName).scrollIntoView();
 }
 
 function removeTopic(divNum) {
 
 	var mainDiv = document.getElementById('topicsDiv');
-	var olddiv = document.getElementById(divNum.id);
+	var oldDiv = document.getElementById(divNum.id);
 	if(mainDiv.childElementCount > 3){
-		mainDiv.removeChild(olddiv);
+		mainDiv.removeChild(oldDiv);
 	}
 	else{
-		olddiv.children[0].value ="";
+		oldDiv.children[0].value ='';
 	}
 }
 
 function addPerson(){
-    var myDiv = document.getElementById('myDiv');
-    var val = document.getElementById('theValue');
-    var num = (val.value - 1) + 2;
+    var val = document.getElementById('newParticipantNumber');
+	var mainDiv = document.getElementById('participantsDiv');
+    var num = (val.value - 1) + 1;
     val.value = num;
 
+	var divName = 'participant' + num;
     var newDiv = document.createElement('div');
-    var divName = 'my' + num + 'Div';
-    newDiv.setAttribute('id',divName);
+    newDiv.setAttribute('id', divName);
     var url = document.location.href;
     var parts = url.split('/');
     var meeting_id = parts[5];
+	
     newDiv.innerHTML = "<form accept-charset='UTF-8' action='/en/participations' class='form' id='create_participation_"+ num + "' method='post'>" +
         "<input type='hidden' name='meeting_id' value='" + meeting_id + "'/>" +
         "<input class='person' type='text' size='30' name ='person' id='field'>  <a href='#' tabindex='-1' onclick='removePerson(" + divName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>" +
-        "<a href='#' tabindex='-1' onclick='createParticipation("+num +");return false;'> <img valign='top' src='/assets/icons/email_go.png'> </a><p></p>" +
+        "<a href='#' tabindex='-1' onclick='createParticipation("+num +");return false;'> <img valign='top' alt='' src='/assets/icons/email_go.png'> </a><p></p>" +
         "</form>";
-
-    myDiv.appendChild(newDiv);
+    mainDiv.appendChild(newDiv);
 
     document.getElementById(divName).scrollIntoView();
-
 }
 
 function removePerson(divNum){
-    var div = document.getElementById('myDiv');
+    var mainDiv = document.getElementById('participantsDiv');
     var oldDiv = document.getElementById(divNum.id);
 
-    div.removeChild(oldDiv);
+    mainDiv.removeChild(oldDiv);
 }
 
 
