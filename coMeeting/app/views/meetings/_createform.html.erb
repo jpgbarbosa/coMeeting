@@ -38,21 +38,34 @@
   </div>
 
   <div class="group">
+    <%= f.label :extra_info, t("form.extra_info", :default => "Extra info"), :class => :label %>
+    <%= f.text_field :extra_info, :class => 'text_field' %>
+  </div>
+  
+  <div class="group">
     <input type="hidden" id="newTopicNumber" value="1" />
 		<div id="topicsDiv">
             <%= f.label :topics, t("topics", :default => "Topics"), :class => :label %>
 			<div id="topic0">
-				<%= f.text_field :topics, :class => "short text_field", :name => "meeting[topics][]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeTopic(topic0);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
+				<%= f.text_field :topics, :class => "shorter text_field", :name => "meeting[topics][]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeTopic(topic0);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 			</div>
 		</div>
 		<a href="#" onclick="addTopic();return false;">+</a>
     <span class="description"><%= t("form.add_topic", :default => "Add a new Topic")%></span>
   </div>
-
+  
   <div class="group">
-    <%= f.label :extra_info, t("form.extra_info", :default => "Extra info"), :class => :label %>
-    <%= f.text_field :extra_info, :class => 'text_field' %>
+    <input type="hidden" id="newParticipantNumber" value="1" />
+		<div id="participantsDiv">
+            <%= f.label :participants, t("participants", :default => "Participants"), :class => :label %>
+			<div id="participant0">
+				<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeParticipant(participant0);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
+			</div>
+		</div>
+		<a href="#" onclick="addParticipant();return false;">+</a>
+    <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
   </div>
+  
 
   <div class="group navform wat-cf">
     <button class="button" type="submit">

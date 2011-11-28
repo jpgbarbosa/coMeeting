@@ -13,17 +13,13 @@
 	border:1px solid #e2e2e2;
 }
 
-.form input.short{
-	width:95%;
+.form input.shorter{
+	width:97%;
 }
 
 .form input.person{
     width:95%;
     border:1px solid #e2e2e2;
-}
-
-.form input.putas:hover {
-    text-align: left;
 }
 
 .resize {

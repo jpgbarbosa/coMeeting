@@ -14,17 +14,14 @@ class MeetingsController < ApplicationController
 	# GET /meetings/1.json
 	def show
 		@meeting = Meeting.find_by_link_admin(params[:id])
-		#@meeting = Meeting.find(params[:id])
-		if @meeting != nil
-		  @participations = @meeting.participations
-		end
 
-		if @meeting == nil
+		if @meeting.nil?
 			respond_to do |format|
-				flash[:error] = t("no_show_meeting", :default => "The meeting you're looking for doesn't exist!")
+				flash[:error] = t("meeting.error.show", :default => "The meeting you're looking for doesn't exist!")
 				format.html { redirect_to root_path }
 			end
 		else
+			@participations = @meeting.participations
 			respond_to do |format|
 				format.html # show.html.erb
 				format.json { render json: @meeting }
@@ -50,18 +47,19 @@ class MeetingsController < ApplicationController
 	# POST /meetings
 	# POST /meetings.json
 	def create
+		params[:meeting][:topics].reject!( &:blank? )
+	
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
 
 		respond_to do |format|
 			if @meeting.save
-				if params[:meeting][:admin] == ''
-					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("created_meeting", :default => "Meeting successfully created.") }
+				if params[:meeting][:admin].empty?
+					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
 				else
-				  UserMailer.admin_email(@meeting.admin, @meeting.link_admin).deliver
+					UserMailer.admin_email(@meeting.admin, @meeting.link_admin).deliver
+					format.html { redirect_to root_path, notice: t("meeting.created.withauth", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 				end
-				format.html { redirect_to root_path, notice: t("created_meeting", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
-				format.json { render json: @meeting, status: :created, location: @meeting }
 			else
 				format.html { render action: "new" }
 				format.json { render json: @meeting.errors, status: :unprocessable_entity }
@@ -87,7 +85,7 @@ class MeetingsController < ApplicationController
 
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
-				format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("updated_meeting", :default => "Meeting successfully updated.") }
+				format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.updated", :default => "Meeting successfully updated.") }
 				format.json { head :ok }
       else
 				format.html { render action: "edit" }
@@ -103,13 +101,13 @@ class MeetingsController < ApplicationController
 
 		if @meeting == nil
 			respond_to do |format|
-				flash[:error] = t("no_deleted_meeting", :default => "The meeting you tried deleting doesn't exist!")
+				flash[:error] = t("meeting.error.delete", :default => "The meeting you tried deleting doesn't exist!")
 				format.html { redirect_to root_path }
 			end
 		else
 			@meeting.destroy
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: t("deleted_meeting", :default => "Meeting successfully deleted.") }
+				format.html { redirect_to root_path, notice: t("meeting.deleted", :default => "Meeting successfully deleted.") }
 				format.json { head :ok }
 			end
 		end

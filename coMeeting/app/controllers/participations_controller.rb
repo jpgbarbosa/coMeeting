@@ -47,7 +47,7 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
     #@participation = Participation.new(params[:participation])
-
+	
     meeting_id = params[:meeting_id]
     meeting = Meeting.find_by_link_admin(meeting_id)
     email = params[:person]
@@ -75,7 +75,7 @@ class ParticipationsController < ApplicationController
       #CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
       #UserMailer.invitation_email(email, @participation.token).deliver
       respond_to do |format|
-        format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participant", :default => "Re-invitation was sent.") }
+        format.html { redirect_to meeting_path(meeting_id), notice: t("participant.reinvited", :default => "Invitation resent.") }
         #format.json { render json: @meeting_path, status: :created, location: @participation }
       end
 
@@ -101,10 +101,10 @@ class ParticipationsController < ApplicationController
 
       respond_to do |format|
         if @participation.save
-          format.html { redirect_to meeting_path(meeting_id), notice: t("invited_participatn", :default => "Invitation was sent.") }
+          format.html { redirect_to meeting_path(meeting_id), notice: t("participant.invited", :default => "Invitation sent.") }
           #format.json { render json: @meeting_path, status: :created, location: @participation }
         else
-          format.html { redirect_to meeting_path(meeting_id), notice: t("uninvited_participant", :default => 'Invitation was not sent. Please try again.' ) }
+          format.html { redirect_to meeting_path(meeting_id), notice: t("participant.uninvited", :default => "Invitation not sent. Please try again.") }
           #format.json { render json: @participation.errors, status: :unprocessable_entity }
         end
       end
@@ -126,7 +126,7 @@ class ParticipationsController < ApplicationController
 
     respond_to do |format|
       if (b == 'y' || b == 'n') && (@participation.save)
-        format.html { redirect_to participation_path(@participation.token), notice: 'Participation was successfully updated.' }
+        format.html { redirect_to participation_path(@participation.token), notice: t("participant.updated", :default => "Participation successfully updated.") }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

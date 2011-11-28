@@ -23,7 +23,12 @@ $(document).ready(function()
   </div>
   <div class="content">
     <div class="inner">
-
+      <p>
+        <b><%= t("form.email.label", :default => "Admin Email") %>
+          :</b>
+        <%= @meeting.admin %>
+      </p>
+	
       <p>
         <b><%= t("form.subject", :default => "Subject") %>
           :</b>
@@ -53,18 +58,14 @@ $(document).ready(function()
           :</b>
         <%= @meeting.duration.strftime("%1Hh:%Mm") %>
       </p>
-
-      <p>
-        <b><%= t("form.extra_info", :default => "Extra info") %>
-          :</b>
-        <%= @meeting.extra_info %>
-      </p>
-
-      <p>
-        <b><%= t("form.email", :default => "Admin Email") %>
-          :</b>
-        <%= @meeting.admin %>
-      </p>
+	
+      <% unless @meeting.extra_info.blank? %>
+		  <p>
+			<b><%= t("form.extra_info", :default => "Extra info") %>
+			  :</b>
+			<%= @meeting.extra_info %>
+		  </p>
+	  <% end %>
 
       <p>
         <b><%= t("form.proceedings", :default => "Proceedings") %>
@@ -169,7 +170,7 @@ $(document).ready(function()
 	  </div>
 	  <a href="#" onclick="addPerson(); return false;">+</a>
 	  <input type="hidden" value="0" id="newParticipantNumber" />
-	  <span class="description">Add a new Person</span>
+	  <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
     </div>
   </div>
 </div>
