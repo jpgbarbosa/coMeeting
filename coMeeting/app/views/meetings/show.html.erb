@@ -145,24 +145,25 @@ $(document).ready(function()
       <input type="hidden" id="token" value="<%=@meeting.link_admin%>">
       <table class="table">
 			<tr>
-				<td width='50%'>Email</td>
-				<td width='30%'>Status</td>
-				<td width='10%'>Assign Action Item</td>
-				<td width='10%'>Send Email</td>
+				<td width='45%'>Email</td>
+				<td width='25%'>Status</td>
+				<td width='15%'>Assign Action Item</td>
+				<td width='15%'>Send Email</td>
 			</tr>
         <% if @participations.present? 
         	num = 0 %>
             <% @participations.each do |participation| %>
-                <tr class="<%= cycle("even", "odd") %>">
-                  <td width='50%'><%=participation.user.mail %></td>
+				<% rowClass = cycle("even", "odd") %>
+                <tr class="<%=rowClass%>">
+                  <td width='45%'><%=participation.user.mail %></td>
 				  
                   <% if participation.is_attending == -1 %>
                      <td width='40%'>The user is not attending</td>
-					 <td width='10%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
                   <% elsif participation.is_attending == 0 %>
-                     <td width='30%'>The user has not answered</td>
-					 <td width='10%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
-                     <td width='10%'>
+                     <td width='25%'>The user has not answered</td>
+					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+                     <td width='15%'>
                          <%= form_for :participation, :url => participations_path, :html => { :class => :form } do |f| -%>
                            <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
                            <input type='hidden' name='person' value='<%= participation.user.mail %>' />
@@ -171,15 +172,15 @@ $(document).ready(function()
                      </td>
                   <% elsif participation.is_attending == 1 %>
                     <td width='40%'>The user is attending</td>
-                    <td width='10%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+                    <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
                   <% end %>
                   
                 </tr>
-                <tr id='participant_<%=num %>' class="<%= cycle("even", "odd") %>" style='display: none;'>
-                	<td width='50%'>Action: <input id='item' type='text' maxlength='200' size='45'/></td>
-                	<td width='30%'>Date: <input id='date' type='text' maxlength='10' size='15'></td>
-                	<td width='10%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
-					<td width='10%'></td>
+                <tr id='participant_<%=num %>' class="<%=rowClass%>" style='display: none;'>
+                	<td width='45%'>Action: <input id='item' type='text' maxlength='200' size='40'/></td>
+                	<td width='25%'>Date: <input id='date' type='text' maxlength='10' size='15'></td>
+                	<td width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
+					<td width='15%'></td>
                 </tr>
                 <% num = num + 1 %>
             <% end %>
