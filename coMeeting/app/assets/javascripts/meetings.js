@@ -13,6 +13,7 @@ function addTopic() {
 	document.getElementById(divName).scrollIntoView();
 }
 
+
 function removeTopic(divNum) {
 
 	var mainDiv = document.getElementById('topicsDiv');
@@ -24,6 +25,36 @@ function removeTopic(divNum) {
 		oldDiv.children[0].value ='';
 	}
 }
+
+
+function addParticipant() {
+    var numberDiv = document.getElementById('newParticipantNumber');
+	var mainDiv = document.getElementById("participantsDiv");
+	var num = (numberDiv.value - 1) + 1;
+	var divName = 'participant' + num;
+	var newDiv = document.createElement('div');
+	newDiv.setAttribute('id', divName);
+
+	newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(" + divName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+	mainDiv.appendChild(newDiv);
+
+    numberDiv.value = num + 1;
+	document.getElementById(divName).scrollIntoView();
+}
+
+
+function removeParticipant(divNum) {
+
+	var mainDiv = document.getElementById('participantsDiv');
+	var oldDiv = document.getElementById(divNum.id);
+	if(mainDiv.childElementCount > 2){
+		mainDiv.removeChild(oldDiv);
+	}
+	else{
+		oldDiv.children[0].value ='';
+	}
+}
+
 
 function addPerson(){
     var numberDiv = document.getElementById('newParticipantNumber');
@@ -46,6 +77,7 @@ function addPerson(){
     document.getElementById(divName).scrollIntoView();
 }
 
+
 function removePerson(divNum){
     var mainDiv = document.getElementById('participantsDiv');
     var oldDiv = document.getElementById(divNum.id);
@@ -60,44 +92,24 @@ function createParticipation(num){
 }
 
 
-function addParticipant() {
-    var numberDiv = document.getElementById('newParticipantNumber');
-	var mainDiv = document.getElementById("participantsDiv");
-	var num = (numberDiv.value - 1) + 1;
-	var divName = 'participant' + num;
-	var newDiv = document.createElement('div');
-	newDiv.setAttribute('id', divName);
-
-	newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(" + divName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
-	mainDiv.appendChild(newDiv);
-
-    numberDiv.value = num + 1;
-	document.getElementById(divName).scrollIntoView();
-}
-
-function removeParticipant(divNum) {
-
-	var mainDiv = document.getElementById('participantsDiv');
-	var oldDiv = document.getElementById(divNum.id);
-	if(mainDiv.childElementCount > 2){
-		mainDiv.removeChild(oldDiv);
-	}
-	else{
-		oldDiv.children[0].value ='';
-	}
-}
-
 function showAction(participant){
 	$("tr#"+participant).toggle();
 	
 }
 
+
 function addActionItem(participant,id, email){
 	var action = $("tr#"+ participant + " td input#item").val();
 	var date = $("tr#"+ participant + " input#date").val();
 	
-	var act = $("textarea#act").val();
+	var act = $("textarea#minutes").val();
 	
-	$("textarea#act").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
+	$("textarea#minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
 }
 
+
+jQuery(document).ready(function () {
+
+     $("#minutes").tabby();
+
+});

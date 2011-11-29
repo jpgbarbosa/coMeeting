@@ -97,15 +97,15 @@ class MeetingsController < ApplicationController
 	# DELETE /meetings/1
 	# DELETE /meetings/1.json
 	def destroy
-		@meeting = Meeting.find_by_link_admin(params[:id])
+		meeting = Meeting.find_by_link_admin(params[:id])
 
-		if @meeting == nil
+		if meeting == nil
 			respond_to do |format|
 				flash[:error] = t("meeting.error.delete", :default => "The meeting you tried deleting doesn't exist!")
 				format.html { redirect_to root_path }
 			end
 		else
-			@meeting.destroy
+			meeting.destroy
 			respond_to do |format|
 				format.html { redirect_to root_path, notice: t("meeting.deleted", :default => "Meeting successfully deleted.") }
 				format.json { head :ok }

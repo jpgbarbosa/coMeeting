@@ -8,43 +8,6 @@
 
 /* Write here your css for overriding the theme's rules */
 
-#act{
-	padding-top:5px;
-}
-
-.form input.date_picker{
-	width:8%;
-	border:1px solid #e2e2e2;
-}
-
-.form input.shorter{
-	width:97%;
-}
-
-.form input.person{
-    width:95%;
-    border:1px solid #e2e2e2;
-}
-
-.resize {
-	width:auto;
-	height:200px;
-
-}
-
-.floatLeft {
-	float:left;
-	padding-right:10px;
-}
-
-.big_button {
-	font-size:20px !important;
-}
-
-a:link {
-	text-decoration:none
-}
-
 .flash .message {
 	text-align: center;
 	margin: 0 auto 15px;
@@ -114,3 +77,35 @@ a:link {
 	float:right
 }
 
+#minutes {
+	width:100%;
+	max-width:100%;
+	border:none;
+}
+
+#minutes:focus {
+	
+	outline:0;
+	outline:none;
+}
+
+#topicsDiv input, #participantsDiv input{
+	margin-bottom:10px;
+}
+
+.form input.date_picker{
+	width:8%;
+	border:1px solid #e2e2e2;
+}
+
+.form input.shorter{
+	width:95%;
+}
+
+.big_button {
+	font-size:20px !important;
+}
+
+a:link {
+	text-decoration:none
+}

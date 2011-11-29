@@ -144,34 +144,42 @@ $(document).ready(function()
     <div class="inner">
       <input type="hidden" id="token" value="<%=@meeting.link_admin%>">
       <table class="table">
+			<tr>
+				<td width='50%'>Email</td>
+				<td width='30%'>Status</td>
+				<td width='10%'>Assign Action Item</td>
+				<td width='10%'>Send Email</td>
+			</tr>
         <% if @participations.present? 
         	num = 0 %>
             <% @participations.each do |participation| %>
-                <tr class="<%= cycle("even","odd") %>">
-                  <td width='40%'>
-                    <%=participation.user.mail %>
-                  </td>
+                <tr class="<%= cycle("even", "odd") %>">
+                  <td width='50%'><%=participation.user.mail %></td>
+				  
                   <% if participation.is_attending == -1 %>
-                     <td width='20%'>The user is not attending</td>
+                     <td width='40%'>The user is not attending</td>
+					 <td width='10%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
                   <% elsif participation.is_attending == 0 %>
-                     <td width='20%'>The user has not answered</td>
-                     <td width='20%' class="last">
+                     <td width='30%'>The user has not answered</td>
+					 <td width='10%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+                     <td width='10%'>
                          <%= form_for :participation, :url => participations_path, :html => { :class => :form } do |f| -%>
                            <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
                            <input type='hidden' name='person' value='<%= participation.user.mail %>' />
-                           <%= image_submit_tag("/assets/icons/email_go.png") %>
+                           <%= image_submit_tag("/assets/icons/email.png") %>
                          <% end -%>
                      </td>
                   <% elsif participation.is_attending == 1 %>
-                    <td width='20%'>The user is attending</td>
+                    <td width='40%'>The user is attending</td>
+                    <td width='10%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
                   <% end %>
-                  <td width='20%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;">action item</a></td>
+                  
                 </tr>
-                <tr id='participant_<%=num %>' style='display: none;'>
-                	<td width='40%'>Action:   <input id='item' type='text' size='40'/></td>
-                	<td width='20%'>Date:  <input id='date' type='text' size='10'></td>
-                	<td width='20%'></td>
-                	<td width='20%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;">submit</a></td>
+                <tr id='participant_<%=num %>' class="<%= cycle("even", "odd") %>" style='display: none;'>
+                	<td width='50%'>Action: <input id='item' type='text' maxlength='200' size='45'/></td>
+                	<td width='30%'>Date: <input id='date' type='text' maxlength='10' size='15'></td>
+                	<td width='10%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
+					<td width='10%'></td>
                 </tr>
                 <% num = num + 1 %>
             <% end %>
@@ -202,33 +210,33 @@ $(document).ready(function()
     	participants = ""
     	
 		@participations.each do |participation|
-      		participants = participants + "-"+participation.user.mail.to_s + "\n\t\t"	
+      		participants = participants + "- " + participation.user.mail.to_s + "\n\t"	
   	  	end
   	  	
   	  	topics = ""
   	  	
   	  	@meeting.topics.each do |topic|
-      		topics = topics + "-"+topic + "\n\t\t"	
+      		topics = topics + "- " + topic + "\n\t"	
   	  	end
   	  	
-  	  act = "\n\n\tSubject: "+ @meeting.subject + 
-      "\n\tLocal: " + @meeting.local +
-      "\n\tDate: " + @meeting.meeting_date.to_s +
-      "\n\tHour: " + @meeting.meeting_time.to_s +
-      "\n\tDuration: " + @meeting.duration.strftime("%1Hh:%Mm").to_s +
-      "\n\tExtra Information: " + @meeting.extra_info +
-      "\n\tCreated by: " + @meeting.admin +
-      "\n\n\n\tTopics:" + 
-      "\n\t\t" + topics +
-      "\n\n\tParticipants:" +
-      "\n\t\t" + participants +
-      "\n\n\tAction Items:"
+  	  act = "\n\nSubject: "+ @meeting.subject + 
+      "\nLocal: " + @meeting.local +
+      "\nDate: " + @meeting.meeting_date.to_s +
+      "\nHour: " + @meeting.meeting_time.to_s +
+      "\nDuration: " + @meeting.duration.strftime("%1Hh:%Mm").to_s +
+      "\nExtra Information: " + @meeting.extra_info +
+      "\nCreated by: " + @meeting.admin +
+      "\n\n\tTopics:" + 
+      "\n\t" + topics +
+      "\n\tParticipants:" +
+      "\n\t" + participants +
+      "\n\tAction Items:"
       
       #Faltam action items
     
     %>
     
-      <%= text_area :act, :body , :cols => 115, :rows => 30, :id => 'act', :value => act %>
+      <%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => act %>
     </div>
   </div>
  </div>
