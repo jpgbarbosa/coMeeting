@@ -8,6 +8,10 @@
 
 /* Write here your css for overriding the theme's rules */
 
+#act{
+	padding-top:5px;
+}
+
 .form input.date_picker{
 	width:8%;
 	border:1px solid #e2e2e2;

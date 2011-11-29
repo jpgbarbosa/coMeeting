@@ -34,15 +34,11 @@
   <div class="group">
 		<div id="topicsDiv">
             <%= f.label :topics, t("topics", :default => "Topics"), :class => :label %>
-			<% n = @meeting.topics.size-1 %>
             <% num = 0 %>
             <% @meeting.topics.each do |topic| -%>
                 <% name_id = "topic#{num}" %>
                 <div id=<%=name_id %>>
 					<%= f.text_field :topics, :class => "shorter text_field", :name => "meeting[topics][]", :value => topic %>  <a href="#" tabindex="-1" onclick="removeTopic(<%= name_id %>);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
-					<% if num != n %>
-						<p></p>
-					<% end %>
                 </div>
                 <% num = num + 1 %>
             <% end -%>
