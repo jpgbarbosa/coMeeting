@@ -21,7 +21,6 @@ pt:
   participants:			"Participantes"
   minutes:				"Acta"
   save:					"Gravar alterações"
-  create:				"Criar"
   cancel:				"Cancelar"
   meetings:				"Reuniões"
   form:
@@ -44,6 +43,7 @@ pt:
     updated:			"Participação alterada com sucesso."
   meeting:
     new:				"Nova reunião"
+    create:				"Criar reunião"
     edit:				"Editar reunião"
     delete:				"Apagar reunião"
     created:

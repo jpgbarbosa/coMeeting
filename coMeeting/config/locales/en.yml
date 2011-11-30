@@ -21,7 +21,6 @@ en:
   participants:			"Participants"
   minutes:				"Minutes"
   save:					"Save changes"
-  create:				"Create"
   cancel:				"Cancel"
   meetings:				"Meetings"
   form:
@@ -44,6 +43,7 @@ en:
     updated:			"Participation successfully updated."
   meeting:
     new:				"New meeting"
+    create:				"Create meeting"
     edit:				"Edit meeting"
     delete:				"Delete meeting"
     created:
