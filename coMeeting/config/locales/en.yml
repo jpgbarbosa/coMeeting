@@ -3,11 +3,11 @@
 
 en:
   hello:				"Hello world"
-  set_language:			"English"
+  current_language:		"English"
+  show:					"Show"
   edit:					"Edit"
   delete:				"Delete"
   confirm:				"Confirm"
-  show:					"Show"
   list:					"List"
   created_at:			"Created at"
   or:					"or"
@@ -19,27 +19,11 @@ en:
   info:					"Info"
   topics:				"Topics"
   participants:			"Participants"
-  people:               "People"
-  meetings:				"Meetings"
-  new_meeting:			"New Meeting"
-  edit_meeting:			"Edit Meeting"
-  cancel:				"Cancel"
-  save:					"Save Changes"
+  minutes:				"Minutes"
+  save:					"Save changes"
   create:				"Create"
-  meeting:
-    created:
-      withauth:			"Meeting successfully created. Please check your email to continue the creation process."
-      withoutauth:		"Meeting successfully created without email confirmation."
-    updated:			"Meeting successfully updated."
-    deleted:			"Meeting successfully deleted."
-    error:
-      show:				"The meeting you are looking for does not exist!"
-      delete:			"The meeting you tried deleting doesn't exist!"
-  participant:
-    invited:			"Invitation sent."
-    reinvited:			"Invitation resent."
-    uninvited:			"Invitation not sent. Please try again."
-    updated:			"Participation successfully updated."
+  cancel:				"Cancel"
+  meetings:				"Meetings"
   form:
     email:
       label:			"Admin Email"
@@ -53,3 +37,30 @@ en:
     add_topic:			"Add a new topic"
     add_participant:	"Add a new participant"
     proceedings:		"Proceedings"
+  participant:
+    invited:			"Invitation sent."
+    reinvited:			"Invitation resent."
+    uninvited:			"Invitation not sent. Please try again."
+    updated:			"Participation successfully updated."
+  meeting:
+    new:				"New meeting"
+    edit:				"Edit meeting"
+    delete:				"Delete meeting"
+    created:
+      withauth:			"Meeting successfully created. Please check your email to continue the creation process."
+      withoutauth:		"Meeting successfully created without email confirmation."
+    updated:			"Meeting successfully updated."
+    deleted:			"Meeting successfully deleted."
+    error:
+      show:				"The meeting you are looking for does not exist!"
+      delete:			"The meeting you tried deleting doesn't exist!"
+  email:				"Email"
+  status:				"Status"
+  assign_action_item:	"Assign action item"
+  send_email:			"Send email"
+  action:				"Action item"
+  date:					"Date"
+  attending:
+    yes:				"Attendance confirmed"
+    maybe:				"Yet to answer"
+    no:					"Attendance declined"

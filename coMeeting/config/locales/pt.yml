@@ -3,11 +3,11 @@
 
 pt:
   hello:				"Olá mundo"
-  set_language:			"Português"
+  current_language:		"Português"
+  show:					"Mostrar"
   edit:					"Editar"
   delete:				"Eliminar"
   confirm:				"Confirmar"
-  show:					"Mostrar"
   list:					"Lista"
   created_at:			"Criado em"
   or:					"ou"
@@ -19,27 +19,11 @@ pt:
   info:					"Info"
   topics:				"Tópicos"
   participants:			"Participantes"
-  people:               "Pessoas"
-  meetings:				"Reuniões"
-  new_meeting:			"Nova Reunião"
-  edit_meeting:			"Editar Reunião"
-  cancel:				"Cancelar"
+  minutes:				"Acta"
   save:					"Gravar alterações"
   create:				"Criar"
-  meeting:
-    created:
-      withauth:			"Reunião criada com sucesso. Por favor verifique o seu email para continuar o processo de criação da reunião."
-      withoutauth:		"Reunião criada com sucesso sem confirmação por email."
-    updated:			"Reunião alterada com sucesso."
-    deleted:			"Reunião eliminada com sucesso."
-    error:
-      show:				"A reunião a que tentou aceder não existe!"
-      delete:			"A reunião que tentou eliminar não existe!"
-  participant:
-    invited:			"Convite enviado."
-    reinvited:			"Convite reenviado."
-    uninvited:			"Convite não enviado. Por favor tente novamente."
-    updated:			"Participação alterada com sucesso."
+  cancel:				"Cancelar"
+  meetings:				"Reuniões"
   form:
     email:
       label:			"Email do Administrador"
@@ -52,4 +36,31 @@ pt:
     extra_info:			"Informações extra"
     add_topic:			"Adicionar um novo tópico"
     add_participant:	"Adicionar um novo participante"
-    proceedings:		"?"
+    proceedings:		"wtf is this shit"
+  participant:
+    invited:			"Convite enviado."
+    reinvited:			"Convite reenviado."
+    uninvited:			"Convite não enviado. Por favor tente novamente."
+    updated:			"Participação alterada com sucesso."
+  meeting:
+    new:				"Nova reunião"
+    edit:				"Editar reunião"
+    delete:				"Apagar reunião"
+    created:
+      withauth:			"Reunião criada com sucesso. Por favor verifique o seu email para continuar o processo de criação da reunião."
+      withoutauth:		"Reunião criada com sucesso sem confirmação por email."
+    updated:			"Reunião alterada com sucesso."
+    deleted:			"Reunião eliminada com sucesso."
+    error:
+      show:				"A reunião a que tentou aceder não existe!"
+      delete:			"A reunião que tentou eliminar não existe!"
+  email:				"Email"
+  status:				"Estado"
+  assign_action_item:	"Atribuir tarefa"
+  send_email:			"Enviar email"
+  action:				"Tarefa"
+  date:					"Data"
+  attending:
+    yes:				"Presença confirmada"
+    maybe:				"Por confirmar"
+    no:					"Indisponível"

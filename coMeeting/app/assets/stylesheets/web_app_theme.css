@@ -84,7 +84,6 @@
 }
 
 #minutes:focus {
-	
 	outline:0;
 	outline:none;
 }
@@ -106,6 +105,31 @@
 	font-size:20px !important;
 }
 
+.hidden {
+	display: none;
+}
+
 a:link {
 	text-decoration:none
+}
+
+table td.leftered {
+	text-align:left;
+}
+
+table td input.styled {
+	min-width:80%;
+	width:80%;
+	background-color: transparent; 
+	border-style: dashed;
+	border-width: 0px 0px 1px 0px;
+}
+
+table td input.styled:focus {
+	outline:0;
+	outline:none;
+}
+
+table.centered {
+	text-align:center;
 }

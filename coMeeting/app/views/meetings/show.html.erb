@@ -14,11 +14,10 @@ $(document).ready(function()
 <div class="block" id="block-info">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-        <!-- todo: implement js scroll by tag -->
       <li class="active"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
       <li class="first"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
-      <li class="first"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
-      <li class="first"><a href="#block-act"><%= t("act", :default => "Act") %></a></li>
+      <li class="first"><a href="#block-participants"><%= t("participants", :default => "Participants") %></a></li>
+      <li class="first"><a href="#block-act"><%= t("minutes", :default => "Minutes") %></a></li>
     </ul>
   </div>
   <div class="content">
@@ -74,15 +73,9 @@ $(document).ready(function()
       </p>
 
       <div class="wat-cf">
-        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
+        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
 																											:class => "button" %>
-
-		<!--
-		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), meeting_path(@meeting.link_admin),
-																											:method => :delete,
-																											:confirm => "#{t("confirm", :default => "Are you sure?")}", :class => "button" %>
-		-->
-		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("delete", :default => "Delete"), {
+		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), {
 																							:controller => :meetings,
 																							:action => :destroy,
 																							:id => @meeting.link_admin
@@ -100,20 +93,14 @@ $(document).ready(function()
     <ul class="wat-cf">
       <li class="first"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
       <li class="active"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
-      <li class="first"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
-      <li class="first"><a href="#block-act"><%= t("act", :default => "Act") %></a></li>
+      <li class="first"><a href="#block-participants"><%= t("participants", :default => "Participants") %></a></li>
+      <li class="first"><a href="#block-act"><%= t("minutes", :default => "Minutes") %></a></li>
     </ul>
   </div>
 
   <div class="content">
     <div class="inner">
       <table class="table">
-		<!-- What the hell is this for?
-        <tr>
-          <th class="first">Topic</th>
-
-          <th class="last">&nbsp;</th>
-        </tr>-->
         <% @meeting.topics.each do |topic| -%>
             <tr class="<%= cycle("odd", "even") %>">
               <td>
@@ -130,56 +117,56 @@ $(document).ready(function()
   </div>
 </div>
 
-<div class="block" id="block-people">
+<div class="block" id="block-participants">
   <div class="secondary-navigation">
     <ul class="wat-cf">
       <li class="first"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
       <li class="first"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
-      <li class="active"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
-      <li class="first"><a href="#block-act"><%= t("act", :default => "Act") %></a></li>
+      <li class="active"><a href="#block-participants"><%= t("participants", :default => "Participants") %></a></li>
+      <li class="first"><a href="#block-act"><%= t("minutes", :default => "Minutes") %></a></li>
     </ul>
   </div>
 
   <div class="content">
     <div class="inner">
       <input type="hidden" id="token" value="<%=@meeting.link_admin%>">
-      <table class="table">
+      <table class="centered table">
 			<tr>
-				<td width='45%'>Email</td>
-				<td width='25%'>Status</td>
-				<td width='15%'>Assign Action Item</td>
-				<td width='15%'>Send Email</td>
+				<td width='45%'><%= t("email", :default => "Email") %></td>
+				<td width='25%'><%= t("status", :default => "Status") %></td>
+				<td width='15%'><%= t("assign_action_item", :default => "Assign Action Item") %></td>
+				<td width='15%'><%= t("send_email", :default => "Send Email") %></td>
 			</tr>
         <% if @participations.present? 
         	num = 0 %>
             <% @participations.each do |participation| %>
 				<% rowClass = cycle("even", "odd") %>
                 <tr class="<%=rowClass%>">
-                  <td width='45%'><%=participation.user.mail %></td>
+                  <td class="leftered" width='45%'><%=participation.user.mail %></td>
 				  
                   <% if participation.is_attending == -1 %>
-                     <td width='40%'>The user is not attending</td>
+                     <td width='40%'><%= t("attending.no", :default => "This person is not attending") %></td>
 					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
                   <% elsif participation.is_attending == 0 %>
-                     <td width='25%'>The user has not answered</td>
-					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+                     <td width='25%'><%= t("attending.maybe", :default => "This person has yet to answer") %></td>
+					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" /></a></td>
                      <td width='15%'>
-                         <%= form_for :participation, :url => participations_path, :html => { :class => :form } do |f| -%>
+                         <%= form_for :participation, :url => participations_path do |f| -%>
                            <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
                            <input type='hidden' name='person' value='<%= participation.user.mail %>' />
                            <%= image_submit_tag("/assets/icons/email.png") %>
                          <% end -%>
                      </td>
                   <% elsif participation.is_attending == 1 %>
-                    <td width='40%'>The user is attending</td>
-                    <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+                    <td width='40%'><%= t("attending.yes", :default => "This person is attending") %></td>
+                    <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" /></a></td>
                   <% end %>
                   
                 </tr>
-                <tr id='participant_<%=num %>' class="<%=rowClass%>" style='display: none;'>
-                	<td width='45%'>Action: <input id='item' type='text' maxlength='200' size='40'/></td>
-                	<td width='25%'>Date: <input id='date' type='text' maxlength='10' size='15'></td>
-                	<td width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
+                <tr id='participant_<%=num %>' class="hidden <%=rowClass%>">
+                	<td class="leftered" width='45%'><%= t("action", :default => "Action") %>: <input id='item' class="styled" type='text' maxlength='200'/></td>
+                	<td width='25%'><%= t("date", :default => "Date") %>: <input id='date' class="styled", type='text' maxlength='10'></td>
+                	<td class="centered" width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
 					<td width='15%'></td>
                 </tr>
                 <% num = num + 1 %>
@@ -189,7 +176,7 @@ $(document).ready(function()
 	  <div id="participantsDiv">
 
 	  </div>
-	  <a href="#" onclick="addPerson(); return false;">+</a>
+	  <a href="#" onclick="addPerson();return false;">+</a>
 	  <input type="hidden" value="0" id="newParticipantNumber" />
 	  <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
     </div>
@@ -201,8 +188,8 @@ $(document).ready(function()
     <ul class="wat-cf">
       <li class="first"><a href="#block-info"><%= t("info", :default => "Info") %></a></li>
       <li class="first"><a href="#block-topics"><%= t("topics", :default => "Topics") %></a></li>
-      <li class="first"><a href="#block-people"><%= t("people", :default => "People") %></a></li>
-      <li class="active"><a href="#block-act"><%= t("act", :default => "Act") %></a></li>
+      <li class="first"><a href="#block-participants"><%= t("participants", :default => "Participants") %></a></li>
+      <li class="active"><a href="#block-act"><%= t("minutes", :default => "Minutes") %></a></li>
     </ul>
   </div>
   <div class="content">
