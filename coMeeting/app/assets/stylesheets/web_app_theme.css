@@ -8,6 +8,10 @@
 
 /* Write here your css for overriding the theme's rules */
 
+h2 {
+	margin-left:0px !important;
+}
+
 .flash .message {
 	text-align: center;
 	margin: 0 auto 15px;
@@ -101,10 +105,6 @@
 	width:95%;
 }
 
-.big_button {
-	font-size:20px !important;
-}
-
 .hidden {
 	display: none;
 }
@@ -133,3 +133,43 @@ table td input.styled:focus {
 table.centered {
 	text-align:center;
 }
+
+a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active, button.big_button {
+  color: #fff;
+  display:block;
+  float:left;
+  margin:0 7px 0 0;
+  background-color: #4CA20C;
+  border:1px solid #bfbfbf;
+  font-size: 2em;
+  line-height: 1.3em;
+  font-weight:bold;
+  cursor:pointer;
+  padding:5px 10px 6px 7px;
+  text-decoration: none;
+  
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+button.big_button {
+  width:auto;
+  overflow:visible;
+  padding:4px 10px 3px 7px; /* IE6 */
+  
+}
+button.big_button[type] {
+  padding:5px 10px 5px 7px; /* Firefox */
+  line-height:17px; /* Safari */
+}
+
+*:first-child+html button.big_button[type] {
+  padding:4px 10px 3px 7px; /* IE7 */
+}
+button.big_button:hover, a.big_button:hover {
+  background-color:#3C800A;
+}
+button.big_button:active, a.big_button:active {
+  background-color:#45930B;
+}
+

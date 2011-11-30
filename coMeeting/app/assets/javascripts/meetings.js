@@ -102,9 +102,9 @@ function addActionItem(participant,id, email){
 	var action = $("tr#"+ participant + " td input#item").val();
 	var date = $("tr#"+ participant + " input#date").val();
 	
-	var act = $("textarea#minutes").val();
+	var act = $("#minutes").val();
 	
-	$("textarea#minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
+	$("#minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
 }
 
 
