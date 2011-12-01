@@ -4,4 +4,11 @@ class Participation < ActiveRecord::Base
 
   belongs_to :meeting, :class_name => "Meeting"
   belongs_to :user, :class_name => "User"
+  
+  after_initialize :init
+  
+  def init
+	self.is_attending ||= 0
+  end
+  
 end

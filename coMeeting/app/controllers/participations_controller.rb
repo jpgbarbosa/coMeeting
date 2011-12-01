@@ -47,7 +47,7 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
     #@participation = Participation.new(params[:participation])
-	
+
     meeting_id = params[:meeting_id]
     meeting = Meeting.find_by_link_admin(meeting_id)
     email = params[:person]
