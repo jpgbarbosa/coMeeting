@@ -30,8 +30,6 @@ CoMeeting::Application.configure do
   
   # Precompile assets
   config.assets.precompile += %w( *.css *.js )
-  
-  config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
 
   #SMTP seetings to send emails
   ActionMailer::Base.delivery_method = :smtp
