@@ -23,15 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="meetings_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1237" selection-end="1237" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/meetings/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -59,19 +50,64 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="en.yml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="en.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/locales/en.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="961" selection-end="982" vertical-scroll-proportion="0.7841845">
+            <state line="30" column="18" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pt.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/locales/pt.yml">
+      <file leaf-file-name="20111107181347_change_is_attending_type_in_participations.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111107181347_change_is_attending_type_in_participations.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="48" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20111109193842_change_duration_column_in_meetings.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111109193842_change_duration_column_in_meetings.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="7" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20111129000503_add_action_item_to_participation.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111129000503_add_action_item_to_participation.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/home/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="58" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.9230769">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.46575344">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/application.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="6" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -87,10 +123,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/participation.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20111109193842_change_duration_column_in_meetings.rb" />
-        <option value="$PROJECT_DIR$/app/views/meetings/_form.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/meetings/_editform.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/meetings.js" />
         <option value="C:/Ruby192/lib/ruby/gems/1.9.1/gems/web-app-theme-0.8.0/app/assets/stylesheets/web-app-theme/themes/drastic-dark/style.css" />
         <option value="C:/Ruby192/lib/ruby/gems/1.9.1/gems/web-app-theme-0.8.0/app/assets/stylesheets/web-app-theme/themes/activo/style.css" />
@@ -103,6 +135,10 @@
         <option value="$PROJECT_DIR$/app/controllers/meetings_controller.rb" />
         <option value="$PROJECT_DIR$/config/locales/pt.yml" />
         <option value="$PROJECT_DIR$/config/locales/en.yml" />
+        <option value="$PROJECT_DIR$/db/migrate/20111107181347_change_is_attending_type_in_participations.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20111109193842_change_duration_column_in_meetings.rb" />
+        <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
+        <option value="$PROJECT_DIR$/config/application.rb" />
       </list>
     </option>
   </component>
@@ -163,11 +199,53 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coMeeting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coMeeting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coMeeting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coMeeting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coMeeting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coMeeting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -185,11 +263,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meetings" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -204,6 +278,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -523,31 +601,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/web-app-theme-0.8.0/app/assets/stylesheets/web-app-theme/themes/activo/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="290" column="20" selection-start="5369" selection-end="5369" vertical-scroll-proportion="0.28333333" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/web_app_theme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="21" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/participations/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="38" selection-start="73" selection-end="92" vertical-scroll-proportion="0.09798271" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="29" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.26638177" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/participation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/meetings/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="111" selection-start="896" selection-end="1001" vertical-scroll-proportion="0.4275148" />
@@ -601,16 +654,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/pt.yml">
+    <entry file="file://$PROJECT_DIR$/config/locales/en.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="18" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111107181347_change_is_attending_type_in_participations.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="48" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111109193842_change_duration_column_in_meetings.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="7" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="58" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.9230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111129000503_add_action_item_to_participation.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/en.yml">
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="961" selection-end="982" vertical-scroll-proportion="0.7841845">
+        <state line="33" column="6" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.46575344">
           <folding />
         </state>
       </provider>
