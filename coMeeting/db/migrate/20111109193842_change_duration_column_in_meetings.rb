@@ -1,5 +1,6 @@
 class ChangeDurationColumnInMeetings < ActiveRecord::Migration
   def change
-    change_column :meetings, :duration, :timestamp
+    remove_column :meetings, :duration
+    add_column :meetings, :duration, :timestamp
   end
 end

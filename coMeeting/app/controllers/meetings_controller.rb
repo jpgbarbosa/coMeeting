@@ -48,9 +48,11 @@ class MeetingsController < ApplicationController
 	# POST /meetings.json
 	def create
 		params[:meeting][:topics].reject!( &:blank? )
-	
+
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
+
+
 
 		respond_to do |format|
 			if @meeting.save
