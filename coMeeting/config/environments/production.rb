@@ -57,6 +57,8 @@ CoMeeting::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  ENV['HOST'] = 'http://comeeting.herokuapp.com'
 
   #SMTP seetings to send emails
   ActionMailer::Base.delivery_method = :smtp

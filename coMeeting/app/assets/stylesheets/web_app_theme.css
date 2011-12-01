@@ -133,8 +133,7 @@ table.centered {
 .buttons {
     align:center;
     padding-bottom:20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 50%;
 }
 
 a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active, button.big_button {

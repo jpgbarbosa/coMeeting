@@ -13,8 +13,8 @@ class MeetingsController < ApplicationController
 	def show
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting.nil?
-			participation = Participation.find_by_token(params[:id])
-			@meeting = Meeting.find(participation.meeting_id)
+			@participation = Participation.find_by_token(params[:id])
+			@meeting = Meeting.find(@participation.meeting_id)
 			@admin = false
 		else
 			@admin = true
@@ -138,7 +138,7 @@ class MeetingsController < ApplicationController
 							participation.token = UUIDTools::UUID.random_create().to_s
 							if participation.save
 								#CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
-								#UserMailer.invitation_email(email    , participation.token).deliver
+								UserMailer.invitation_email(email    , participation.token).deliver
 							end
 						end
 					end

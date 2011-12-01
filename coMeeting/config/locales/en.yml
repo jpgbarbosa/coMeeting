@@ -61,6 +61,8 @@ en:
     confirmed: "Attendance confirmed"
     unknown: "Yet to answer"
     declined: "Attendance declined"
+    confirm: "Attending" 
+    decline: "Not Attending"
 pt:
   hello: "Olá mundo"
   current_language: "Português"
@@ -124,3 +126,5 @@ pt:
     confirmed: "Presença confirmada"
     unknown: "Por confirmar"
     declined: "Indisponível"
+    confirm: "Vou estar presente" 
+    decline: "Não vou estar presente"

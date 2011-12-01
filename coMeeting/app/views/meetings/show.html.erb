@@ -23,7 +23,7 @@
 			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
 				<input name="b" type="hidden" value="y" />
 				<button class="button" type="submit">
-					<%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("attending", :default => "Attending") %>
+					<%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("attending.confirm", :default => "Attending") %>
 				</button>
 			<% end -%>
 		<% end %>
@@ -31,7 +31,7 @@
 			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
 				<input name="b" type="hidden" value="n" />
 				<button class="button" type="submit">
-					<%= image_tag("/assets/icons/cross.png", :alt => "") %> <%= t("not attending", :default => "Not Attending") %>
+					<%= image_tag("/assets/icons/cross.png", :alt => "") %> <%= t("attending.decline", :default => "Not Attending") %>
 				</button>
 			<% end -%>
 		<% end %>
