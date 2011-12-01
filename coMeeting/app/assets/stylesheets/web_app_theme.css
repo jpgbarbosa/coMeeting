@@ -8,10 +8,6 @@
 
 /* Write here your css for overriding the theme's rules */
 
-h2 {
-	margin-left:0px !important;
-}
-
 .flash .message {
 	text-align: center;
 	margin: 0 auto 15px;

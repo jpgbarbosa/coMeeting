@@ -1,4 +1,4 @@
-# Localization file for English. Add more files in this directory for other locales.
+﻿# Localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
@@ -20,7 +20,7 @@ en:
   topics:				"Topics"
   participants:			"Participants"
   minutes:				"Minutes"
-  save:					"Save changes"
+  save:					"Save changes" 
   cancel:				"Cancel"
   meetings:				"Meetings"
   form:
