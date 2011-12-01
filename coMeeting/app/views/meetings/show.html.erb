@@ -1,15 +1,42 @@
-<!-- todo: not sure if we should put this piece of code here -->
-<script>
+<div class="buttons wat-cf">
 
-// When the document is loaded...
-$(document).ready(function()
-{
-    // Scroll the whole document
-    $('#main').localScroll({
-       target:'body'
-    });
-});
-</script>
+    <% if @admin %>
+
+        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
+                                                                                                            :class => "button" %>
+        <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin),
+                                                                                        :confirm => t('confirm', :default => 'Are you sure?'),
+                                                                                        :method => :delete,
+                                                                                        :class => "button" %>
+    <% else %>                                                                   
+		<% if@meeting.admin.nil? %>
+			<p>Warning! This meeting was not authenticated by our service.</p>
+		<% end %>
+		
+		<% if @participation.is_attending == 1 %>
+			<p>You are attending this meeting</p>
+		<% elsif @participation.is_attending == -1 %>
+			<p>You are not attending this meeting</p>
+		<% end %>
+		
+		<% if @participation.is_attending == 0 || @participation.is_attending == -1 %>
+			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
+				<input name="b" type="hidden" value="y" />
+				<button class="button" type="submit">
+					<%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("attending", :default => "Attending") %>
+				</button>
+			<% end -%>
+		<% end %>
+		<% if @participation.is_attending == 1 || @participation.is_attending == 0 %>
+			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
+				<input name="b" type="hidden" value="n" />
+				<button class="button" type="submit">
+					<%= image_tag("/assets/icons/cross.png", :alt => "") %> <%= t("not attending", :default => "Not Attending") %>
+				</button>
+			<% end -%>
+		<% end %>
+	<% end %>
+</div>
 
 <div class="block" id="block-info">
   <div class="secondary-navigation">
@@ -59,21 +86,10 @@ $(document).ready(function()
       </p>
 	
       <% unless @meeting.extra_info.blank? %>
-		  <p>
 			<b><%= t("form.extra_info", :default => "Extra info") %>
 			  :</b>
 			<%= @meeting.extra_info %>
-		  </p>
 	  <% end %>
-
-      <div class="wat-cf">
-        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
-																											:class => "button" %>
-		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin),
-																							:confirm => t('confirm', :default => 'Are you sure?'),
-																							:method => :delete,
-																							:class => "button" %>
-      </div>
     </div>
   </div>
 </div>

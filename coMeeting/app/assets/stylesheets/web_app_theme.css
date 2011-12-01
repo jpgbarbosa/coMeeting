@@ -130,6 +130,13 @@ table.centered {
 	text-align:center;
 }
 
+.buttons {
+    align:center;
+    padding-bottom:20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active, button.big_button {
   color: #fff;
   display:block;
