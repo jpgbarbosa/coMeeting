@@ -1,6 +1,5 @@
 class MeetingsController < ApplicationController
-	# GET /meetings
-	# GET /meetings.json
+
 	def index
 		@meetings = Meeting.all
 
@@ -10,10 +9,16 @@ class MeetingsController < ApplicationController
 		end
 	end
 
-	# GET /meetings/1
-	# GET /meetings/1.json
+    
 	def show
 		@meeting = Meeting.find_by_link_admin(params[:id])
+		if @meeting.nil?
+			participation = Participation.find_by_token(params[:id])
+			@meeting = Meeting.find(participation.meeting_id)
+			@admin = false
+		else
+			@admin = true
+		end
 
 		if @meeting.nil?
 			respond_to do |format|
@@ -30,8 +35,6 @@ class MeetingsController < ApplicationController
 	end
 
 
-	# GET /meetings/new
-	# GET /meetings/new.json
 	def new
 		@meeting = Meeting.new
 		time = Time.new
@@ -44,8 +47,6 @@ class MeetingsController < ApplicationController
 	end
 
 
-	# POST /meetings
-	# POST /meetings.json
 	def create
 		params[:meeting][:topics].reject!( &:blank? )
 
@@ -70,7 +71,6 @@ class MeetingsController < ApplicationController
 	end
 
 
-	# GET /meetings/1/edit
 	def edit
 		@meeting = Meeting.find_by_link_admin(params[:id])
 
@@ -80,8 +80,7 @@ class MeetingsController < ApplicationController
 		end
 	end
 
-	# PUT /meetings/1
-	# PUT /meetings/1.json
+
 	def update
 		@meeting = Meeting.find_by_link_admin(params[:id])
 
@@ -96,8 +95,7 @@ class MeetingsController < ApplicationController
 		end
 	end
 
-	# DELETE /meetings/1
-	# DELETE /meetings/1.json
+
 	def destroy
 		meeting = Meeting.find_by_link_admin(params[:id])
 
@@ -114,4 +112,19 @@ class MeetingsController < ApplicationController
 			end
 		end
 	end
+    
+    
+    def update_minutes
+        puts params
+        #save minutes
+        
+        render :nothing => true
+    end
+    
+    
+    def get_minutes
+        respond_to do |format|
+			format.js
+		end
+    end
 end

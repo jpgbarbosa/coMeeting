@@ -98,7 +98,7 @@ function showAction(participant){
 }
 
 
-function addActionItem(participant,id, email){
+function addActionItem(participant, id, email){
 	var action = $("tr#"+ participant + " td input#item").val();
 	var date = $("tr#"+ participant + " input#date").val();
 	
@@ -113,3 +113,12 @@ jQuery(document).ready(function () {
      $("#minutes").tabby();
 
 });
+
+function updateMinutes() {
+	var minutes = document.getElementById("minutes");
+	$.ajax({
+	  type    : "POST",
+	  url     : "/meetings/update_minutes",
+	  data    : { minutes : minutes.value },
+	});
+}

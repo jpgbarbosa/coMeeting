@@ -194,37 +194,9 @@ $(document).ready(function()
   </div>
   <div class="content">
     <div class="inner">
-    <% 
-    	participants = ""
-    	
-		@participations.each do |participation|
-      		participants = participants + "- " + participation.user.mail.to_s + "\n\t"	
-  	  	end
-  	  	
-  	  	topics = ""
-  	  	
-  	  	@meeting.topics.each do |topic|
-      		topics = topics + "- " + topic + "\n\t"	
-  	  	end
-  	  	
-  	  act = "\n\nSubject: "+ @meeting.subject + 
-      "\nLocal: " + @meeting.local +
-      "\nDate: " + @meeting.meeting_date.to_s +
-      "\nHour: " + @meeting.meeting_time.to_s +
-      "\nDuration: " + @meeting.duration.strftime("%1Hh:%Mm").to_s +
-      "\nExtra Information: " + @meeting.extra_info +
-      "\nCreated by: " + @meeting.admin +
-      "\n\n\tTopics:" + 
-      "\n\t" + topics +
-      "\n\tParticipants:" +
-      "\n\t" + participants +
-      "\n\tAction Items:"
-      
-      #Faltam action items
-    
-    %>
-    
-      <%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => act %>
+        <div id="partialimage">
+            <%= render :partial => 'minutes'  %>
+        </div>
     </div>
   </div>
  </div>
