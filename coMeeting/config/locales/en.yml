@@ -23,6 +23,7 @@ en:
   save:					"Save changes"
   cancel:				"Cancel"
   meetings:				"Meetings"
+  aa:					"aa"
   form:
     email:
       label:			"Admin Email"
