@@ -66,23 +66,13 @@ $(document).ready(function()
 		  </p>
 	  <% end %>
 
-      <p>
-        <b><%= t("form.proceedings", :default => "Proceedings") %>
-          :</b>
-        <%= @meeting.proceedings %>
-      </p>
-
       <div class="wat-cf">
         <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
 																											:class => "button" %>
-		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), {
-																							:controller => :meetings,
-																							:action => :destroy,
-																							:id => @meeting.link_admin
-																						}, {
-																							:onclick => "return confirm('"+t('confirm', :default => 'Are you sure?')+"')",
-																							:class => "button"
-																						} %>
+		<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin),
+																							:confirm => t('confirm', :default => 'Are you sure?'),
+																							:method => :delete,
+																							:class => "button" %>
       </div>
     </div>
   </div>
@@ -113,6 +103,12 @@ $(document).ready(function()
             </tr>
         <% end -%>
       </table>
+	  	  <input type="hidden" value="0" id="newTopicNumber" />
+	  <div id="topicsDiv">
+
+	  </div>
+	  <a href="#" onclick="addTopic();return false;">+</a>
+	  <span class="description"><%=t("form.add_topic", :default => "Add a new Topic")%></span>
     </div>
   </div>
 </div>
@@ -145,10 +141,11 @@ $(document).ready(function()
                   <td class="leftered" width='45%'><%=participation.user.mail %></td>
 				  
                   <% if participation.is_attending == -1 %>
-                     <td width='40%'><%= t("attending.no", :default => "This person is not attending") %></td>
+                     <td width='25%'><%= t("attending.declined", :default => "This person is not attending") %></td>
 					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
+					 <td width='15%'></td>
                   <% elsif participation.is_attending == 0 %>
-                     <td width='25%'><%= t("attending.maybe", :default => "This person has yet to answer") %></td>
+                     <td width='25%'><%= t("attending.unknown", :default => "This person has yet to answer") %></td>
 					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" /></a></td>
                      <td width='15%'>
                          <%= form_for :participation, :url => participations_path do |f| -%>
@@ -158,8 +155,9 @@ $(document).ready(function()
                          <% end -%>
                      </td>
                   <% elsif participation.is_attending == 1 %>
-                    <td width='40%'><%= t("attending.yes", :default => "This person is attending") %></td>
+                    <td width='25%'><%= t("attending.confirmed", :default => "This person is attending") %></td>
                     <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" /></a></td>
+					<td width='15%'></td>
                   <% end %>
                   
                 </tr>

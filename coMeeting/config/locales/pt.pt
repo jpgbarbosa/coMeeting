@@ -58,6 +58,6 @@ pt:
   action: "Tarefa"
   date: "Data"
   attending:
-    yes: "Presença confirmada"
-    maybe: "Por confirmar"
     no: "Indisponível"
+    maybe: "Por confirmar"
+    yes: "Presença confirmada"

@@ -58,9 +58,9 @@ pt:
   action: "Tarefa"
   date: "Data"
   attending:
-    yes: "Presença confirmada"
-    maybe: "Por confirmar"
-    no: "Indisponível"
+    confirmed: "Presença confirmada"
+    unknown: "Por confirmar"
+    declined: "Indisponível"
 en:
   hello: "Hello world"
   current_language: "English"
@@ -121,6 +121,6 @@ en:
   action: "Action item"
   date: "Date"
   attending:
-    yes: "Attendance confirmed"
-    maybe: "Yet to answer"
-    no: "Attendance declined"
+    confirmed: "Attendance confirmed"
+    unknown: "Yet to answer"
+    declined: "Attendance declined"

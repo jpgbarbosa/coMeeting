@@ -47,6 +47,25 @@
 		<input type="hidden" id="newTopicNumber" value="<%=num%>" />
     <span class="description"><%= t("form.add_topic", :default => "Add a new Topic")%></span>
   </div>
+  
+  <div class="group">
+		<div id="participantsDiv">
+            <%= f.label :participants, t("participants", :default => "Participants"), :class => :label %>
+			<% if @participations.present? 
+				num = 0 %>
+				<% @participations.each do |participation| -%>
+					<% name_id = "participant#{num}" %>
+					<div id=<%=name_id %>>
+						<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => participation.user.mail %>  <a href="#" tabindex="-1" onclick="removeParticipant('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
+					</div>
+					<% num = num + 1%>
+				<% end -%>
+			<% end %>
+		</div>
+		<a href="#" onclick="addParticipant();return false;">+</a>
+		<input type="hidden" id="newParticipantNumber" value="<%=num%>" />
+    <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
+  </div>
 
   <div class="group">
     <%= f.label :extra_info, t("form.extra_info", :default => "Extra info"), :class => :label %>
