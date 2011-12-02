@@ -174,7 +174,7 @@
 						<tr id='participant_<%=num %>' class="hidden <%=rowClass%>">
 							<td class="leftered" width='45%'><%= t("action", :default => "Action") %>: <input id='item' class="styled" type='text' maxlength='200'/></td>
 							<td width='25%'><%= t("date", :default => "Date") %>: <input id='date' class="styled", type='text' maxlength='10'></td>
-							<td class="centered" width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
+							<td class="centered" width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>');updateMinutes('<%=@meeting.link_admin%>');return false;"><img src="/assets/icons/pencil.png" /></a></td>
 							<td width='15%'></td>
 						</tr>
 						
