@@ -112,19 +112,9 @@
               <td>
                 <%= topic %>
               </td>
-              <td class="last">
-                <%= link_to "#{t("edit", :default => "Edit")}", '/' %> |
-                <%= link_to "#{t("delete", :default => "Delete")}", '/' %> |
-              </td>
             </tr>
         <% end -%>
       </table>
-	  	  <input type="hidden" value="0" id="newTopicNumber" />
-	  <div id="topicsDiv">
-
-	  </div>
-	  <a href="#" onclick="addTopic();return false;">+</a>
-	  <span class="description"><%=t("form.add_topic", :default => "Add a new Topic")%></span>
     </div>
   </div>
 </div>
@@ -141,58 +131,83 @@
 
   <div class="content">
     <div class="inner">
-      <input type="hidden" id="token" value="<%=@meeting.link_admin%>">
-      <table class="centered table">
-			<tr>
-				<td width='45%'><%= t("email", :default => "Email") %></td>
-				<td width='25%'><%= t("status", :default => "Status") %></td>
-				<td width='15%'><%= t("assign_action_item", :default => "Assign Action Item") %></td>
-				<td width='15%'><%= t("send_email", :default => "Send Email") %></td>
-			</tr>
-        <% if @participations.present? 
-        	num = 0 %>
-            <% @participations.each do |participation| %>
-				<% rowClass = cycle("even", "odd") %>
-                <tr class="<%=rowClass%>">
-                  <td class="leftered" width='45%'><%=participation.user.mail %></td>
-				  
-                  <% if participation.is_attending == -1 %>
-                     <td width='25%'><%= t("attending.declined", :default => "This person is not attending") %></td>
-					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" /></a></td>
-					 <td width='15%'></td>
-                  <% elsif participation.is_attending == 0 %>
-                     <td width='25%'><%= t("attending.unknown", :default => "This person has yet to answer") %></td>
-					 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" /></a></td>
-                     <td width='15%'>
-                         <%= form_for :participation, :url => participations_path do |f| -%>
-                           <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
-                           <input type='hidden' name='person' value='<%= participation.user.mail %>' />
-                           <%= image_submit_tag("/assets/icons/email.png") %>
-                         <% end -%>
-                     </td>
-                  <% elsif participation.is_attending == 1 %>
-                    <td width='25%'><%= t("attending.confirmed", :default => "This person is attending") %></td>
-                    <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" /></a></td>
-					<td width='15%'></td>
-                  <% end %>
-                  
-                </tr>
-                <tr id='participant_<%=num %>' class="hidden <%=rowClass%>">
-                	<td class="leftered" width='45%'><%= t("action", :default => "Action") %>: <input id='item' class="styled" type='text' maxlength='200'/></td>
-                	<td width='25%'><%= t("date", :default => "Date") %>: <input id='date' class="styled", type='text' maxlength='10'></td>
-                	<td class="centered" width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
-					<td width='15%'></td>
-                </tr>
-                <% num = num + 1 %>
-            <% end %>
-        <% end %>
-      </table>
-	  <div id="participantsDiv">
-
-	  </div>
-	  <a href="#" onclick="addPerson();return false;">+</a>
-	  <input type="hidden" value="0" id="newParticipantNumber" />
-	  <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
+		<input type="hidden" id="token" value="<%=@meeting.link_admin%>">
+		<table class="centered table">
+		
+			<% if @admin %>
+			
+				<tr>
+					<td width='45%'><%= t("email", :default => "Email") %></td>
+					<td width='25%'><%= t("status", :default => "Status") %></td>
+					<td width='15%'><%= t("assign_action_item", :default => "Assign Action Item") %></td>
+					<td width='15%'><%= t("send_email", :default => "Send Email") %></td>
+				</tr>
+				<% if @participations.present? 
+					num = 0 %>
+					<% @participations.each do |participation| %>
+						<% rowClass = cycle("even", "odd") %>
+						
+						<tr class="<%=rowClass%>">
+						  <td class="leftered" width='45%'><%=participation.user.mail %></td>
+						  
+						  <% if participation.is_attending == -1 %>
+							 <td width='25%'><%= t("attending.declined", :default => "This person is not attending") %></td>
+							 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>'); return false;"><img src="/assets/icons/script.png" alt="<%= t("alt.add_minutes", :default => "Add action item to minutes")%>" /></a></td>
+							 <td width='15%'></td>
+						  <% elsif participation.is_attending == 0 %>
+							 <td width='25%'><%= t("attending.unknown", :default => "This person has yet to answer") %></td>
+							 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" alt="<%= t("alt.add_minutes", :default => "Add action item to minutes")%>" /></a></td>
+							 <td width='15%'>
+								 <%= form_for :participation, :url => participations_path do |f| -%>
+								   <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
+								   <input type='hidden' name='person' value='<%= participation.user.mail %>' />
+								   <%= image_submit_tag("/assets/icons/email.png", :alt => t("alt.send_email", :default => "Send email invitation")) %>
+								 <% end -%>
+							 </td>
+						  <% elsif participation.is_attending == 1 %>
+							<td width='25%'><%= t("attending.confirmed", :default => "This person is attending") %></td>
+							<td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" alt="<%= t("alt.add_minutes", :default => "Add action item to minutes")%>" /></a></td>
+							<td width='15%'></td>
+						  <% end %>
+						</tr>
+						
+						<tr id='participant_<%=num %>' class="hidden <%=rowClass%>">
+							<td class="leftered" width='45%'><%= t("action", :default => "Action") %>: <input id='item' class="styled" type='text' maxlength='200'/></td>
+							<td width='25%'><%= t("date", :default => "Date") %>: <input id='date' class="styled", type='text' maxlength='10'></td>
+							<td class="centered" width='15%'><a href='#' onclick="addActionItem('participant_<%=num%>',<%=participation.id%>,'<%=participation.user.mail%>'); return false;"><img src="/assets/icons/pencil.png" /></a></td>
+							<td width='15%'></td>
+						</tr>
+						
+						<% num = num + 1 %>
+					<% end %>
+				<% end %>
+				
+			<% else %>
+			
+				<tr>
+					<td width='65%'><%= t("email", :default => "Email") %></td>
+					<td width='35%'><%= t("status", :default => "Status") %></td>
+				</tr>
+				<% if @participations.present? 
+					num = 0 %>
+					<% @participations.each do |participation| %>
+						<% rowClass = cycle("even", "odd") %>
+					
+						<tr class="<%=rowClass%>">
+							<td class="leftered" width='65%'><%=participation.user.mail %></td>
+							<% if participation.is_attending == -1 %>
+								<td width='35%'><%= t("attending.declined", :default => "This person is not attending") %></td>
+							<% elsif participation.is_attending == 0 %>
+								<td width='35%'><%= t("attending.unknown", :default => "This person has yet to answer") %></td>
+							<% elsif participation.is_attending == 1 %>
+								<td width='35%'><%= t("attending.confirmed", :default => "This person is attending") %></td>
+							<% end %>
+						</tr>
+						<% num = num + 1 %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</table>
     </div>
   </div>
 </div>
@@ -207,12 +222,16 @@
     </ul>
   </div>
   <div class="content">
-    <div class="inner">
-        <div id="partialimage">
-            <%= render :partial => 'minutes'  %>
-        </div>
+    <div class="inner" id="partialminutes">
+		<%= render :partial => 'minutes'  %>
     </div>
   </div>
- </div>
+</div>
+
+<% unless @admin %>
+	<script>
+		setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
+	</script>
+<% end %>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

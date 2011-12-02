@@ -136,6 +136,11 @@ table.centered {
     margin-left: 50%;
 }
 
+textarea.disabled {
+	background-color:#FFFFFF;
+	color:#000000;
+}
+
 a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active, button.big_button {
   color: #fff;
   display:block;

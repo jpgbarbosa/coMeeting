@@ -107,17 +107,28 @@ function addActionItem(participant, id, email){
 	$("#minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
 }
 
+
 jQuery(document).ready(function () {
 
      $("#minutes").tabby();
 
 });
 
-function updateMinutes() {
+
+function updateMinutes(meeting_id) {
 	var minutes = document.getElementById("minutes");
 	$.ajax({
 	  type    : "POST",
 	  url     : "/meetings/update_minutes",
-	  data    : { minutes : minutes.value },
+	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: meeting_id, minutes: minutes.value },
+	});
+}
+
+
+function getMinutes(meeting_id) {
+	$.ajax({
+	  type    : "GET",
+	  url     : "/meetings/get_minutes",
+	  data    : { id: meeting_id },
 	});
 }

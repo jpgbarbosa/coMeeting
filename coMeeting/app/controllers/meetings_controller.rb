@@ -15,6 +15,7 @@ class MeetingsController < ApplicationController
 		if @meeting.nil?
 			@participation = Participation.find_by_token(params[:id])
 			@meeting = Meeting.find(@participation.meeting_id)
+			@minutes = @meeting.minutes
 			@admin = false
 		else
 			@admin = true
@@ -49,29 +50,51 @@ class MeetingsController < ApplicationController
 
 	def create
 		params[:meeting][:topics].reject!( &:blank? )
+		params[:participations].reject!( &:blank? )
+		
+		participants = ""
+		params[:participations].each do |email|
+			participants += "- " + email + "\n\t"	
+		end
+		topics = ""
+		params[:meeting][:topics].each do |topic|
+			topics += "- " + topic + "\n\t"	
+		end
+		minutes =	"\nSubject: "+ params[:meeting][:subject] + 
+					"\nLocal: " + params[:meeting][:local] +
+					"\nDate: " + params[:meeting][:meeting_date].to_s +
+					"\nHour: " + params[:meeting][:meeting_time].to_s +
+					"\nExtra Information: " + params[:meeting][:extra_info] +
+					"\nCreated by: " + params[:meeting][:admin] +
+					"\n\nTopics:" + 
+					"\n\t" + topics +
+					"\nParticipants:" +
+					"\n\t" + participants +
+					"\nAction Items:"
 
+		#Faltam action items
+		
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
+		@meeting.minutes = minutes
 
 		respond_to do |format|
 			if @meeting.save
 				params[:participations].each do |email|
-					if(!email.empty?)
-						user = User.find_by_mail(email)
-						if user == nil
-							user = User.new
-							user.mail = email
-							user.save
-						end
+					user = User.find_by_mail(email)
+					if user.nil?
+						user = User.new
+						user.mail = email
+						user.save
+					end
 
-						participation = Participation.new
-						participation.meeting_id = @meeting.id
-						participation.user_id = user.id
-						participation.token = UUIDTools::UUID.random_create().to_s
-						if participation.save
-							#CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
-							UserMailer.invitation_email(email, participation.token).deliver
-						end
+					participation = Participation.new
+					participation.meeting_id = @meeting.id
+					participation.user_id = user.id
+					participation.token = UUIDTools::UUID.random_create().to_s
+					if participation.save
+						#CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
+						UserMailer.invitation_email(email, participation.token).deliver
 					end
 				end
 				
@@ -173,14 +196,19 @@ class MeetingsController < ApplicationController
     
     
     def update_minutes
-        puts params
-        #save minutes
+        meeting = Meeting.find_by_link_admin(params[:id])
+		
+		meeting.update_attribute(:minutes, params[:minutes])
         
         render :nothing => true
     end
     
     
     def get_minutes
+		meeting = Meeting.find_by_link_admin(params[:id])
+		
+		@minutes = meeting.minutes
+		
         respond_to do |format|
 			format.js
 		end
