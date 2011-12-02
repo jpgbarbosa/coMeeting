@@ -116,11 +116,10 @@ jQuery(document).ready(function () {
 
 
 function updateMinutes(meeting_id) {
-	var minutes = document.getElementById("minutes");
 	$.ajax({
 	  type    : "POST",
 	  url     : "/meetings/update_minutes",
-	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: meeting_id, minutes: minutes.value },
+	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: meeting_id, minutes: $('#minutes').val() },
 	});
 }
 

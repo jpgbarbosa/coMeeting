@@ -228,10 +228,12 @@
   </div>
 </div>
 
-<% unless @admin %>
-	<script>
+<script>
+	<% if @admin %>
+		setInterval("updateMinutes('<%=@meeting.link_admin%>')", 5000);
+	<% else %>
 		setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
-	</script>
-<% end %>
+	<% end %>
+</script>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

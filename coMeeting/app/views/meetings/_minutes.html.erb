@@ -1,5 +1,5 @@
 <% if @admin %>
-	<%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => @meeting.minutes, :onkeyup => "updateMinutes('#{@meeting.link_admin}');" %>
+	<%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => @meeting.minutes %>
 <% else %>
 	<%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => @minutes, :class => "disabled", :disabled => true %>
 <% end %>
