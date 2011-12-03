@@ -17,18 +17,18 @@
 			topics += "- " + topic + "\n\t"
 		end
 		
-		static = "\nSubject: "+ @meeting.subject + 
-			  "\nLocal: " + @meeting.local +
-			  "\nDate: " + @meeting.meeting_date.to_s +
-			  "\nHour: " + @meeting.meeting_time.to_s +
-			  "\nDuration: " + @meeting.duration.strftime("%1Hh:%Mm").to_s +
-			  "\nExtra Information: " + @meeting.extra_info +
-			  "\nCreated by: " + @meeting.admin +
-			  "\n\n\tTopics:" + 
+		static = "\n" + t("subject") + ": " + @meeting.subject + 
+			  "\n" + t("local") + ": " + @meeting.local +
+			  "\n" + t("date") + ": " + @meeting.meeting_date.to_s +
+			  "\n" + t("time") + ": " + @meeting.meeting_time.to_s +
+			  "\n" + t("duration") + ": " + @meeting.duration.strftime("%1Hh:%Mm").to_s +
+			  "\n" + t("extra_info") + ": "  + @meeting.extra_info +
+			  "\n" + t("creator") + ": "  + @meeting.admin +
+			  "\n\n\t" + t("topics") + ":" + 
 			  "\n\t" + topics +
-			  "\n\tParticipants:" +
+			  "\n\t" + t("participants") + ":" +
 			  "\n\t" + participants +
-			  "\n\tAction Items:" + 
+			  "\n\t" + t("actions") + ":" + 
 			  "\n\t" + action_items
 	%>
 	<%= text_area :static_minutes, nil, :id => "static_minutes", :value => static, :class => "disabled", :disabled => true %>
