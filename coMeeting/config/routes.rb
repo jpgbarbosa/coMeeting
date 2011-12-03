@@ -3,6 +3,8 @@ CoMeeting::Application.routes.draw do
     post "meetings/update_minutes" => "meetings#update_minutes"
 	
 	get "meetings/get_minutes" => "meetings#get_minutes"
+	
+	post "meetings/update_action_item" => "meetings#update_action_item"
 
 	scope "(:locale)", :locale => /en|pt/ do
 		resources :meetings

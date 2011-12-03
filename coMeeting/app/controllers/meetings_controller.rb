@@ -52,7 +52,7 @@ class MeetingsController < ApplicationController
 		params[:meeting][:topics].reject!( &:blank? )
 		params[:participations].reject!( &:blank? )
 		
-		participants = ""
+		'''participants = ""
 		params[:participations].each do |email|
 			participants += "- " + email + "\n\t"	
 		end
@@ -70,9 +70,7 @@ class MeetingsController < ApplicationController
 					"\n\t" + topics +
 					"\nParticipants:" +
 					"\n\t" + participants +
-					"\nAction Items:"
-
-		#Faltam action items
+					"\nAction Items:"'''
 		
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
@@ -213,4 +211,17 @@ class MeetingsController < ApplicationController
 			format.js
 		end
     end
+	
+	def update_action_item
+		participation = Participation.find_by_id(params[:id])
+		
+		participation.update_attributes(:action_item => params[:action_item], :deadline => params[:deadline])
+		
+		@meeting = Meeting.find_by_id(participation.meeting_id)
+			  
+		respond_to do |format|
+			format.js
+		end
+	end
+	
 end

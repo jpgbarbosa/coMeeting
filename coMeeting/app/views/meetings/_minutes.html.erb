@@ -1,5 +1,11 @@
 <% if @admin %>
-	<%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => @meeting.minutes %>
+	<%= text_area :minutes, nil, :id => 'minutes', :value => @meeting.minutes%>
 <% else %>
-	<%= text_area :minutes, nil, :id => 'minutes', :rows => 30, :value => @minutes, :class => "disabled", :disabled => true %>
+	<%= text_area :minutes, nil, :id => 'minutes', :value => @minutes, :class => "autosize disabled", :disabled => true %>
 <% end %>
+<script>
+	$('textarea#minutes').autoResize({
+				maxHeight: 1000,
+				minHeight: 50
+			});
+</script>

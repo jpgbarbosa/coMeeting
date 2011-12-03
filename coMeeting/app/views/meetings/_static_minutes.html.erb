@@ -1,0 +1,37 @@
+	<% 
+		participations = @meeting.participations
+		
+		participants = ""
+		action_items = ""
+		
+		participations.each do |participation|
+			participants += "- " + participation.user.mail + "\n\t"
+			if !participation.action_item.nil? && !participation.deadline.nil?
+				action_items += "- " + participation.action_item.to_s + " " + participation.deadline.to_s + "\n\t"
+			end
+		end
+			
+		topics = ""
+			
+		@meeting.topics.each do |topic|
+			topics += "- " + topic + "\n\t"
+		end
+		
+		static = "\nSubject: "+ @meeting.subject + 
+			  "\nLocal: " + @meeting.local +
+			  "\nDate: " + @meeting.meeting_date.to_s +
+			  "\nHour: " + @meeting.meeting_time.to_s +
+			  "\nDuration: " + @meeting.duration.strftime("%1Hh:%Mm").to_s +
+			  "\nExtra Information: " + @meeting.extra_info +
+			  "\nCreated by: " + @meeting.admin +
+			  "\n\n\tTopics:" + 
+			  "\n\t" + topics +
+			  "\n\tParticipants:" +
+			  "\n\t" + participants +
+			  "\n\tAction Items:" + 
+			  "\n\t" + action_items
+	%>
+	<%= text_area :static_minutes, nil, :id => "static_minutes", :value => static, :class => "disabled", :disabled => true %>
+	
+		
+		

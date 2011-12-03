@@ -78,12 +78,28 @@
 }
 
 #minutes {
+	resize: none;
 	width:100%;
 	max-width:100%;
 	border:none;
+	min-height:50px;
 }
 
 #minutes:focus {
+	outline:0;
+	outline:none;
+}
+
+#static_minutes{
+	resize: none;
+	width:100%;
+	max-width:100%;
+	border:none;
+	border-bottom:1px dotted;
+	min-height:50px;
+}
+
+#static_minutes:focus {
 	outline:0;
 	outline:none;
 }

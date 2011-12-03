@@ -102,9 +102,18 @@ function addActionItem(participant, id, email){
 	var action = $("tr#"+ participant + " td input#item").val();
 	var date = $("tr#"+ participant + " input#date").val();
 	
-	var act = $("#minutes").val();
+	//var act = $("#static_minutes").val();
 	
-	$("#minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
+	//$("#static_minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
+	$('textarea#static_minutes').autoResize({
+				maxHeight: 1000,
+				minHeight: 50
+											});
+	$.ajax({
+	  type    : "POST",
+	  url     : "/meetings/update_action_item",
+	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: id, action_item: action, deadline: date },
+	});
 }
 
 
