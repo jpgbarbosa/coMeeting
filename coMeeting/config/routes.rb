@@ -1,8 +1,14 @@
 CoMeeting::Application.routes.draw do
 
+	get "meetings/get_admin_circles"
+	
+	get "meetings/generate_minutes_pdf"
+
     post "meetings/update_minutes" => "meetings#update_minutes"
 	
 	get "meetings/get_minutes" => "meetings#get_minutes"
+	
+	post "meetings/update_action_item" => "meetings#update_action_item"
 
 	scope "(:locale)", :locale => /en|pt/ do
 		resources :meetings
@@ -16,7 +22,7 @@ CoMeeting::Application.routes.draw do
 		root :to => 'home#index'
 	end
 	
-	match '/:anything' => redirect("/"), :constraints => { :anything => /.*/ }
+	#match '/:anything' => redirect("/"), :constraints => { :anything => /.*/ }
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

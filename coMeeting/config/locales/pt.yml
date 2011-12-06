@@ -6,7 +6,7 @@ pt:
   delete:                                      "Eliminar"
   confirm:                                     "Confirmar"
   list:                                        "Lista"
-  created_at: "Criado em"
+  created_at:                                "Criado em"
   or: "ou"
   profile: "Perfil"
   settings: "Configuracões"
