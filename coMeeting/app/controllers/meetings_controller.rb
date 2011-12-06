@@ -239,9 +239,38 @@ class MeetingsController < ApplicationController
 			Dir.mkdir(dir)
 		end
 		
+		topics = ""
+		participants = ""
+		action_items = ""
+			
+		meeting.topics.each do |topic|
+			topics += "\n\t- " + topic
+		end
+		
+		meeting.participations.each do |participation|
+			participants += "- " + participation.user.mail + "\n\t"
+			if !participation.action_item.nil? && !participation.deadline.nil?
+				action_items += "\n\t- " + participation.action_item.to_s + " " + participation.deadline.to_s
+			end
+		end
+		
+		minutes = "\n" + t("subject") + ": " + meeting.subject + 
+			"\n" + t("local") + ": " + meeting.local +
+			"\n" + t("date") + ": " + meeting.meeting_date.to_s +
+			"\n" + t("time") + ": " + meeting.meeting_time.to_s +
+			"\n" + t("duration") + ": " + meeting.duration.strftime("%1Hh:%Mm").to_s +
+			"\n" + t("extra_info") + ": " + meeting.extra_info +
+			"\n" + t("creator") + ": " + meeting.admin +
+			"\n\n\t" + t("topics") + ":" + 
+			"\n\t" + topics +
+			"\n\t" + t("participants") + ":" +
+			"\n\t" + participants +
+			"\n\t" + t("actions") + ":" + action_items +
+			"\n\n"
+		
 		Prawn::Document.generate("#{dir}/minutes.pdf") do
 			# STATIC MINUTES LEFT. STORE ON DB?
-			text meeting.minutes
+			text minutes+meeting.minutes
 		end
 		
 		send_file "#{dir}/minutes.pdf"

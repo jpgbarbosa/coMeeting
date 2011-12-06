@@ -214,6 +214,7 @@
   </div>
 </div>
 
+<% if @admin || @participation.is_attending != 0 %>
 <div class="block" id="block-act">
   <div class="secondary-navigation">
     <ul class="wat-cf">
@@ -235,10 +236,10 @@
 
 <div class="outer_center">
 <div class="buttons wat-cf">
-	<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download PDF"), download_path(:id => @meeting.link_admin),
-                                                                                                            :class => "button" %>
+	<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download as PDF"), download_path(:id => @meeting.link_admin), :class => "button" %>
 </div>
 </div>
+<% end %>
 
 <script>
 	<% if false %>
