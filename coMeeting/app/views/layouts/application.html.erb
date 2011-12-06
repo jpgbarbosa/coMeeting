@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
 
-  <meta name="keywords" content="meeting scheduler, meeting scheduling, meeting, plan a meeting, meeting, organizer, scheduling, schedule, agenda, timetable, calendar, appointment, date, coordinate, poll, meet, lunch, dinner, workshop, team, weekend, event, invitation, online" />
-  <meta name="description" content="coMeeting helps scheduling meetings and other appointments. coMeeting is simple, quick, free and requires no registration." />
-  <meta name="application-name" content="coMeeting" />
-  <meta name="author" content="coMeeting" />
+<meta name="keywords" content="meeting scheduler, meeting scheduling, meeting, plan a meeting, meeting, organizer, scheduling, schedule, agenda, timetable, calendar, appointment, date, coordinate, poll, meet, lunch, dinner, workshop, team, weekend, event, invitation, online" />
+<meta name="description" content="coMeeting helps scheduling meetings and other appointments. coMeeting is simple, quick, free and requires no registration." />
+<meta name="application-name" content="coMeeting" />
+<meta name="author" content="coMeeting" />
 
-  <title>coMeeting</title>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
-  <%= stylesheet_link_tag "web_app_theme" %>
-  <%= javascript_include_tag "application", :cache => true %>
-  <%= csrf_meta_tag %>
-  
+<title>coMeeting</title>
+<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
+<%= stylesheet_link_tag "web_app_theme" %>
+<%= javascript_include_tag "application", :cache => true %>
+<%= csrf_meta_tag %>
 
-  <script>
-  // When the document is loaded...
-  $(document).ready(function()
-  {
-      // Scroll the whole document
-      $('#main').localScroll({
-         target:'body'
-      });
-
+<script>
+  $(document).ready(function(){
+    $('#main').localScroll({
+      target:'body'
+    });
   });
-  </script>
+</script>
 
 </head>
 <body>
@@ -34,10 +29,8 @@
       <h1><%= link_to "coMeeting", root_path %></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
-          <!--<li><a href="#"><%= t("profile", :default => "Profile") %></a></li>
-          <li><a href="#"><%= t("settings", :default => "Settings") %></a></li>
-          <li><a href="/logout" class="logout"><%= t("logout", :default => "Logout") %></a></li>-->
-		  <li id="drop_menu"><%= image_tag("/assets/icons/globe.png", :alt => "") + t("current_language", :default => "English") %>
+		  <li id="drop_menu">
+			  <%= image_tag("/assets/icons/globe.png", :alt => "") + t("current_language", :default => "English") %>
 			  <ul id="drop_items">
 				<li><%= link_to "English", url_for( :locale => "en" ) %></li>
 				<li><%= link_to "Portugu&#234;s".html_safe, url_for( :locale => "pt" ) %></li>
@@ -66,9 +59,6 @@
             <p>Copyright &copy; 2011 coMeeting</p>
           </div>
         </div>
-      </div>
-      <div id="sidebar">
-        <%= yield :sidebar %>
       </div>
     </div>
   </div>

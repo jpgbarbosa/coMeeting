@@ -3,9 +3,3 @@
 <% else %>
 	<%= text_area :minutes, nil, :id => 'minutes', :value => @minutes, :class => "autosize disabled", :disabled => true %>
 <% end %>
-<script>
-	$('textarea#minutes').autoResize({
-				maxHeight: 1000,
-				minHeight: 50
-			});
-</script>

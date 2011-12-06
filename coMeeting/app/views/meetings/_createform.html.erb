@@ -41,7 +41,7 @@
 		<div id="topicsDiv">
             <%= f.label :topics, t("topics", :default => "Topics"), :class => :label %>
 			<div id="topic0">
-				<%= f.text_field :topics, :class => "shorter text_field", :name => "meeting[topics][]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeTopic('topic0');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
+				<%= f.text_field :topics, :id => "meeting_topic_0", :class => "shorter text_field", :name => "meeting[topics][]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeTopic('topic0');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 			</div>
 		</div>
 		<a href="#" onclick="addTopic();return false;">+</a>
@@ -53,7 +53,7 @@
 		<div id="participantsDiv">
             <%= f.label :participants, t("participants", :default => "Participants"), :class => :label %>
 			<div id="participant0">
-				<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeParticipant('participant0');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
+				<%= f.text_field :participants, :id => "meeting_participant_0", :class => "shorter text_field", :name => "participations[]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeParticipant('participant0');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 			</div>
 		</div>
 		<a href="#" onclick="addParticipant();return false;">+</a>

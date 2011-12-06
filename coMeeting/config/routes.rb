@@ -2,11 +2,11 @@ CoMeeting::Application.routes.draw do
 
 	get "meetings/get_admin_circles"
 	
-	get "meetings/generate_minutes_pdf"
+	get "meetings/download_pdf", :as => 'download'
 
-    post "meetings/update_minutes" => "meetings#update_minutes"
+    post "meetings/update_minutes"
 	
-	get "meetings/get_minutes" => "meetings#get_minutes"
+	get "meetings/get_minutes"
 	
 	post "meetings/update_action_item" => "meetings#update_action_item"
 

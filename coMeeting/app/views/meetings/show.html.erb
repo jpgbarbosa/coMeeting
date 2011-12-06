@@ -1,3 +1,4 @@
+<div class="outer_center">
 <div class="buttons wat-cf">
 
     <% if @admin %>
@@ -36,6 +37,7 @@
 			<% end -%>
 		<% end %>
 	<% end %>
+</div>
 </div>
 
 <div class="block" id="block-info">
@@ -228,24 +230,27 @@
 	<div class="inner" id="partialminutes">
 		<%= render :partial => 'minutes' %>
     </div>
-	<a href="#" onclick="generatePdf('<%=@meeting.link_admin%>')"> Generate PDF </a>
-	
-	
-	<script>
-		$('textarea').autoResize({
-			maxHeight: 1000,
-			minHeight: 50
-		});
-	</script>
   </div>
 </div>
 
+<div class="outer_center">
+<div class="buttons wat-cf">
+	<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download PDF"), download_path(:id => @meeting.link_admin),
+                                                                                                            :class => "button" %>
+</div>
+</div>
+
 <script>
+	<% if false %>
 	<% if @admin %>
 		setInterval("updateMinutes('<%=@meeting.link_admin%>')", 5000);
 	<% else %>
 		setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
 	<% end %>
+	<% end %>
+	
+	$('textarea#minutes').autoResize({
+		maxHeight: 1000,
+		minHeight: 50
+	});
 </script>
-
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

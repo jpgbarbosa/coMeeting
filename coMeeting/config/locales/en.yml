@@ -50,6 +50,7 @@ en:
       withoutauth:                             "Meeting successfully created without email confirmation."
     updated:                                   "Meeting successfully updated."
     deleted:                                   "Meeting successfully deleted."
+    pdf:                                       "Download PDF"
     error:
       show:                                    "The meeting you are looking for does not exist!"
       delete:                                  "The meeting you tried deleting doesn't exist!"
@@ -125,6 +126,7 @@ pt:
       withoutauth:                             "Reunião criada com sucesso sem confirmação por email."
     updated:                                   "Reunião alterada com sucesso."
     deleted:                                   "Reunião eliminada com sucesso."
+    pdf:                                       "Descarregar PDF"
     error:
       show:                                    "A reunião a que tentou aceder não existe!"
       delete:                                  "A reunião que tentou eliminar não existe!"

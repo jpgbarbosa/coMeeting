@@ -186,7 +186,8 @@ class MeetingsController < ApplicationController
 		meeting.update_attribute(:minutes, params[:minutes])
         
         render :nothing => true
-    end   
+    end
+	
     
     def get_minutes
 		meeting = Meeting.find_by_link_admin(params[:id])
@@ -197,6 +198,7 @@ class MeetingsController < ApplicationController
 			format.js
 		end
     end
+	
 	
 	def update_action_item
 		participation = Participation.find_by_id(params[:id])
@@ -210,6 +212,7 @@ class MeetingsController < ApplicationController
 		end
 	end
 	
+	
 	respond_to :js
 	def get_admin_circles
 		user = User.find_by_mail(params[:mail])
@@ -217,7 +220,7 @@ class MeetingsController < ApplicationController
 		@data = ""
 		user.circles.each do |u|
 			mail = User.find_by_id(u).mail
-			if mail.include?params[:term]
+			if mail.include?(params[:term])
 				@data = @data + mail.to_s
 				@data = @data + ", "
 			end
@@ -226,16 +229,21 @@ class MeetingsController < ApplicationController
 		respond_with(@data)
 	end
 	
-	def generate_minutes_pdf
-		
+	
+	def download_pdf
 		meeting = Meeting.find_by_link_admin(params[:id])
 		
-		Prawn::Document.generate("public/hello.pdf") do
+		dir = "private/#{meeting.id}"
+		
+		unless File.exists?(dir) && File.directory?(dir)
+			Dir.mkdir(dir)
+		end
+		
+		Prawn::Document.generate("#{dir}/minutes.pdf") do
 			# STATIC MINUTES LEFT. STORE ON DB?
 			text meeting.minutes
 		end
 		
-		render :nothing => true
+		send_file "#{dir}/minutes.pdf"
 	end
-	
 end

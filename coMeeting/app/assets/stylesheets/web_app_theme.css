@@ -33,6 +33,15 @@
 	background: #b8d1e2 url("/assets/icons/notice.png") no-repeat 10px center;
 }
 
+#user-navigation {
+  right: 140px;
+}
+
+#main, #main-navigation {  
+  width: 80%;
+  margin-left:10%;
+}
+
 #user-navigation ul li {
 	padding:0px 20px;
 }
@@ -45,7 +54,6 @@
 #drop_menu img {
 	vertical-align:middle;
 	padding-right:10px;
-
 }
 
 #drop_items {
@@ -85,7 +93,7 @@
 	min-height:50px;
 }
 
-#minutes:focus {
+#minutes:focus, #static_minutes:focus {
 	outline:0;
 	outline:none;
 }
@@ -99,13 +107,16 @@
 	min-height:50px;
 }
 
-#static_minutes:focus {
-	outline:0;
-	outline:none;
-}
-
 #topicsDiv input, #participantsDiv input{
 	margin-bottom:10px;
+}
+
+#footer {
+	padding-bottom:0px;
+}
+
+#footer div.block {
+	margin-bottom:0px;
 }
 
 .form input.date_picker{
@@ -146,10 +157,13 @@ table.centered {
 	text-align:center;
 }
 
+.outer_center {
+	text-align: center;
+	padding-bottom:10px;
+}
+
 .buttons {
-    align:center;
-    padding-bottom:20px;
-    margin-left: 50%;
+    display: inline-block;
 }
 
 textarea.disabled {

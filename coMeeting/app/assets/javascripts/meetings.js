@@ -6,7 +6,7 @@ function addTopic() {
 	var newDiv = document.createElement('div');
 	newDiv.setAttribute('id', divName);
 
-	newDiv.innerHTML = "<input class='shorter text_field' id='meeting_topics' name='meeting[topics][]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeTopic(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+	newDiv.innerHTML = "<input class='shorter text_field' id='meeting_topic_" + num + "' name='meeting[topics][]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeTopic(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	mainDiv.appendChild(newDiv);
 
     numberDiv.value = num + 1;
@@ -37,10 +37,10 @@ function addParticipant() {
 
 	if($("input#admin_email").val() == ""){	
 		alert('nao tem admin');
-		newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+		newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participant_" + num + "' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	}
 	else{
-		newDiv.innerHTML = "<input onclick='getCircles();return false;' class='auto_search_complete shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+		newDiv.innerHTML = "<input onclick='getCircles();return false;' class='auto_search_complete shorter text_field' id='meeting_participant_" + num + "' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	}
 	mainDiv.appendChild(newDiv);
 
@@ -162,17 +162,5 @@ function getCircles(){
 				});
 			}          
 		});
-
 }
-
-function generatePdf(meeting_id){
-
-	$.ajax({
-	  type    : "GET",
-	  url     : "/meetings/generate_minutes_pdf",
-	  data    : { id: meeting_id },
-	});
-}
-
-
 
