@@ -228,6 +228,9 @@
 	<div class="inner" id="partialminutes">
 		<%= render :partial => 'minutes' %>
     </div>
+	<a href="#" onclick="generatePdf('<%=@meeting.link_admin%>')"> Generate PDF </a>
+	
+	
 	<script>
 		$('textarea').autoResize({
 			maxHeight: 1000,

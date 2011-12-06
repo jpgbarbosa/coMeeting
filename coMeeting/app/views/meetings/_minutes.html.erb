@@ -1,5 +1,5 @@
 <% if @admin %>
-	<%= text_area :minutes, nil, :id => 'minutes', :value => @meeting.minutes%>
+	<%= text_area :minutes, nil, :id => 'minutes', :value => @meeting.minutes , :onfocus => "handleFocus(this);" , :onblur => "handleBlur(this);"%>
 <% else %>
 	<%= text_area :minutes, nil, :id => 'minutes', :value => @minutes, :class => "autosize disabled", :disabled => true %>
 <% end %>

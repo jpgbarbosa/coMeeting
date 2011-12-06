@@ -52,32 +52,19 @@ class MeetingsController < ApplicationController
 		params[:meeting][:topics].reject!( &:blank? )
 		params[:participations].reject!( &:blank? )
 		
-		'''participants = ""
-		params[:participations].each do |email|
-			participants += "- " + email + "\n\t"	
-		end
-		topics = ""
-		params[:meeting][:topics].each do |topic|
-			topics += "- " + topic + "\n\t"	
-		end
-		minutes =	"\nSubject: "+ params[:meeting][:subject] + 
-					"\nLocal: " + params[:meeting][:local] +
-					"\nDate: " + params[:meeting][:meeting_date].to_s +
-					"\nHour: " + params[:meeting][:meeting_time].to_s +
-					"\nExtra Information: " + params[:meeting][:extra_info] +
-					"\nCreated by: " + params[:meeting][:admin] +
-					"\n\nTopics:" + 
-					"\n\t" + topics +
-					"\nParticipants:" +
-					"\n\t" + participants +
-					"\nAction Items:"'''
-		
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
-		@meeting.minutes = minutes
 
 		respond_to do |format|
 			if @meeting.save
+				if !@meeting.admin.nil?
+					admin = User.find_by_mail(@meeting.admin)
+					if admin.nil?
+						admin = User.new
+						admin.mail = @meeting.admin
+						admin.save
+					end
+				end
 				params[:participations].each do |email|
 					user = User.find_by_mail(email)
 					if user.nil?
@@ -85,7 +72,7 @@ class MeetingsController < ApplicationController
 						user.mail = email
 						user.save
 					end
-
+					
 					participation = Participation.new
 					participation.meeting_id = @meeting.id
 					participation.user_id = user.id
@@ -199,8 +186,7 @@ class MeetingsController < ApplicationController
 		meeting.update_attribute(:minutes, params[:minutes])
         
         render :nothing => true
-    end
-    
+    end   
     
     def get_minutes
 		meeting = Meeting.find_by_link_admin(params[:id])
@@ -222,6 +208,34 @@ class MeetingsController < ApplicationController
 		respond_to do |format|
 			format.js
 		end
+	end
+	
+	respond_to :js
+	def get_admin_circles
+		user = User.find_by_mail(params[:mail])
+		
+		@data = ""
+		user.circles.each do |u|
+			mail = User.find_by_id(u).mail
+			if mail.include?params[:term]
+				@data = @data + mail.to_s
+				@data = @data + ", "
+			end
+		end
+		
+		respond_with(@data)
+	end
+	
+	def generate_minutes_pdf
+		
+		meeting = Meeting.find_by_link_admin(params[:id])
+		
+		Prawn::Document.generate("public/hello.pdf") do
+			# STATIC MINUTES LEFT. STORE ON DB?
+			text meeting.minutes
+		end
+		
+		render :nothing => true
 	end
 	
 end

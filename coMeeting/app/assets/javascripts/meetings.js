@@ -35,7 +35,13 @@ function addParticipant() {
 	var newDiv = document.createElement('div');
 	newDiv.setAttribute('id', divName);
 
-	newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+	if($("input#admin_email").val() == ""){	
+		alert('nao tem admin');
+		newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+	}
+	else{
+		newDiv.innerHTML = "<input onclick='getCircles();return false;' class='auto_search_complete shorter text_field' id='meeting_participants' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
+	}
 	mainDiv.appendChild(newDiv);
 
     numberDiv.value = num + 1;
@@ -102,9 +108,6 @@ function addActionItem(participant, id, email){
 	var action = $("tr#"+ participant + " td input#item").val();
 	var date = $("tr#"+ participant + " input#date").val();
 	
-	//var act = $("#static_minutes").val();
-	
-	//$("#static_minutes").val(act + "\n\t\t" + email + '\t' + action + "\t" + date);
 	$('textarea#static_minutes').autoResize({
 				maxHeight: 1000,
 				minHeight: 50
@@ -140,3 +143,36 @@ function getMinutes(meeting_id) {
 	  data    : { id: meeting_id },
 	});
 }
+
+function getCircles(){
+	var admin = $("input#admin_email").val();
+	$('.auto_search_complete').autocomplete({
+			minLength: 1,
+			delay: 600,
+			source: function(request, response) {
+				$.ajax({
+					type: "GET",
+					url: "/meetings/get_admin_circles.js",
+					dataType: "text",
+					data: {term: request.term, mail: admin, authenticity_token: $('meta[name="csrf-token"]').attr('content'),},
+					success: function( data ) {
+						var res = data.split(",");
+						response( res);
+					}
+				});
+			}          
+		});
+
+}
+
+function generatePdf(meeting_id){
+
+	$.ajax({
+	  type    : "GET",
+	  url     : "/meetings/generate_minutes_pdf",
+	  data    : { id: meeting_id },
+	});
+}
+
+
+

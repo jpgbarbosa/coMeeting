@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201211332) do
+ActiveRecord::Schema.define(:version => 20111204171852) do
 
   create_table "meetings", :force => true do |t|
     t.string   "subject"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(:version => 20111201211332) do
     t.string   "link_admin"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "extra_info"
     t.string   "meeting_date"
+    t.string   "extra_info"
     t.text     "topics"
     t.datetime "duration",     :limit => 255
     t.time     "meeting_time"
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(:version => 20111201211332) do
   create_table "users", :force => true do |t|
     t.string   "mail"
     t.string   "nome"
-    t.binary   "meeting_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "circles"
   end
 
 end
