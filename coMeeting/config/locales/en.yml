@@ -68,6 +68,7 @@ en:
   duration:                                    "Duration"
   extra_info:                                  "Extra Info"
   creator:                                     "Creator Email"
+  until:                                       "until"
   attending:
     confirmed:                                 "Attendance confirmed"
     unknown:                                   "Yet to answer"
@@ -143,6 +144,7 @@ pt:
   duration:                                    "Duração"
   extra_info:                                  "Informações extra"
   creator:                                     "Email do criador"
+  until:                                       "até"
   attending:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"

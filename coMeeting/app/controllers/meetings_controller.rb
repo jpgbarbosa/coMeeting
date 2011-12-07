@@ -244,13 +244,13 @@ class MeetingsController < ApplicationController
 		action_items = ""
 			
 		meeting.topics.each do |topic|
-			topics += "\n\t- " + topic
+			topics += "- " + topic + "\n\t"
 		end
 		
 		meeting.participations.each do |participation|
 			participants += "- " + participation.user.mail + "\n\t"
 			if !participation.action_item.nil? && !participation.deadline.nil?
-				action_items += "\n\t- " + participation.action_item.to_s + " " + participation.deadline.to_s
+				action_items += "\n\t- " + participation.user.mail + " => " + participation.action_item.to_s + " " + t('until') + " " + participation.deadline.to_s
 			end
 		end
 		
@@ -269,7 +269,6 @@ class MeetingsController < ApplicationController
 			"\n\n"
 		
 		Prawn::Document.generate("#{dir}/minutes.pdf") do
-			# STATIC MINUTES LEFT. STORE ON DB?
 			text minutes+meeting.minutes
 		end
 		

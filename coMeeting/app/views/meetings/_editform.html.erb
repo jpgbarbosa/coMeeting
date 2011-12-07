@@ -65,7 +65,6 @@
 					<% name_id = "participant#{num}" %>
 					<div id=<%=name_id %>>
 						<% if @meeting.admin.empty? %>
-							olaaaaaaaaa
 							<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => participation.user.mail %>  <a href="#" tabindex="-1" onclick="removeParticipant('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 						<% else %>
 							<%= f.text_field :participants, :onclick => "getCircles(); return false;" , :autocomplete => "off" ,:class => "auto_search_complete shorter text_field", :name => "participations[]", :value => participation.user.mail %>  <a href="#" tabindex="-1" onclick="removeParticipant('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>

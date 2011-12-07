@@ -36,7 +36,6 @@ function addParticipant() {
 	newDiv.setAttribute('id', divName);
 
 	if($("input#admin_email").val() == ""){	
-		alert('nao tem admin');
 		newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participant_" + num + "' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	}
 	else{
