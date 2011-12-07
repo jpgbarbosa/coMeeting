@@ -63,11 +63,11 @@ CoMeeting::Application.configure do
   #SMTP seetings to send emails
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  	:address => "smtp.sapo.pt",
-	  :port => 25,
-   	:domain => "sapo.pt",
-   	:authentication => :login,
-   	:user_name => "airplanemanager@sapo.pt",
-   	:password => "1olaadeus",
+  	:address => "smtp.gmail.com",
+	:port => 587,
+   	:user_name => "comeeting.occi@gmail.com",
+   	:password => "occi.comeeting",
+	:authentication => "plain",
+	:enable_starttls_auto => true,
   }
 end

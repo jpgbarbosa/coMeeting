@@ -126,15 +126,19 @@ class ParticipationsController < ApplicationController
 		if !admin.nil?
 			participations.each do |participant|
 				if participant.is_attending == 1
-					participant.user.circles << participation.user.id
-					participation.user.circles << participant.user.id
+					if !participant.user.circles.include?(participation.user.id)
+						participant.user.circles << participation.user.id
+						participation.user.circles << participant.user.id
+					end
 				end
 				participant.user.save
 			end
-			admin.circles << participation.user.id
-			participation.user.circles << admin.id
-			participation.user.save
-			admin.save
+			if !admin.circles.include?(participation.user.id)
+				admin.circles << participation.user.id
+				participation.user.circles << admin.id
+				participation.user.save
+				admin.save
+			end
 		end
 		
 	    participation.is_attending = 1

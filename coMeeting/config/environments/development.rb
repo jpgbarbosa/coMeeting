@@ -32,16 +32,16 @@ CoMeeting::Application.configure do
   config.assets.precompile += %w( *.css *.js )
   
   ENV['HOST'] = 'http://localhost:3000'
-
+  config.action_mailer.raise_delivery_errors = true
   #SMTP seetings to send emails
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  	:address => "smtp.sapo.pt",
-	  :port => 25,
-   	:domain => "sapo.pt",
-   	:authentication => :login,
-   	:user_name => "airplanemanager@sapo.pt",
-   	:password => "1olaadeus",
+  	:address => "smtp.gmail.com",
+	:port => 587,
+   	:user_name => "comeeting.occi@gmail.com",
+   	:password => "occi.comeeting",
+	:authentication => "plain",
+	:enable_starttls_auto => true,
   }
 
 end

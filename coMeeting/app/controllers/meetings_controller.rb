@@ -146,7 +146,7 @@ class MeetingsController < ApplicationController
 							participation.token = UUIDTools::UUID.random_create().to_s
 							if participation.save
 								#CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
-								UserMailer.invitation_email(email    , participation.token).deliver
+								UserMailer.invitation_email(email, participation.token).deliver
 							end
 						end
 					end
