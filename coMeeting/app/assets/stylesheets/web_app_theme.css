@@ -34,37 +34,68 @@
   background: #b8d1e2 url("/assets/icons/notice.png") no-repeat 10px center;
 }
 
+html, body, #container {
+	height:100%;
+}
+
+#wrapper {
+  min-height:80%;
+  position:relative;
+}
+
 #user-navigation {
   right: 140px;
 }
 
 #main, #main-navigation {  
   width: 80%;
-  margin-left:10%;
+  margin-left: 10%;
+}
+
+#main {
+  padding-bottom: 60px;
+}
+
+#footer {
+  padding-bottom: 0px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  width: 78%;
+  margin-left: 11%;
+}
+
+#footer div.block {
+  margin-bottom: 0px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 #user-navigation ul li {
-	padding:0px 20px;
+	padding: 0px 20px;
 }
 
 #drop_menu {
-	position:relative;
-	line-height:20px;
-	cursor:pointer;
+	position: relative;
+	line-height: 20px;
+	cursor: pointer;
 }
 #drop_menu img {
-	vertical-align:middle;
-	padding-right:10px;
+	vertical-align: middle;
+	padding-right: 10px;
 }
 
 #drop_items {
-	position:absolute;
-    opacity:0;
-    visibility:hidden;
-	top:100;
-	right:0;
-	line-height:2em;
-	width:100px;
+	position: absolute;
+    opacity: 0;
+    visibility: hidden;
+	top: 100;
+	right: 0;
+	line-height: 2em;
+	width: 100px;
 
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
@@ -76,57 +107,49 @@
 }
 
 #drop_items li {
-	float:right !important
+	float: right !important
 }
 
 #drop_menu:hover > ul {
-    opacity:1;
-    visibility:visible;
-	background:#E5E5E5;
-	float:right
+    opacity: 1;
+    visibility: visible;
+	background: #E5E5E5;
+	float: right
 }
 
 #minutes {
 	resize: none;
-	width:100%;
-	max-width:100%;
-	border:none;
-	min-height:50px;
+	width: 100%;
+	max-width: 100%;
+	border: none;
+	min-height: 50px;
 }
 
 #minutes:focus, #static_minutes:focus {
-	outline:0;
-	outline:none;
+	outline: 0;
+	outline: none;
 }
 
 #static_minutes{
 	resize: none;
-	width:100%;
-	max-width:100%;
-	border:none;
-	border-bottom:1px dotted;
-	min-height:50px;
+	width: 100%;
+	max-width: 100%;
+	border: none;
+	border-bottom: 1px dotted;
+	min-height: 50px;
 }
 
 #topicsDiv input, #participantsDiv input{
-	margin-bottom:10px;
-}
-
-#footer {
-	padding-bottom:0px;
-}
-
-#footer div.block {
-	margin-bottom:0px;
+	margin-bottom: 10px;
 }
 
 .form input.date_picker{
-	width:8%;
-	border:1px solid #e2e2e2;
+	width: 8%;
+	border: 1px solid #e2e2e2;
 }
 
 .form input.shorter{
-	width:95%;
+	width: 96%;
 }
 
 .hidden {
