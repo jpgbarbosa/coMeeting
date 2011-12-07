@@ -93,12 +93,16 @@ html, body, #container {
   padding-right: 10px;
 }
 
+#header {
+  position: relative;
+}
+
 #drop_items {
-  z-index: 1;
   position: absolute;
+  z-index: 1;
   right: 0px;
-  top: 20px;
-  line-height: 2em;
+  top: 25px;
+  line-height: 2.5em;
   width: 100px;
   background: #E5E5E5;
   display: none;

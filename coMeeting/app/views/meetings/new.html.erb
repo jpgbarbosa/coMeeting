@@ -8,16 +8,23 @@
 	<p>
     <div class="inner">
         <link rel="stylesheet" href="/assets/datepicker.css" type="text/css" />
-        <link rel="stylesheet" media="screen" type="text/css" href="/assets/layout.css" />
-        <script type="text/javascript" src="/assets/jquery.js"></script>
         <script type="text/javascript" src="/assets/datepicker.js"></script>
-        <script type="text/javascript" src="/assets/eye.js"></script>
-        <script type="text/javascript" src="/assets/utils.js"></script>
-        <script type="text/javascript" src="/assets/layout.js?ver=1.0.2"></script>
-        <script type="text/javascript" src="/assets/meetings.js"></script>
       <%= form_for :meeting, :url => meetings_path, :html => { :class => :form } do |f| -%>
         <%= render :partial => "createform", :locals => {:f => f} %>
       <% end -%>
     </div>
   </div>
 </div>
+
+
+<script>
+  $('#date').DatePicker({
+    flat: true,
+    format: 'd/m/Y',
+    date: $('#meeting_date').val(),
+    calendars: 1,
+    onChange: function(formated, dates){
+        $('#meeting_date').val(formated);
+    }
+  });
+</script>
