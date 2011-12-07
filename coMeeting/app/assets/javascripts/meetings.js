@@ -163,3 +163,13 @@ function getCircles(){
 		});
 }
 
+function sendEmail(participation_id){
+	/*$.ajax({
+	  type    : "POST",
+	  url     : "/participations/send_email",
+	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: participation_id },
+	});	*/
+	$("a#email_image_"+participation_id).slideUp(1000);
+	
+}
+

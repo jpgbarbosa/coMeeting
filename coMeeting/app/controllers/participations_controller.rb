@@ -47,17 +47,6 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
 
-    meeting_id = params[:meeting_id]
-    meeting = Meeting.find_by_link_admin(meeting_id)
-    email = params[:person]
-    user = User.find_by_mail(email)
-    participation = meeting.participations.find_by_user_id(user.id)
-	
-	UserMailer.invitation_email(email, participation.token).deliver
-	respond_to do |format|
-		format.html { redirect_to meeting_path(meeting_id), notice: t("participant.reinvited", :default => "Invitation resent.") }
-		#format.json { render json: @meeting_path, status: :created, location: @participation }
-	end
   end
 
   # PUT /participations/1
@@ -118,4 +107,13 @@ class ParticipationsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def send_email
+    participation = Participation.find(params[:id])	
+	UserMailer.invitation_email(participation.user.mail, participation.token).deliver
+	render :nothing => true
+  end
+  
+  
+  
 end
