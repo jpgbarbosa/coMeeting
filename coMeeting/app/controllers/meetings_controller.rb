@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
 		end
 	end
 
-    
+
 	def show
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		if @meeting.nil?
@@ -51,7 +51,7 @@ class MeetingsController < ApplicationController
 	def create
 		params[:meeting][:topics].reject!( &:blank? )
 		params[:participations].reject!( &:blank? )
-		
+
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
 
@@ -72,17 +72,16 @@ class MeetingsController < ApplicationController
 						user.mail = email
 						user.save
 					end
-					
+
 					participation = Participation.new
 					participation.meeting_id = @meeting.id
 					participation.user_id = user.id
 					participation.token = UUIDTools::UUID.random_create().to_s
 					if participation.save
-						#CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
 						UserMailer.invitation_email(email, participation.token).deliver
 					end
 				end
-				
+
 				if params[:meeting][:admin].empty?
 					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
 				else
@@ -121,23 +120,22 @@ class MeetingsController < ApplicationController
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
 				participations = @meeting.participations
-				#Invite participants
-				
+
 				participations.each do |participation|
 					if !params[:participations].include?(participation.user.mail)
 						participation.destroy
 					end
 				end
-				
+
 				params[:participations].each do |email|
 					if(!email.empty?)
 						user = User.find_by_mail(email)
 						if user.nil?
 							user = User.new
-							user.mail = email    
+							user.mail = email
 							user.save
 						end
-						
+
 						participation = participations.find_by_user_id(user.id)
 						if participation.nil?
 							participation = Participation.new
@@ -145,13 +143,12 @@ class MeetingsController < ApplicationController
 							participation.user_id = user.id
 							participation.token = UUIDTools::UUID.random_create().to_s
 							if participation.save
-								#CHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGEEEEEEEEEEEE THISSSSSSSSSSSSSSS
-								UserMailer.invitation_email(email    , participation.token).deliver
+								UserMailer.invitation_email(email, participation.token).deliver
 							end
 						end
 					end
 				end
-			
+
 				format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.updated", :default => "Meeting successfully updated.") }
 				format.json { head :ok }
 			else
@@ -178,45 +175,45 @@ class MeetingsController < ApplicationController
 			end
 		end
 	end
-    
-    
+
+
     def update_minutes
         meeting = Meeting.find_by_link_admin(params[:id])
-		
+
 		meeting.update_attribute(:minutes, params[:minutes])
-        
+
         render :nothing => true
     end
-	
-    
+
+
     def get_minutes
 		meeting = Meeting.find_by_link_admin(params[:id])
-		
+
 		@minutes = meeting.minutes
-		
+
         respond_to do |format|
 			format.js
 		end
     end
-	
-	
+
+
 	def update_action_item
 		participation = Participation.find_by_id(params[:id])
-		
+
 		participation.update_attributes(:action_item => params[:action_item], :deadline => params[:deadline])
-		
+
 		@meeting = Meeting.find_by_id(participation.meeting_id)
-			  
+
 		respond_to do |format|
 			format.js
 		end
 	end
-	
-	
+
+
 	respond_to :js
 	def get_admin_circles
 		user = User.find_by_mail(params[:mail])
-		
+
 		@data = ""
 		user.circles.each do |u|
 			mail = User.find_by_id(u).mail
@@ -225,54 +222,49 @@ class MeetingsController < ApplicationController
 				@data = @data + ", "
 			end
 		end
-		
+
 		respond_with(@data)
 	end
-	
-	
+
+
 	def download_pdf
 		meeting = Meeting.find_by_link_admin(params[:id])
-		
-		dir = "private/#{meeting.id}"
-		
-		unless File.exists?(dir) && File.directory?(dir)
-			Dir.mkdir(dir)
-		end
-		
+
 		topics = ""
 		participants = ""
 		action_items = ""
-			
+
 		meeting.topics.each do |topic|
-			topics += "\n\t- " + topic
+			topics += "- " + topic + "\n\t"
 		end
-		
+
 		meeting.participations.each do |participation|
 			participants += "- " + participation.user.mail + "\n\t"
 			if !participation.action_item.nil? && !participation.deadline.nil?
-				action_items += "\n\t- " + participation.action_item.to_s + " " + participation.deadline.to_s
+				action_items += "\n\t- " + participation.user.mail + " => " + participation.action_item.to_s + " " + t('until') + " " + participation.deadline.to_s
 			end
 		end
-		
-		minutes = "\n" + t("subject") + ": " + meeting.subject + 
+
+		minutes = "\n" + t("subject") + ": " + meeting.subject +
 			"\n" + t("local") + ": " + meeting.local +
 			"\n" + t("date") + ": " + meeting.meeting_date.to_s +
 			"\n" + t("time") + ": " + meeting.meeting_time.to_s +
 			"\n" + t("duration") + ": " + meeting.duration.strftime("%1Hh:%Mm").to_s +
 			"\n" + t("extra_info") + ": " + meeting.extra_info +
 			"\n" + t("creator") + ": " + meeting.admin +
-			"\n\n\t" + t("topics") + ":" + 
+			"\n\n\t" + t("topics") + ":" +
 			"\n\t" + topics +
 			"\n\t" + t("participants") + ":" +
 			"\n\t" + participants +
 			"\n\t" + t("actions") + ":" + action_items +
 			"\n\n"
-		
-		Prawn::Document.generate("#{dir}/minutes.pdf") do
-			# STATIC MINUTES LEFT. STORE ON DB?
+
+		my_file = "tmp/minutes_#{UUIDTools::UUID.random_create()}.pdf"
+
+		Prawn::Document.generate(my_file) do
 			text minutes+meeting.minutes
 		end
-		
-		send_file "#{dir}/minutes.pdf"
-	end
+
+		send_file my_file
+	end	
 end

@@ -9,6 +9,8 @@ CoMeeting::Application.routes.draw do
 	get "meetings/get_minutes"
 	
 	post "meetings/update_action_item" => "meetings#update_action_item"
+	
+	post "participations/send_email"
 
 	scope "(:locale)", :locale => /en|pt/ do
 		resources :meetings

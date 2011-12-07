@@ -10,8 +10,8 @@
                                                                                         :method => :delete,
                                                                                         :class => "button" %>
     <% else %>                                                                   
-		<% if@meeting.admin.nil? %>
-			<p>Warning! This meeting was not authenticated by our service.</p>
+		<% if@meeting.admin.empty? %>
+			<p><%= t("meeting.warning") %></p>
 		<% end %>
 		
 		<% if @participation.is_attending == 1 %>
@@ -19,7 +19,6 @@
 		<% elsif @participation.is_attending == -1 %>
 			<p>You are not attending this meeting</p>
 		<% end %>
-		
 		<% if @participation.is_attending == 0 || @participation.is_attending == -1 %>
 			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
 				<input name="b" type="hidden" value="y" />
@@ -160,11 +159,9 @@
 							 <td width='25%'><%= t("attending.unknown", :default => "This person has yet to answer") %></td>
 							 <td width='15%'><a href="#" onclick="showAction('participant_<%=num%>');return false;"><img src="/assets/icons/script.png" alt="<%= t("alt.add_minutes", :default => "Add action item to minutes")%>" /></a></td>
 							 <td width='15%'>
-								 <%= form_for :participation, :url => participations_path do |f| -%>
-								   <input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
-								   <input type='hidden' name='person' value='<%= participation.user.mail %>' />
-								   <%= image_submit_tag("/assets/icons/email.png", :alt => t("alt.send_email", :default => "Send email invitation")) %>
-								 <% end -%>
+								<input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
+								<input type='hidden' name='person' value='<%= participation.user.mail %>' />
+								<a id="email_image_<%= participation.id %>"href='#' onclick="sendEmail(<%= participation.id %>); return false;"><img src="/assets/icons/email.png"/></a>
 							 </td>
 						  <% elsif participation.is_attending == 1 %>
 							<td width='25%'><%= t("attending.confirmed", :default => "This person is attending") %></td>
@@ -243,11 +240,11 @@
 
 <script>
 	<% if false %>
-	<% if @admin %>
-		setInterval("updateMinutes('<%=@meeting.link_admin%>')", 5000);
-	<% else %>
-		setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
-	<% end %>
+		<% if @admin %>
+			setInterval("updateMinutes('<%=@meeting.link_admin%>')", 5000);
+		<% else %>
+			setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
+		<% end %>
 	<% end %>
 	
 	$('textarea#minutes').autoResize({

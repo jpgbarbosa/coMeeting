@@ -54,6 +54,7 @@ en:
     error:
       show:                                    "The meeting you are looking for does not exist!"
       delete:                                  "The meeting you tried deleting doesn't exist!"
+    warning:                                   "Warning! This meeting was not authenticated by our service."
   email:                                       "Email"
   status:                                      "Status"
   assign_action_item:                          "Assign action item"
@@ -68,6 +69,7 @@ en:
   duration:                                    "Duration"
   extra_info:                                  "Extra Info"
   creator:                                     "Creator Email"
+  until:                                       "until"
   attending:
     confirmed:                                 "Attendance confirmed"
     unknown:                                   "Yet to answer"
@@ -130,6 +132,7 @@ pt:
     error:
       show:                                    "A reunião a que tentou aceder não existe!"
       delete:                                  "A reunião que tentou eliminar não existe!"
+    warning:                                   "Aviso! Esta reunião não foi autenticada pelo nosso serviço"
   email:                                       "Email"
   status:                                      "Estado"
   assign_action_item:                          "Atribuir tarefa"
@@ -143,6 +146,7 @@ pt:
   duration:                                    "Duração"
   extra_info:                                  "Informações extra"
   creator:                                     "Email do criador"
+  until:                                       "até"
   attending:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"

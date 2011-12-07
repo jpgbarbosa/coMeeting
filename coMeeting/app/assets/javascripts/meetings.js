@@ -36,7 +36,6 @@ function addParticipant() {
 	newDiv.setAttribute('id', divName);
 
 	if($("input#admin_email").val() == ""){	
-		alert('nao tem admin');
 		newDiv.innerHTML = "<input class='shorter text_field' id='meeting_participant_" + num + "' name='participations[]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeParticipant(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	}
 	else{
@@ -162,5 +161,15 @@ function getCircles(){
 				});
 			}          
 		});
+}
+
+function sendEmail(participation_id){
+	/*$.ajax({
+	  type    : "POST",
+	  url     : "/participations/send_email",
+	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: participation_id },
+	});	*/
+	$("a#email_image_"+participation_id).slideUp(1000);
+	
 }
 
