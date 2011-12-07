@@ -20,6 +20,10 @@
       target:'body'
     });
   });
+  
+  function toggleDiv() {
+    $("#drop_items").toggle(600);
+  }
 </script>
 
 </head>
@@ -30,7 +34,7 @@
       <div id="user-navigation">
         <ul class="wat-cf">
 		  <li id="drop_menu">
-			  <%= image_tag("/assets/icons/globe.png", :alt => "") + t("current_language", :default => "English") %>
+              <a href="#" onclick="toggleDiv();return false;"><%= image_tag("/assets/icons/globe.png", :alt => "") + t("current_language", :default => "English") %></a>
 			  <ul id="drop_items">
 				<li><%= link_to "English", url_for( :locale => "en" ) %></li>
 				<li><%= link_to "Portugu&#234;s".html_safe, url_for( :locale => "pt" ) %></li>
