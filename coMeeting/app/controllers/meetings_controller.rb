@@ -112,9 +112,12 @@ class MeetingsController < ApplicationController
 			end
 		end
 	end
-
-
+    
+    
 	def update
+    	params[:meeting][:topics].reject!( &:blank? )
+		params[:participations].reject!( &:blank? )
+        
 		@meeting = Meeting.find_by_link_admin(params[:id])
 		
 		
@@ -266,7 +269,7 @@ class MeetingsController < ApplicationController
 		my_file = "tmp/minutes_#{UUIDTools::UUID.random_create()}.pdf"
 
 		Prawn::Document.generate(my_file) do
-			text minutes+meeting.minutes
+			text minutes + (meeting.minutes.nil? ? "" : meeting.minutes)
 		end
 
 		send_file my_file

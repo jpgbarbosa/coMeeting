@@ -76,6 +76,9 @@ en:
     declined:                                  "Attendance declined"
     confirm:                                   "Attending" 
     decline:                                   "Not Attending"
+    notice:
+      confirm:                                 "Successfully confirmed attendance."
+      decline:                                 "Successfully declined attendance."
 pt:
   hello:                                       "Olá mundo"
   current_language:                            "Português"
@@ -117,7 +120,7 @@ pt:
     invited:                                   "Convite enviado."
     reinvited:                                 "Convite reenviado."
     uninvited:                                 "Convite não enviado. Por favor tente novamente."
-    updated:                                   "Participação alterada com sucesso."
+    updated:                                   "Participação editada com sucesso."
   meeting:
     new:                                       "Nova reunião"
     create:                                    "Criar reunião"
@@ -126,7 +129,7 @@ pt:
     created:
       withauth:                                "Reunião criada com sucesso. Por favor verifique o seu email para continuar o processo de criação da reunião."
       withoutauth:                             "Reunião criada com sucesso sem confirmação por email."
-    updated:                                   "Reunião alterada com sucesso."
+    updated:                                   "Reunião editada com sucesso."
     deleted:                                   "Reunião eliminada com sucesso."
     pdf:                                       "Descarregar PDF"
     error:
@@ -153,3 +156,6 @@ pt:
     declined:                                  "Indisponível"
     confirm:                                   "Vou estar presente" 
     decline:                                   "Não vou estar presente"
+    notice:
+      confirm:                                 "Presença confirmada com sucesso."
+      decline:                                 "Presença recusada com sucesso."

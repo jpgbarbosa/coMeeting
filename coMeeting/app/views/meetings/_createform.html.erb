@@ -59,11 +59,14 @@
     <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
   </div>
 
-
-  <div class="group navform wat-cf">
-    <button class="button" type="submit">
-      <%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("meeting.create", :default => "Create") %>
-    </button>
-    <span class="text_button_padding"><%= t("or", :default => "or") %></span>
-      <%= link_to t("cancel", :default => "Cancel"), root_path, :class => "text_button_padding link_button" %>
+<div class="outer_center">
+  <div class="buttons">
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("meeting.create", :default => "Create") %>
+      </button>
+      <span class="text_button_padding"><%= t("or", :default => "or") %></span>
+        <%= link_to t("cancel", :default => "Cancel"), root_path, :class => "text_button_padding link_button" %>
+    </div>
   </div>
+</div>

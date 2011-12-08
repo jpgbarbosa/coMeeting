@@ -1,42 +1,37 @@
-<div class="outer_center">
-<div class="buttons wat-cf">
+<div class="space outer_center">
+	<div class="buttons wat-cf">
 
-    <% if @admin %>
+		<% if @admin %>
 
-        <%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin),
-                                                                                                            :class => "button" %>
-        <%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin),
-                                                                                        :confirm => t('confirm', :default => 'Are you sure?'),
-                                                                                        :method => :delete,
-                                                                                        :class => "button" %>
-    <% else %>                                                                   
-		<% if@meeting.admin.empty? %>
-			<p><%= t("meeting.warning") %></p>
-		<% end %>
+			<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
+			<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin), :confirm => t('confirm', :default => 'Are you sure?'), :method => :delete, :class => "button" %>
+			
+		<% else %>                                                   
 		
-		<% if @participation.is_attending == 1 %>
-			<p>You are attending this meeting</p>
-		<% elsif @participation.is_attending == -1 %>
-			<p>You are not attending this meeting</p>
+			<% if@meeting.admin.empty? %>
+				<p><%= t("meeting.warning") %></p>
+			<% end %>
+			
+			<% if @participation.is_attending == 1 %>
+				<span class="text_button_padding"><%= t("attending.confirm", :default=> "Attending") %> | </span>
+			<% elsif @participation.is_attending == -1 %>
+				<span class="link_button text_button_padding"><%= t("attending.decline", :default=> "Not Attending") %> | </span>
+			<% end %>
+			
+			<% if @participation.is_attending == 0 || @participation.is_attending == -1 %>
+			
+				<%= link_to image_tag("/assets/icons/tick.png", :alt => "")+ " " + t("attending.confirm", :default=> "Attending"), confirm_participation_path(@participation.token), :class => "button" %>
+					
+			<% end %>
+			
+			<% if @participation.is_attending == 1 || @participation.is_attending == 0 %>
+			
+				<%= link_to image_tag("/assets/icons/cross.png", :alt => "")+ " " + t("attending.decline", :default=> "Not Attending"), decline_participation_path(@participation.token), :class => "button" %>
+				
+			<% end %>
+			
 		<% end %>
-		<% if @participation.is_attending == 0 || @participation.is_attending == -1 %>
-			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
-				<input name="b" type="hidden" value="y" />
-				<button class="button" type="submit">
-					<%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("attending.confirm", :default => "Attending") %>
-				</button>
-			<% end -%>
-		<% end %>
-		<% if @participation.is_attending == 1 || @participation.is_attending == 0 %>
-			<%= form_for @participation, :url => participation_path(@participation.token), :html => { :class => :form } do |f| -%>
-				<input name="b" type="hidden" value="n" />
-				<button class="button" type="submit">
-					<%= image_tag("/assets/icons/cross.png", :alt => "") %> <%= t("attending.decline", :default => "Not Attending") %>
-				</button>
-			<% end -%>
-		<% end %>
-	<% end %>
-</div>
+	</div>
 </div>
 
 <div class="block" id="block-info">
@@ -232,9 +227,9 @@
 </div>
 
 <div class="outer_center">
-<div class="buttons wat-cf">
-	<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download as PDF"), download_path(:id => @meeting.link_admin), :class => "button" %>
-</div>
+	<div class="buttons wat-cf">
+		<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download as PDF"), download_pdf_path(@meeting.link_admin), :class => "button" %>
+	</div>
 </div>
 <% end %>
 
