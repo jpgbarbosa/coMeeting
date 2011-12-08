@@ -158,46 +158,30 @@ function setIdleTimeout(ms){
 		clearTimeout (_idleTimer);
     }
     _idleTimer = setTimeout(_makeIdle, ms + 50);
-    //alert('idle in ' + ms + ', tid = ' + _idleTimer);
 }
  
 function _makeIdle(){
     var t = new Date().getTime();
     if (t < _idleTimestamp) {
-		//alert('Not idle yet. Idle in ' + (_idleTimestamp - t + 50));
 		_idleTimer = setTimeout(_makeIdle, _idleTimestamp - t + 50);
 		return;
     }
-    //alert('** IDLE **');
     _idleNow = true;
 	updateMinutes($("input#token").val());
 }
-
-
-
-
  
 function _active(event){
     var t = new Date().getTime();
     _idleTimestamp = t + _idleTimeout;
-    //alert('not idle.');
  
 	if(_idleNow){
 		setIdleTimeout(_idleTimeout);
 	}
-     
-    try {
-		//alert('** BACK **');
-		if ((_idleNow ) && document.onBack){
-			//document.onBack(_idleNow);
-		}
-    } catch (err) {
-    }
  
     _idleNow = false;
 }
  
-function _initJQuery(){
+function _initMinutesListener(){
     var doc = $(document);
     doc.ready(function(){
             try {

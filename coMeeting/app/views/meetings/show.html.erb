@@ -234,8 +234,7 @@
 <script>
 	<% if true %>
 		<% if @admin %>
-			//setInterval("updateMinutes('<%=@meeting.link_admin%>')", 5000);
-			_initJQuery();
+			_initMinutesListener();
 		<% else %>
 			setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
 		<% end %>

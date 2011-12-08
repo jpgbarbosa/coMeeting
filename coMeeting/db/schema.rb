@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208130452) do
+ActiveRecord::Schema.define(:version => 20111208191529) do
 
   create_table "meetings", :force => true do |t|
     t.string   "subject"
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20111208130452) do
 
   create_table "users", :force => true do |t|
     t.string   "mail"
-    t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "circles"
+    t.string   "name"
   end
 
 end
