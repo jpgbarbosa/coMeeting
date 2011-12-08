@@ -1,17 +1,18 @@
 <div class="space outer_center">
-	<div class="buttons wat-cf">
-
-		<% if @admin %>
-
+	<% if @admin %>
+		
+		<div class="buttons wat-cf">
 			<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
 			<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin), :confirm => t('confirm', :default => 'Are you sure?'), :method => :delete, :class => "button" %>
+		</div>
 			
-		<% else %>                                                   
+	<% else %>                                                   
+	
+		<% if @meeting.admin.empty? %>
+			<p class="warning"><%= t("meeting.warning") %></p>
+		<% end %>
 		
-			<% if@meeting.admin.empty? %>
-				<p><%= t("meeting.warning") %></p>
-			<% end %>
-			
+		<div class="buttons wat-cf">
 			<% if @participation.is_attending == 1 %>
 				<span class="text_button_padding"><%= t("attending.confirm", :default=> "Attending") %> | </span>
 			<% elsif @participation.is_attending == -1 %>
@@ -29,9 +30,8 @@
 				<%= link_to image_tag("/assets/icons/cross.png", :alt => "")+ " " + t("attending.decline", :default=> "Not Attending"), decline_participation_path(@participation.token), :class => "button" %>
 				
 			<% end %>
-			
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 </div>
 
 <div class="block" id="block-info">
@@ -46,44 +46,43 @@
   <div class="content">
     <div class="inner">
       <p>
-        <b><%= t("form.email.label", :default => "Admin Email") %>
-          :</b>
+        <b>
+		  <% if @admin %>
+		    <%= t("form.email.label", :default => "Your email") %> :</b>
+		  <% else %>
+		    <%= t("administrator_email", :default => "Administrator Email") %> :</b>
+		  <% end %>
         <%= @meeting.admin %>
       </p>
 	
       <p>
-        <b><%= t("form.subject", :default => "Subject") %>
-          :</b>
+        <b><%= t("form.subject", :default => "Subject") %> :</b>
+          
         <%= @meeting.subject %>
       </p>
 
       <p>
-        <b><%= t("form.place", :default => "Place") %>
-          :</b>
+        <b><%= t("form.place", :default => "Place") %> :</b>
         <%= @meeting.local %>
       </p>
 
       <p>
-        <b><%= t("form.date", :default => "Date") %>
-          :</b>
+        <b><%= t("form.date", :default => "Date") %> :</b>
         <%= Date.parse(@meeting.meeting_date).to_formatted_s(:long) %>
       </p>
 
       <p>
-        <b><%= t("form.time", :default => "Time") %>
-          :</b>
+        <b><%= t("form.time", :default => "Time") %> :</b>
         <%= @meeting.meeting_time.strftime("%1Hh:%Mm") %> <%= @meeting.timezone %>
       </p>
 
       <p>
-        <b><%= t("form.duration", :default => "Duration") %>
-          :</b>
+        <b><%= t("form.duration", :default => "Duration") %> :</b>
         <%= @meeting.duration.strftime("%1Hh:%Mm") %>
       </p>
 	
       <% unless @meeting.extra_info.blank? %>
-			<b><%= t("form.extra_info", :default => "Extra info") %>
-			  :</b>
+			<b><%= t("form.extra_info", :default => "Extra info") %> :</b>
 			<%= @meeting.extra_info %>
 	  <% end %>
     </div>
@@ -133,7 +132,7 @@
 			<% if @admin %>
 			
 				<tr>
-					<td width='45%'><%= t("email", :default => "Email") %></td>
+					<td width='45%'><%= t("email.self", :default => "Email") %></td>
 					<td width='25%'><%= t("status", :default => "Status") %></td>
 					<td width='15%'><%= t("assign_action_item", :default => "Assign Action Item") %></td>
 					<td width='15%'><%= t("send_email", :default => "Send Email") %></td>

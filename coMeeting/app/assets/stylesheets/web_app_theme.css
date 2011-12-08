@@ -34,10 +34,6 @@
   background: #b8d1e2 url("/assets/icons/notice.png") no-repeat 10px center;
 }
 
-h2 {
-  margin: 0px;
-}
-
 html, body, #container {
   height:100%;
 }
@@ -157,7 +153,7 @@ html, body, #container {
 }
 
 .form input.shorter{
-  width: 96%;
+  width: 97%;
 }
 
 .hidden {
@@ -187,6 +183,10 @@ table td input.styled:focus {
 
 table.centered {
   text-align:center;
+}
+
+.warning {
+  color: #870000;
 }
 
 .outer_center {

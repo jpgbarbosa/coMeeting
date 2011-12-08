@@ -59,14 +59,6 @@ class MeetingsController < ApplicationController
 
 		respond_to do |format|
 			if @meeting.save
-				if !@meeting.admin.nil?
-					admin = User.find_by_mail(@meeting.admin)
-					if admin.nil?
-						admin = User.new
-						admin.mail = @meeting.admin
-						admin.save
-					end
-				end
 				params[:participations].each do |email|
 					user = User.find_by_mail(email)
 					if user.nil?
@@ -87,7 +79,13 @@ class MeetingsController < ApplicationController
 				if params[:meeting][:admin].empty?
 					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
 				else
-					UserMailer.admin_email(@meeting.admin, @meeting.link_admin).deliver
+					admin = User.find_by_mail(params[:meeting][:admin])
+					if admin.nil?
+						admin = User.new(:mail => params[:meeting][:admin])
+						admin.save
+					end
+					
+					UserMailer.admin_email(params[:meeting][:admin], params[:user], @meeting.link_admin).deliver
 					format.html { redirect_to root_path, notice: t("meeting.created.withauth", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 				end
 			else
@@ -275,7 +273,7 @@ class MeetingsController < ApplicationController
 			"\n" + t("time") + ": " + meeting.meeting_time.strftime("%1Hh:%Mm").to_s + " " + meeting.timezone +
 			"\n" + t("duration") + ": " + meeting.duration.strftime("%1Hh:%Mm").to_s +
 			"\n" + t("extra_info") + ": " + meeting.extra_info +
-			"\n" + t("creator") + ": " + meeting.admin +
+			"\n" + t("administrator_email") + ": " + meeting.admin +
 			"\n\n\t" + t("topics") + ":" +
 			"\n\t" + topics +
 			"\n\t" + t("participants") + ":" +

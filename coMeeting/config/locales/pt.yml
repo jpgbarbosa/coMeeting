@@ -20,13 +20,25 @@ pt:
   save:                                        "Gravar alterações"
   cancel:                                      "Cancelar"
   meetings:                                    "Reuniões"
+  home:
+    button:                                    "Nova reunião"
+    header:                                    "Criando a reunião"
+    content:
+      sentence:                              "Rápido e Fácil."
+      sentence0:                             "Gratuito. Sem registo."
+      sentence1:                             "Basta preencher o formulário apresentado."
+      sentence2:                             "Escolha o assunto, data, hora e local da reunião."
+      sentence3:                             "Se confirmar o seu email, os seus contactos serão gravados para futuras reuniões!"
   alt:
     add_minutes:                               "Adicionar tarefa à acta"
     send_email:                                "Enviar convite por email"
   form:
     email:
-      label:                                   "Email do Administrador"
+      label:                                   "O seu email"
       description:                             "Se preencheres este campo, receberás um email para te autenticares. Se o deixares em branco, todos os participantes da reunião serão avisados de que não confirmaste a tua identidade."
+    name:
+      label:                                   "O seu nome"
+      description:                             "Este será o nome utilizado nos convites enviados por email aos participantes."
     subject:                                   "Assunto"
     date:                                      "Data"
     time:                                      "Hora de início"
@@ -39,7 +51,7 @@ pt:
     invited:                                   "Convite enviado."
     reinvited:                                 "Convite reenviado."
     uninvited:                                 "Convite não enviado. Por favor tente novamente."
-    updated:                                   "Participação alterada com sucesso."
+    updated:                                   "Participação editada com sucesso."
   meeting:
     new:                                       "Nova reunião"
     create:                                    "Criar reunião"
@@ -48,12 +60,13 @@ pt:
     created:
       withauth:                                "Reunião criada com sucesso. Por favor verifique o seu email para continuar o processo de criação da reunião."
       withoutauth:                             "Reunião criada com sucesso sem confirmação por email."
-    updated:                                   "Reunião alterada com sucesso."
+    updated:                                   "Reunião editada com sucesso."
     deleted:                                   "Reunião eliminada com sucesso."
-    pdf:                                       "Gerar PDF"
+    pdf:                                       "Descarregar PDF"
     error:
       show:                                    "A reunião a que tentou aceder não existe!"
       delete:                                  "A reunião que tentou eliminar não existe!"
+    warning:                                   "Aviso! Esta reunião não foi autenticada pelo nosso serviço."
   email:                                       "Email"
   status:                                      "Estado"
   assign_action_item:                          "Atribuir tarefa"
@@ -66,10 +79,22 @@ pt:
   time:                                        "Hora de início"
   duration:                                    "Duração"
   extra_info:                                  "Informações extra"
-  creator:                                     "Email do criador"
+  administrator_email:                         "Email do administrador"
+  until:                                       "até"
   attending:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"
     declined:                                  "Indisponível"
     confirm:                                   "Vou estar presente" 
     decline:                                   "Não vou estar presente"
+    notice:
+      confirm:                                 "Presença confirmada com sucesso."
+      decline:                                 "Presença recusada com sucesso."
+  email:
+    self:                                      "Email"
+    admin:
+      subject:                                 "O seu link de administração"
+      body:                                    ""
+    participant:
+      subject:                                 "Foi convidado por #{admin[:name]} para uma reunião"
+      body:                                    ""

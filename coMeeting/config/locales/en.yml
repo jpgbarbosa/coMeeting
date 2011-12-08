@@ -24,20 +24,21 @@ en:
     button:                                    "New meeting"
     header:                                    "Setting it up"
     content:
-      sentence:                             "Quick and Easy."
-      sentence0:                             "Free of charge. No signup."
-      sentence1:                             "Simply fill out the form presented."
-      sentence2:                             "Pick the subject, date, time and place of the meeting."
-      sentence3:                             "If you confirm your email, your contacts will be saved for future meetings!"
-  
-  
+      sentence:                                "Quick and Easy."
+      sentence0:                               "Free of charge. No signup."
+      sentence1:                               "Simply fill out the form presented."
+      sentence2:                               "Pick the subject, date, time and place of the meeting."
+      sentence3:                               "If you confirm your email, your contacts will be saved for future meetings!"
   alt:
     add_minutes:                               "Add action item to minutes"
     send_email:                                "Send email invitation"
   form:
     email:
-      label:                                   "Admin Email"
+      label:                                   "Your Email"
       description:                             "If you fill this field, you will receive an email to confirm your identity. If you leave it blank, all people invited to the meeting will know you didn't authenticate yourself."
+    name:
+      label:                                   "Your Name"
+      description:                             "This will be the name used in the invitations sent to the participants."
     subject:                                   "Subject"
     place:                                     "Place"
     date:                                      "Date"
@@ -66,7 +67,6 @@ en:
       show:                                    "The meeting you are looking for does not exist!"
       delete:                                  "The meeting you tried deleting doesn't exist!"
     warning:                                   "Warning! This meeting was not authenticated by our service."
-  email:                                       "Email"
   status:                                      "Status"
   assign_action_item:                          "Assign action item"
   send_email:                                  "Send email"
@@ -79,7 +79,7 @@ en:
   time:                                        "Time"
   duration:                                    "Duration"
   extra_info:                                  "Extra Info"
-  creator:                                     "Creator Email"
+  administrator_email:                         "Administrator Email"
   until:                                       "until"
   attending:
     confirmed:                                 "Attendance confirmed"
@@ -90,6 +90,14 @@ en:
     notice:
       confirm:                                 "Successfully confirmed attendance."
       decline:                                 "Successfully declined attendance."
+  email:
+    self:                                      "Email"
+    admin:
+      subject:                                 "Your administration link"
+      body:                                    ""
+    participant:
+      subject:                                 "You were invited by #{admin[:name]} for a meeting"
+      body:                                    ""
 pt:
   hello:                                       "Olá mundo"
   current_language:                            "Português"
@@ -116,23 +124,21 @@ pt:
     button:                                    "Nova reunião"
     header:                                    "Criando a reunião"
     content:
-      first:
-        sentence:                             "Rápido e Fácil."
-        sentence0:                             "Gratuito. Sem registo."
-        sentence1:                             "Basta preencher o formulário apresentado."
-        sentence2:                             "Escolha o assunto, data, hora e local da reunião."
-        sentence3:                             "Se confirmar o seu email, os seus contactos serão gravados para futuras reuniões!"
-  
-  
-  
-  
+      sentence:                              "Rápido e Fácil."
+      sentence0:                             "Gratuito. Sem registo."
+      sentence1:                             "Basta preencher o formulário apresentado."
+      sentence2:                             "Escolha o assunto, data, hora e local da reunião."
+      sentence3:                             "Se confirmar o seu email, os seus contactos serão gravados para futuras reuniões!"
   alt:
     add_minutes:                               "Adicionar tarefa à acta"
     send_email:                                "Enviar convite por email"
   form:
     email:
-      label:                                   "Email do Administrador"
+      label:                                   "O seu email"
       description:                             "Se preencheres este campo, receberás um email para te autenticares. Se o deixares em branco, todos os participantes da reunião serão avisados de que não confirmaste a tua identidade."
+    name:
+      label:                                   "O seu nome"
+      description:                             "Este será o nome utilizado nos convites enviados por email aos participantes."
     subject:                                   "Assunto"
     date:                                      "Data"
     time:                                      "Hora de início"
@@ -160,8 +166,7 @@ pt:
     error:
       show:                                    "A reunião a que tentou aceder não existe!"
       delete:                                  "A reunião que tentou eliminar não existe!"
-    warning:                                   "Aviso! Esta reunião não foi autenticada pelo nosso serviço"
-  email:                                       "Email"
+    warning:                                   "Aviso! Esta reunião não foi autenticada pelo nosso serviço."
   status:                                      "Estado"
   assign_action_item:                          "Atribuir tarefa"
   send_email:                                  "Enviar email"
@@ -173,7 +178,7 @@ pt:
   time:                                        "Hora de início"
   duration:                                    "Duração"
   extra_info:                                  "Informações extra"
-  creator:                                     "Email do criador"
+  administrator_email:                         "Email do administrador"
   until:                                       "até"
   attending:
     confirmed:                                 "Presença confirmada"
@@ -184,3 +189,11 @@ pt:
     notice:
       confirm:                                 "Presença confirmada com sucesso."
       decline:                                 "Presença recusada com sucesso."
+  email:
+    self:                                      "Email"
+    admin:
+      subject:                                 "O seu link de administração"
+      body:                                    ""
+    participant:
+      subject:                                 "Foi convidado por #{admin[:name]} para uma reunião"
+      body:                                    ""
