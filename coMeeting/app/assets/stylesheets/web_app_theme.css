@@ -34,6 +34,10 @@
   background: #b8d1e2 url("/assets/icons/notice.png") no-repeat 10px center;
 }
 
+h2 {
+  margin: 0px;
+}
+
 html, body, #container {
   height:100%;
 }
@@ -75,7 +79,7 @@ html, body, #container {
 }
 
 #user-navigation {
-  padding-right:15px;
+  padding-right:20px;
   right:10%;
 }
 
@@ -210,10 +214,9 @@ a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active
   float:left;
   margin:0 7px 0 0;
   background-color: #4CA20C;
-  border:1px solid #bfbfbf;
   font-size: 2em;
   line-height: 1.3em;
-  font-weight:bold;
+  font-weight: bold;
   cursor:pointer;
   padding:5px 10px 6px 7px;
   text-decoration: none;
@@ -221,6 +224,9 @@ a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
+  -webkit-box-shadow: 3px 3px 3px #000;
+  -moz-box-shadow: 3px 3px 3px #000;
+  box-shadow: 3px 3px 3px #000;
 }
 button.big_button {
   width:auto;
