@@ -2,24 +2,25 @@ CoMeeting::Application.routes.draw do
 
 	get "meetings/get_admin_circles"
 	
-	get "meetings/download_pdf", :as => 'download'
-
-    post "meetings/update_minutes"
-	
 	get "meetings/get_minutes"
 	
-	post "meetings/update_action_item" => "meetings#update_action_item"
+	post "meetings/update_minutes"
 	
-	post "participations/send_email"
+	post "meetings/update_action_item"
+	
 
 	scope "(:locale)", :locale => /en|pt/ do
-		resources :meetings
-
-		resources :participations
-
-		resources :users
+		post "meetings/:id/send_email" => "participations#send_mail", :as => "send_email"
 		
-	  # get "/:page" => "static#show", :as => 'static'
+		post "meetings/:id/confirm" => "participations#confirm", :as => "confirm_participation"
+	
+		post "meetings/:id/decline" => "participations#decline", :as => "decline_participation"
+	
+		get "meetings/:id/download_pdf" => "meetings#download_pdf", :as => "download_pdf"
+	
+		resources :meetings
+		
+		# get "/:page" => "static#show", :as => 'static'
 		
 		root :to => 'home#index'
 	end

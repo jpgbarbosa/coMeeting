@@ -170,6 +170,5 @@ function sendEmail(participation_id){
 	  data    : { authenticity_token: $('meta[name="csrf-token"]').attr('content'), id: participation_id },
 	});	*/
 	$("a#email_image_"+participation_id).slideUp(1000);
-	
 }
 

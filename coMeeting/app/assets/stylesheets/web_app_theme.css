@@ -188,7 +188,10 @@ table.centered {
 
 .outer_center {
   text-align: center;
-  padding-bottom:10px;
+}
+
+.space {
+  padding-bottom: 15px;
 }
 
 .buttons {

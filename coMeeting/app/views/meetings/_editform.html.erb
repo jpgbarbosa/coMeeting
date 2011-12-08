@@ -90,10 +90,14 @@
     <%= f.text_field :extra_info, :class => 'text_field' %>
   </div>
 
-  <div class="group navform wat-cf">
-	<button class="button" type="submit">
-	  <%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("save", :default => "Save Changes") %>
-	</button>
-	<span class="text_button_padding"><%= t("or", :default => "or") %></span>
-	<%= link_to t("cancel", :default => "Cancel"), meeting_path(@meeting.link_admin), :class => "text_button_padding link_button" %>
+  <div class="outer_center">
+    <div class="buttons">
+      <div class="group navform wat-cf">
+        <button class="button" type="submit">
+          <%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("save", :default => "Save Changes") %>
+        </button>
+        <span class="text_button_padding"><%= t("or", :default => "or") %></span>
+        <%= link_to t("cancel", :default => "Cancel"), meeting_path(@meeting.link_admin), :class => "text_button_padding link_button" %>
+      </div>
+    </div>
   </div>
