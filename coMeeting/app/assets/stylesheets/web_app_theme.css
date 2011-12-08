@@ -75,7 +75,8 @@ html, body, #container {
 }
 
 #user-navigation {
-  margin-right:5px;
+  padding-right:15px;
+  right:10%;
 }
 
 #user-navigation ul li {
