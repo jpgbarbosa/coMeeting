@@ -132,7 +132,6 @@ html, body, #container {
   width: 100%;
   max-width: 100%;
   border: none;
-  min-height: 50px;
 }
 
 #minutes:focus, #static_minutes:focus {
@@ -146,7 +145,6 @@ html, body, #container {
   max-width: 100%;
   border: none;
   border-bottom: 1px dotted;
-  min-height: 50px;
 }
 
 #topicsDiv input, #participantsDiv input{

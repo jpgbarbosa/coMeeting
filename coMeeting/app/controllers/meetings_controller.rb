@@ -20,13 +20,14 @@ class MeetingsController < ApplicationController
 		else
 			@admin = true
 		end
-
+		
 		if @meeting.nil?
 			respond_to do |format|
 				flash[:error] = t("meeting.error.show", :default => "The meeting you're looking for doesn't exist!")
 				format.html { redirect_to root_path }
 			end
 		else
+			@static_minutes = create_static_minutes(@meeting)
 			@participations = @meeting.participations
 			respond_to do |format|
 				format.html # show.html.erb
@@ -54,6 +55,7 @@ class MeetingsController < ApplicationController
 
 		@meeting = Meeting.new(params[:meeting])
 		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
+		@meeting.timezone = ActiveSupport::TimeZone.zones_map[@meeting.timezone].to_s
 
 		respond_to do |format|
 			if @meeting.save
@@ -122,6 +124,10 @@ class MeetingsController < ApplicationController
 
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
+			
+				@meeting.timezone = ActiveSupport::TimeZone.zones_map[@meeting.timezone].to_s
+				@meeting.save
+				
 				participations = @meeting.participations
 
 				participations.each do |participation|
@@ -179,6 +185,19 @@ class MeetingsController < ApplicationController
 		end
 	end
 
+	def update_action_item
+		participation = Participation.find_by_id(params[:id])
+
+		participation.update_attributes(:action_item => params[:action_item], :deadline => params[:deadline])
+
+		meeting = Meeting.find_by_id(participation.meeting_id)
+				
+		@static_minutes = create_static_minutes(meeting)
+
+		respond_to do |format|
+			format.js
+		end
+	end
 
     def update_minutes
         meeting = Meeting.find_by_link_admin(params[:id])
@@ -191,27 +210,15 @@ class MeetingsController < ApplicationController
 
     def get_minutes
 		meeting = Meeting.find_by_link_admin(params[:id])
-
+		
+		@static_minutes = create_static_minutes(meeting)
+		
 		@minutes = meeting.minutes
-
+		
         respond_to do |format|
 			format.js
 		end
     end
-
-
-	def update_action_item
-		participation = Participation.find_by_id(params[:id])
-
-		participation.update_attributes(:action_item => params[:action_item], :deadline => params[:deadline])
-
-		@meeting = Meeting.find_by_id(participation.meeting_id)
-
-		respond_to do |format|
-			format.js
-		end
-	end
-
 
 	respond_to :js
 	def get_admin_circles
@@ -233,6 +240,20 @@ class MeetingsController < ApplicationController
 	def download_pdf
 		meeting = Meeting.find_by_link_admin(params[:id])
 
+		static_minutes = create_static_minutes(meeting)
+
+		my_file = "tmp/minutes_#{UUIDTools::UUID.random_create()}.pdf"
+
+		Prawn::Document.generate(my_file) do
+			text static_minutes + (meeting.minutes.nil? ? "" : "\n\n" + meeting.minutes)
+		end
+
+		send_file my_file
+	end	
+	
+	protected
+	def create_static_minutes(meeting)
+
 		topics = ""
 		participants = ""
 		action_items = ""
@@ -251,7 +272,7 @@ class MeetingsController < ApplicationController
 		minutes = "\n" + t("subject") + ": " + meeting.subject +
 			"\n" + t("local") + ": " + meeting.local +
 			"\n" + t("date") + ": " + meeting.meeting_date.to_s +
-			"\n" + t("time") + ": " + meeting.meeting_time.to_s +
+			"\n" + t("time") + ": " + meeting.meeting_time.strftime("%1Hh:%Mm").to_s + " " + meeting.timezone +
 			"\n" + t("duration") + ": " + meeting.duration.strftime("%1Hh:%Mm").to_s +
 			"\n" + t("extra_info") + ": " + meeting.extra_info +
 			"\n" + t("creator") + ": " + meeting.admin +
@@ -259,15 +280,9 @@ class MeetingsController < ApplicationController
 			"\n\t" + topics +
 			"\n\t" + t("participants") + ":" +
 			"\n\t" + participants +
-			"\n\t" + t("actions") + ":" + action_items +
-			"\n\n"
-
-		my_file = "tmp/minutes_#{UUIDTools::UUID.random_create()}.pdf"
-
-		Prawn::Document.generate(my_file) do
-			text minutes + (meeting.minutes.nil? ? "" : meeting.minutes)
-		end
-
-		send_file my_file
-	end	
+			"\n\t" + t("actions") + ":" + action_items
+			
+		return minutes
+	end
+	
 end

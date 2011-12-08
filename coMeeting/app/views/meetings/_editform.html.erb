@@ -17,7 +17,7 @@
   <div class="group">
     <%= f.label :meeting_time, t("form.time", :default => "Time"), :class => :label %>
     <%= f.time_select :meeting_time, :minute_step => 15, :class => 'text_field' %>
-    <%= f.time_zone_select :timezone, nil, :default => "Lisbon" %>
+    <%= f.time_zone_select :timezone, nil%>
   </div>
 
   <div class="group">

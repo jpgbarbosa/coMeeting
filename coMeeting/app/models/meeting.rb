@@ -1,6 +1,5 @@
 class Meeting < ActiveRecord::Base
   serialize :topics, Array
-  attr_accessor :timezone
 
   validates :subject, :presence => true
   validates :local, :presence => true

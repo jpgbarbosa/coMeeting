@@ -1,5 +1,11 @@
 <% if @admin %>
-	<%= text_area :minutes, nil, :id => 'minutes', :value => @meeting.minutes , :onfocus => "handleFocus(this);" , :onblur => "handleBlur(this);"%>
+	<%= text_area :minutes, nil, :id => 'minutes', :value => @meeting.minutes , :onclick => "_idleNow = true;" %>
 <% else %>
 	<%= text_area :minutes, nil, :id => 'minutes', :value => @minutes, :class => "autosize disabled", :disabled => true %>
 <% end %>
+<script>
+	$('textarea#minutes').autoResize({
+		maxHeight: 1000,
+		minHeight: 50
+	});
+</script>
