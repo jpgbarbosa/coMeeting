@@ -60,37 +60,6 @@ function removeParticipant(divNum) {
 	}
 }
 
-
-function addPerson(){
-    var numberDiv = document.getElementById('newParticipantNumber');
-	var mainDiv = document.getElementById('participantsDiv');
-    var num = (numberDiv.value - 1) + 1;
-	var divName = 'participant' + num;
-    var newDiv = document.createElement('div');
-    newDiv.setAttribute('id', divName);
-	
-	var meeting_id = document.getElementById('token').value;
-	
-    newDiv.innerHTML = "<form accept-charset='UTF-8' action='/en/participations' class='form' id='create_participation_"+ num + "' method='post'>" +
-        "<input type='hidden' name='meeting_id' value='" + meeting_id + "'/>" +
-        "<input class='person' type='text' size='30' name ='person' id='field'>  <a href='#' tabindex='-1' onclick='removePerson(" + divName + ");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>" +
-        "<a href='#' tabindex='-1' onclick='createParticipation("+num+");return false;'> <img valign='top' alt='' src='/assets/icons/email.png'> </a><p></p>" +
-        "</form>";
-    mainDiv.appendChild(newDiv);
-
-	numberDiv.value = num + 1;
-    document.getElementById(divName).scrollIntoView();
-}
-
-
-function removePerson(divNum){
-    var mainDiv = document.getElementById('participantsDiv');
-    var oldDiv = document.getElementById(divNum.id);
-
-    mainDiv.removeChild(oldDiv);
-}
-
-
 function createParticipation(num){
     var name = 'create_participation_' + num;
     document.forms[name].submit();
@@ -171,4 +140,74 @@ function sendEmail(participation_id){
 	});
 	$("a#email_image_"+participation_id).slideUp(1000);
 }
+
+
+// idle.js (c) Alexios Chouchoulas 2009
+// Released under the terms of the GNU Public License version 2.0 (or later).
+  
+var _idleTimeout = 5000;	// 5 seconds
+ 
+var _idleNow = false;
+var _idleTimestamp = null;
+var _idleTimer = null;
+ 
+function setIdleTimeout(ms){
+    _idleTimeout = ms;
+    _idleTimestamp = new Date().getTime() + ms;
+    if (_idleTimer != null) {
+		clearTimeout (_idleTimer);
+    }
+    _idleTimer = setTimeout(_makeIdle, ms + 50);
+    //alert('idle in ' + ms + ', tid = ' + _idleTimer);
+}
+ 
+function _makeIdle(){
+    var t = new Date().getTime();
+    if (t < _idleTimestamp) {
+		//alert('Not idle yet. Idle in ' + (_idleTimestamp - t + 50));
+		_idleTimer = setTimeout(_makeIdle, _idleTimestamp - t + 50);
+		return;
+    }
+    //alert('** IDLE **');
+    _idleNow = true;
+	updateMinutes($("input#token").val());
+}
+
+
+
+
+ 
+function _active(event){
+    var t = new Date().getTime();
+    _idleTimestamp = t + _idleTimeout;
+    //alert('not idle.');
+ 
+	if(_idleNow){
+		setIdleTimeout(_idleTimeout);
+	}
+     
+    try {
+		//alert('** BACK **');
+		if ((_idleNow ) && document.onBack){
+			//document.onBack(_idleNow);
+		}
+    } catch (err) {
+    }
+ 
+    _idleNow = false;
+}
+ 
+function _initJQuery(){
+    var doc = $(document);
+    doc.ready(function(){
+            try {
+                doc.keydown(_active);
+            } catch (err) { }
+        });
+}
+
+
+
+
+
 
