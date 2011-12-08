@@ -8,13 +8,13 @@ CoMeeting::Application.routes.draw do
 	
 	post "meetings/update_action_item"
 	
+	post "participations/send_email" => "participations#send_email", :as => "send_email"
 
 	scope "(:locale)", :locale => /en|pt/ do
-		post "meetings/:id/send_email" => "participations#send_mail", :as => "send_email"
 		
-		post "meetings/:id/confirm" => "participations#confirm", :as => "confirm_participation"
+		get "meetings/:id/confirm" => "participations#confirm", :as => "confirm_participation"
 	
-		post "meetings/:id/decline" => "participations#decline", :as => "decline_participation"
+		get "meetings/:id/decline" => "participations#decline", :as => "decline_participation"
 	
 		get "meetings/:id/download_pdf" => "meetings#download_pdf", :as => "download_pdf"
 	

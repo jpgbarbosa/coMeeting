@@ -20,13 +20,13 @@
 			
 			<% if @participation.is_attending == 0 || @participation.is_attending == -1 %>
 			
-				<%= link_to image_tag("/assets/icons/tick.png", :alt => "")+ " " + t("attending.confirm", :default=> "Attending"), confirm_participation_path(@participation.token), :method => :post, :class => "button" %>
+				<%= link_to image_tag("/assets/icons/tick.png", :alt => "")+ " " + t("attending.confirm", :default=> "Attending"), confirm_participation_path(@participation.token), :class => "button" %>
 					
 			<% end %>
 			
 			<% if @participation.is_attending == 1 || @participation.is_attending == 0 %>
 			
-				<%= link_to image_tag("/assets/icons/cross.png", :alt => "")+ " " + t("attending.decline", :default=> "Not Attending"), decline_participation_path(@participation.token), :method => :post, :class => "button" %>
+				<%= link_to image_tag("/assets/icons/cross.png", :alt => "")+ " " + t("attending.decline", :default=> "Not Attending"), decline_participation_path(@participation.token), :class => "button" %>
 				
 			<% end %>
 			
@@ -157,13 +157,6 @@
 								<input type='hidden' name='meeting_id' value='<%= @meeting.link_admin%>' />
 								<input type='hidden' name='person' value='<%= participation.user.mail %>' />
 								<a id="email_image_<%= participation.id %>"href='#' onclick="sendEmail(<%= participation.id %>); return false;"><img src="/assets/icons/email.png"/></a>
-								
-								<% if false %>
-								<%= link_to image_tag("/assets/icons/email.png", :alt => ""), send_email_path(participation.id), :remote => true, :method => :post %>
-								<% end %>
-								
-								
-								
 							 </td>
 						  <% elsif participation.is_attending == 1 %>
 							<td width='25%'><%= t("attending.confirmed", :default => "This person is attending") %></td>

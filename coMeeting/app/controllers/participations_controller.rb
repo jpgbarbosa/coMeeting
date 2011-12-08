@@ -56,8 +56,10 @@ class ParticipationsController < ApplicationController
 	
 	
 	def send_email
-		participation = Participation.find(params[:id])	
-		UserMailer.invitation_email(participation.user.mail, participation.token).deliver
+		puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+		
+		#participation = Participation.find(params[:id])	
+		#UserMailer.invitation_email(participation.user.mail, participation.token).deliver
 		
 		render :nothing => true
 	end
