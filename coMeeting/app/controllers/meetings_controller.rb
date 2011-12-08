@@ -116,6 +116,10 @@ class MeetingsController < ApplicationController
 
 	def update
 		@meeting = Meeting.find_by_link_admin(params[:id])
+		
+		
+		puts @meeting.meeting_time.in_time_zone(params[:meeting][:timezone])
+		@meeting.meeting_time = @meeting.meeting_time.in_time_zone(params[:meeting][:timezone])
 
 		respond_to do |format|
 			if @meeting.update_attributes(params[:meeting])
