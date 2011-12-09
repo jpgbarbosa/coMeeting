@@ -120,7 +120,7 @@ html, body, #container {
 }
 
 #drop_items li {
-	float: right !important
+  float: right !important
 }
 
 #minutes {
@@ -201,8 +201,20 @@ table.centered {
   display: inline-block;
 }
 
+.homepage {
+  overflow: hidden
+}
+
 .homepage h1 {
   color: #002134;
+}
+
+.homepage div.left {
+  float:left;
+}
+
+.homepage img {
+  float:right;
 }
 
 textarea.disabled {
