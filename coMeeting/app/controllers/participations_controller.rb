@@ -38,6 +38,7 @@ class ParticipationsController < ApplicationController
 	end
 	
 	
+	
 	def decline
 		participation = Participation.find_by_token(params[:id])
 		
@@ -57,9 +58,9 @@ class ParticipationsController < ApplicationController
 	
 	def send_email
 		participation = Participation.find(params[:id])
-		name = "Guilherme"
-		UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => name, :default => "You were invited by #{name} for a meeting"), "#{ENV['HOST']}/meetings/#{participation.token}").deliver
-		
+		admin = User.find(participation.meeting.admin)
+		name = get_name_from(admin)
+		UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => name, :default => "You were invited by #{name} for a meeting"), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}") ).deliver
 		render :nothing => true
 	end
 end

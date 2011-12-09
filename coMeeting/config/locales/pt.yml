@@ -67,6 +67,7 @@ pt:
       show:                                    "A reunião a que tentou aceder não existe!"
       delete:                                  "A reunião que tentou eliminar não existe!"
     warning:                                   "Aviso! Esta reunião não foi autenticada pelo nosso serviço."
+    no_participants:                           "Ainda ninguém foi convidado para a reunião!"
   status:                                      "Estado"
   assign_action_item:                          "Atribuir tarefa"
   send_email:                                  "Enviar email"
@@ -79,7 +80,9 @@ pt:
   duration:                                    "Duração"
   extra_info:                                  "Informações extra"
   administrator_email:                         "Email do administrador"
+  administrator_nome:                          "Nome do administrador"
   until:                                       "até"
+  by:                                          "por"
   attending:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"
@@ -95,5 +98,5 @@ pt:
       subject:                                 "%{admin}, aqui está o link de administração da sua reunião"
       body:                                    ""
     participant:
-      subject:                                 "%{admin} convidou-o para uma reunião"
-      body:                                    ""
+      subject:                                 "Foi convidado%{admin} para uma reunião"
+      body:                                    "Foi convidado para usar o serviço coMeeting. Para tal, basta clicar no seguinte endereço:\n\n %{link} \n\n a equipa coMeeting"

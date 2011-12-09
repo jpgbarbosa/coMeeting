@@ -14,17 +14,32 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.find_by_token(params[:id])
 		
 		if @meeting.nil?
-			participation = Participation.find_by_token(params[:id])
+			@participation = Participation.find_by_token(params[:id])
 			
-			if !participation.nil?
-				@meeting = Meeting.find(participation.meeting_id)
+			if !@participation.nil?
+				@meeting = Meeting.find(@participation.meeting_id)
 				@minutes = @meeting.minutes
 				@static_minutes = create_static_minutes(@meeting)
-				@admin = false
+				@is_admin = false
+				
+				if @meeting.admin != -1
+					@admin = User.find(@meeting.admin)
+				end
+				
 			end
 		else
+			if @meeting.admin != -1
+				@admin = User.find(@meeting.admin)
+				if @meeting.verified == false
+					@meeting.participations.each do |participation|
+						UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => @admin.name.empty? ? "" : " by " + @admin.name), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}") ).deliver
+					end
+					@meeting.verified = true
+					@meeting.save
+				end
+			end
 			@static_minutes = create_static_minutes(@meeting)
-			@admin = true
+			@is_admin = true
 		end
 		
 		respond_to do |format|
@@ -69,22 +84,30 @@ class MeetingsController < ApplicationController
 					end
 
 					participation = Participation.new(:meeting_id => @meeting.id, :user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
-					if participation.save
-						UserMailer.email(email, t("email.participant.subject", :admin => params[:admin][:name], :default => "You were invited by #{params[:admin][:name]} for a meeting"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}").deliver
-					end
+					participation.save
 				end
 
-				if params[:meeting][:admin].empty?
+				if params[:admin][:mail].empty?
+					@meeting.participations.each do |participation|
+						UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => params[:admin][:name].empty? ? "" : " by "+ params[:admin][:name] ), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}")).deliver
+					end
+					
 					format.html { redirect_to meeting_path(@meeting.token), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
 					format.json { head :ok }
 				else
-					admin = User.find_by_mail(params[:meeting][:admin])
+					admin = User.find_by_mail(params[:admin][:mail])
 					if admin.nil?
-						admin = User.new(:mail => params[:meeting][:admin])
+						admin = User.new(:mail => params[:admin][:mail], :name => params[:admin][:name])
+						admin.save
+					else
+						admin.name = params[:admin][:name]
 						admin.save
 					end
 					
-					UserMailer.email(params[:meeting][:admin], t("email.admin.subject", :admin => params[:admin][:name], :default => "#{params[:admin][:name]}, here's your meeting administration link"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{@meeting.token}").deliver
+					@meeting.admin = admin.id
+					@meeting.save
+					
+					UserMailer.email(params[:admin][:mail], t("email.admin.subject", :admin => params[:admin][:name], :default => "#{params[:admin][:name]}, here's your meeting administration link"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{@meeting.token}").deliver
 					format.html { redirect_to root_path, notice: t("meeting.created.withauth", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 					format.json { head :ok }
 				end
@@ -106,6 +129,9 @@ class MeetingsController < ApplicationController
 			end
 		else
 			@participations = @meeting.participations
+			if @meeting.admin != -1
+				@admin = User.find(@meeting.admin)
+			end
 			respond_to do |format|
 				format.html # edit.html.erb
 				format.json { render json: @meeting }
@@ -119,11 +145,23 @@ class MeetingsController < ApplicationController
 		params[:participations].reject!( &:blank? )
         
 		@meeting = Meeting.find_by_token(params[:id])
-		
 		@meeting.timezone = ActiveSupport::TimeZone.zones_map[params[:timezone]].to_s
+		
 		@meeting.save
 		meeting_updated = @meeting.update_attributes(params[:meeting])
 		
+		
+		if @meeting.admin != -1
+			admin = User.find(@meeting.admin)
+			admin.name = params[:admin][:name]
+			admin.save
+			
+			name = get_name_from(admin)
+			
+		else
+			name = ""
+		end
+	
 		if meeting_updated	
 			participations = @meeting.participations
 
@@ -134,8 +172,6 @@ class MeetingsController < ApplicationController
 			end
 
 			params[:participations].each do |email|
-				puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-				puts email
 				user = User.find_by_mail(email)
 				if user.nil?
 					user = User.new(user.mail => email)
@@ -145,11 +181,8 @@ class MeetingsController < ApplicationController
 				participation = participations.find_by_user_id(user.id)
 				if participation.nil?
 					participation = Participation.new(:meeting_id => @meeting.id, :user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
-					puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 					if participation.save
-						puts 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY'
-						name = "Guilherme"
-						UserMailer.email(email, t("email.participant.subject", :admin => name, :default => "You were invited by #{name} for a meeting"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}").deliver
+						UserMailer.email(email, t("email.participant.subject", :admin => name ), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}")).deliver
 					end
 				end
 			end
@@ -267,14 +300,20 @@ class MeetingsController < ApplicationController
 				action_items += "\n\t- " + participation.user.mail + " => " + participation.action_item.to_s + " " + t('until') + " " + participation.deadline.to_s
 			end
 		end
-
+		
 		minutes = "\n" + t("subject") + ": " + meeting.subject +
 			"\n" + t("local") + ": " + meeting.local +
 			"\n" + t("date") + ": " + meeting.meeting_date.to_s +
 			"\n" + t("time") + ": " + meeting.meeting_time.strftime("%1Hh:%Mm").to_s + " " + meeting.timezone +
 			"\n" + t("duration") + ": " + meeting.duration.strftime("%1Hh:%Mm").to_s +
-			"\n" + t("extra_info") + ": " + meeting.extra_info +
-			"\n" + t("administrator_email") + ": " + meeting.admin +
+			"\n" + t("extra_info") + ": " + meeting.extra_info
+		
+		if meeting.admin != -1
+			admin = User.find(meeting.admin)
+			minutes = minutes + "\n" + t("administrator_name") + ": " + admin.name + "\n" + t("administrator_email") + ": " + admin.mail
+		end
+		
+		minutes = minutes +	
 			"\n\n\t" + t("topics") + ":" +
 			"\n\t" + topics +
 			"\n\t" + t("participants") + ":" +
@@ -282,6 +321,5 @@ class MeetingsController < ApplicationController
 			"\n\t" + t("actions") + ":" + action_items
 			
 		return minutes
-	end
-	
+	end	
 end

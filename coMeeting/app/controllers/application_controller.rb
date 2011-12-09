@@ -20,4 +20,18 @@ class ApplicationController < ActionController::Base
 		{:locale => I18n.locale}
 	end
 	
+	protected
+	def get_name_from(admin)
+		if admin.name.empty?
+			n = admin.mail.scan(/^.+(?=@.+)/)[0]
+			if n.nil?
+				name = ""
+			else
+				name = " " + t("by") +" " + n
+			end
+		else
+			name = " " + t("by") +" " + admin.name
+		end
+		name
+	end
 end

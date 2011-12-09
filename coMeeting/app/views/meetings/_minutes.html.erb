@@ -1,4 +1,4 @@
-<% if @admin %>
+<% if @is_admin %>
 	<%= text_area :minutes, nil, :id => 'minutes', :value => @meeting.minutes , :onclick => "_idleNow = true;" %>
 <% else %>
 	<%= text_area :minutes, nil, :id => 'minutes', :value => @minutes, :class => "autosize disabled", :disabled => true %>
