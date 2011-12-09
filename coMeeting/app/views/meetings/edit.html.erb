@@ -9,7 +9,7 @@
     <div class="inner">
       <link rel="stylesheet" href="/assets/datepicker.css" type="text/css" />
       <script type="text/javascript" src="/assets/datepicker.js"></script>
-      <%= form_for @meeting, :url => meeting_path(@meeting.link_admin), :html => { :class => :form } do |f| -%>
+      <%= form_for @meeting, :url => meeting_path(@meeting.token), :html => { :class => :form } do |f| -%>
         <%= render :partial => "editform", :locals => {:f => f} %>
       <% end -%>
     </div>

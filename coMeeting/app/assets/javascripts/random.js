@@ -9,9 +9,9 @@ function disableEnter(e){
 }
 
 $(document).ready(function() {
-  setTimeout(hideFlashMessages, 2000);
+  setTimeout(hideFlashMessages, 4000);
 });
 
 function hideFlashMessages() {
-  $('div.message').fadeOut(2500)
+  $('div.message').fadeOut(3000)
 }

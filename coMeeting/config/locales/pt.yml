@@ -24,11 +24,11 @@ pt:
     button:                                    "Nova reunião"
     header:                                    "Criando a reunião"
     content:
-      sentence:                              "Rápido e Fácil."
-      sentence0:                             "Gratuito. Sem registo."
-      sentence1:                             "Basta preencher o formulário apresentado."
-      sentence2:                             "Escolha o assunto, data, hora e local da reunião."
-      sentence3:                             "Se confirmar o seu email, os seus contactos serão gravados para futuras reuniões!"
+      sentence1:                               "Escolha o assunto, data, hora e local da reunião."
+      sentence2:                               "Decida os tópicos a discutir e os emails das pessoas com quem os quer debater."
+      sentence3:                               "Se confirmar o seu email, os seus contactos serão gravados para futuras reuniões!"
+      sentence4:                               "É Fácil de usar, é Grátis e simplesmente Funciona."
+      sentence5:                               "Experimente!"
   alt:
     add_minutes:                               "Adicionar tarefa à acta"
     send_email:                                "Enviar convite por email"
@@ -67,7 +67,6 @@ pt:
       show:                                    "A reunião a que tentou aceder não existe!"
       delete:                                  "A reunião que tentou eliminar não existe!"
     warning:                                   "Aviso! Esta reunião não foi autenticada pelo nosso serviço."
-  email:                                       "Email"
   status:                                      "Estado"
   assign_action_item:                          "Atribuir tarefa"
   send_email:                                  "Enviar email"
@@ -93,8 +92,8 @@ pt:
   email:
     self:                                      "Email"
     admin:
-      subject:                                 "O seu link de administração"
+      subject:                                 "%{admin}, aqui está o link de administração da sua reunião"
       body:                                    ""
     participant:
-      subject:                                 "Foi convidado por #{admin[:name]} para uma reunião"
+      subject:                                 "%{admin} convidou-o para uma reunião"
       body:                                    ""

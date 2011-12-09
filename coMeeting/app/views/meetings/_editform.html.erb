@@ -17,7 +17,7 @@
   <div class="group">
     <%= f.label :meeting_time, t("form.time", :default => "Time"), :class => :label %>
     <%= f.time_select :meeting_time, :minute_step => 15, :class => 'text_field' %>
-    <%= f.time_zone_select :timezone, nil%>
+    <%= f.time_zone_select :timezone, nil, {:default => "Lisbon"}, {:name => "timezone"} %>
   </div>
 
   <div class="group">
@@ -97,7 +97,7 @@
           <%= image_tag("/assets/icons/tick.png", :alt => "") %> <%= t("save", :default => "Save Changes") %>
         </button>
         <span class="text_button_padding"><%= t("or", :default => "or") %></span>
-        <%= link_to t("cancel", :default => "Cancel"), meeting_path(@meeting.link_admin), :class => "text_button_padding link_button" %>
+        <%= link_to t("cancel", :default => "Cancel"), meeting_path(@meeting.token), :class => "text_button_padding link_button" %>
       </div>
     </div>
   </div>

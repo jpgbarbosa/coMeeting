@@ -56,8 +56,9 @@ class ParticipationsController < ApplicationController
 	
 	
 	def send_email
-		participation = Participation.find(params[:id])	
-		UserMailer.invitation_email(participation.user.mail, participation.token).deliver
+		participation = Participation.find(params[:id])
+		name = "Guilherme"
+		UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => name, :default => "You were invited by #{name} for a meeting"), "#{ENV['HOST']}/meetings/#{participation.token}").deliver
 		
 		render :nothing => true
 	end

@@ -201,6 +201,10 @@ table.centered {
   display: inline-block;
 }
 
+.homepage h1 {
+  color: #002134;
+}
+
 textarea.disabled {
   background-color:#FFFFFF;
   color:#000000;

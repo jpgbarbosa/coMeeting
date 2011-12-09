@@ -2,8 +2,8 @@
 	<% if @admin %>
 		
 		<div class="buttons wat-cf">
-			<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.link_admin), :class => "button" %>
-			<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.link_admin), :confirm => t('confirm', :default => 'Are you sure?'), :method => :delete, :class => "button" %>
+			<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.token), :class => "button" %>
+			<%= link_to image_tag("/assets/icons/cross.png", :alt => "") + " " + t("meeting.delete", :default => "Delete"), meeting_path(@meeting.token), :confirm => t('confirm', :default => 'Are you sure?'), :method => :delete, :class => "button" %>
 		</div>
 			
 	<% else %>                                                   
@@ -126,20 +126,19 @@
 
   <div class="content">
     <div class="inner">
-		<input type="hidden" id="token" value="<%=@meeting.link_admin%>">
+		<input type="hidden" id="token" value="<%=@meeting.token%>">
 		<table class="centered table">
 		
 			<% if @admin %>
-			
-				<tr>
-					<td width='45%'><%= t("email.self", :default => "Email") %></td>
-					<td width='25%'><%= t("status", :default => "Status") %></td>
-					<td width='15%'><%= t("assign_action_item", :default => "Assign Action Item") %></td>
-					<td width='15%'><%= t("send_email", :default => "Send Email") %></td>
-				</tr>
-				<% if @participations.present? 
-					num = 0 %>
-					<% @participations.each do |participation| %>
+				<% if @meeting.participations.present? %>
+					<tr>
+						<td width='45%'><%= t("email.self", :default => "Email") %></td>
+						<td width='25%'><%= t("status", :default => "Status") %></td>
+						<td width='15%'><%= t("assign_action_item", :default => "Assign Action Item") %></td>
+						<td width='15%'><%= t("send_email", :default => "Send Email") %></td>
+					</tr>
+					<% num = 0 %>
+					<% @meeting.participations.each do |participation| %>
 						<% rowClass = cycle("even", "odd") %>
 						
 						<tr class="<%=rowClass%>">
@@ -171,17 +170,17 @@
 						
 						<% num = num + 1 %>
 					<% end %>
+				<% else %>
+					<tr><td class="leftered"><%= t("meeting.no_participants", :default => "You still have not envited people to your meeting!") %></td></tr>
 				<% end %>
-				
 			<% else %>
-			
 				<tr>
-					<td width='65%'><%= t("email", :default => "Email") %></td>
+					<td width='65%'><%= t("email.self", :default => "Email") %></td>
 					<td width='35%'><%= t("status", :default => "Status") %></td>
 				</tr>
-				<% if @participations.present? 
+				<% if @meeting.participations.present? 
 					num = 0 %>
-					<% @participations.each do |participation| %>
+					<% @meeting.participations.each do |participation| %>
 						<% rowClass = cycle("even", "odd") %>
 					
 						<tr class="<%=rowClass%>">
@@ -225,7 +224,7 @@
 
 <div class="outer_center">
 	<div class="buttons wat-cf">
-		<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download as PDF"), download_pdf_path(@meeting.link_admin), :class => "button" %>
+		<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.pdf", :default=> "Download as PDF"), download_pdf_path(@meeting.token), :class => "button" %>
 	</div>
 </div>
 <% end %>
@@ -235,7 +234,7 @@
 		<% if @admin %>
 			_initMinutesListener();
 		<% else %>
-			setInterval("getMinutes('<%=@meeting.link_admin%>')", 5000);
+			setInterval("getMinutes('<%=@meeting.token%>')", 5000);
 		<% end %>
 	<% end %>
 	

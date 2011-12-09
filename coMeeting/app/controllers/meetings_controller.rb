@@ -11,25 +11,27 @@ class MeetingsController < ApplicationController
 
 
 	def show
-		@meeting = Meeting.find_by_link_admin(params[:id])
-		if @meeting.nil?
-			@participation = Participation.find_by_token(params[:id])
-			@meeting = Meeting.find(@participation.meeting_id)
-			@minutes = @meeting.minutes
-			@admin = false
-		else
-			@admin = true
-		end
+		@meeting = Meeting.find_by_token(params[:id])
 		
 		if @meeting.nil?
-			respond_to do |format|
-				flash[:error] = t("meeting.error.show", :default => "The meeting you're looking for doesn't exist!")
-				format.html { redirect_to root_path }
+			participation = Participation.find_by_token(params[:id])
+			
+			if !participation.nil?
+				@meeting = Meeting.find(participation.meeting_id)
+				@minutes = @meeting.minutes
+				@static_minutes = create_static_minutes(@meeting)
+				@admin = false
 			end
 		else
 			@static_minutes = create_static_minutes(@meeting)
-			@participations = @meeting.participations
-			respond_to do |format|
+			@admin = true
+		end
+		
+		respond_to do |format|
+			if @meeting.nil?
+				flash[:error] = t("meeting.error.show", :default => "The meeting you're looking for doesn't exist!")
+				format.html { redirect_to root_path }
+			else
 				format.html # show.html.erb
 				format.json { render json: @meeting }
 			end
@@ -54,30 +56,27 @@ class MeetingsController < ApplicationController
 		params[:participations].reject!( &:blank? )
 
 		@meeting = Meeting.new(params[:meeting])
-		@meeting.link_admin = UUIDTools::UUID.random_create().to_s
-		@meeting.timezone = ActiveSupport::TimeZone.zones_map[@meeting.timezone].to_s
+		@meeting.token = UUIDTools::UUID.random_create().to_s
+		@meeting.timezone = ActiveSupport::TimeZone.zones_map[params[:timezone]].to_s
 
 		respond_to do |format|
 			if @meeting.save
 				params[:participations].each do |email|
 					user = User.find_by_mail(email)
 					if user.nil?
-						user = User.new
-						user.mail = email
+						user = User.new(:mail => email)
 						user.save
 					end
 
-					participation = Participation.new
-					participation.meeting_id = @meeting.id
-					participation.user_id = user.id
-					participation.token = UUIDTools::UUID.random_create().to_s
+					participation = Participation.new(:meeting_id => @meeting.id, :user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
 					if participation.save
-						UserMailer.invitation_email(email, participation.token).deliver
+						UserMailer.email(email, t("email.participant.subject", :admin => params[:admin][:name], :default => "You were invited by #{params[:admin][:name]} for a meeting"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}").deliver
 					end
 				end
 
 				if params[:meeting][:admin].empty?
-					format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
+					format.html { redirect_to meeting_path(@meeting.token), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
+					format.json { head :ok }
 				else
 					admin = User.find_by_mail(params[:meeting][:admin])
 					if admin.nil?
@@ -85,8 +84,9 @@ class MeetingsController < ApplicationController
 						admin.save
 					end
 					
-					UserMailer.admin_email(params[:meeting][:admin], params[:user], @meeting.link_admin).deliver
+					UserMailer.email(params[:meeting][:admin], t("email.admin.subject", :admin => params[:admin][:name], :default => "#{params[:admin][:name]}, here's your meeting administration link"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{@meeting.token}").deliver
 					format.html { redirect_to root_path, notice: t("meeting.created.withauth", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
+					format.json { head :ok }
 				end
 			else
 				format.html { render action: "new" }
@@ -97,7 +97,7 @@ class MeetingsController < ApplicationController
 
 
 	def edit
-		@meeting = Meeting.find_by_link_admin(params[:id])
+		@meeting = Meeting.find_by_token(params[:id])
 
 		if @meeting.nil?
 			respond_to do |format|
@@ -118,45 +118,46 @@ class MeetingsController < ApplicationController
     	params[:meeting][:topics].reject!( &:blank? )
 		params[:participations].reject!( &:blank? )
         
-		@meeting = Meeting.find_by_link_admin(params[:id])
+		@meeting = Meeting.find_by_token(params[:id])
+		
+		@meeting.timezone = ActiveSupport::TimeZone.zones_map[params[:timezone]].to_s
+		@meeting.save
+		meeting_updated = @meeting.update_attributes(params[:meeting])
+		
+		if meeting_updated	
+			participations = @meeting.participations
+
+			participations.each do |participation|
+				unless params[:participations].include?(participation.user.mail)
+					participation.destroy
+				end
+			end
+
+			params[:participations].each do |email|
+				puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+				puts email
+				user = User.find_by_mail(email)
+				if user.nil?
+					user = User.new(user.mail => email)
+					user.save
+				end
+
+				participation = participations.find_by_user_id(user.id)
+				if participation.nil?
+					participation = Participation.new(:meeting_id => @meeting.id, :user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
+					puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+					if participation.save
+						puts 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY'
+						name = "Guilherme"
+						UserMailer.email(email, t("email.participant.subject", :admin => name, :default => "You were invited by #{name} for a meeting"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}").deliver
+					end
+				end
+			end
+		end
 
 		respond_to do |format|
-			if @meeting.update_attributes(params[:meeting])
-			
-				@meeting.timezone = ActiveSupport::TimeZone.zones_map[@meeting.timezone].to_s
-				@meeting.save
-				
-				participations = @meeting.participations
-
-				participations.each do |participation|
-					if !params[:participations].include?(participation.user.mail)
-						participation.destroy
-					end
-				end
-
-				params[:participations].each do |email|
-					if(!email.empty?)
-						user = User.find_by_mail(email)
-						if user.nil?
-							user = User.new
-							user.mail = email
-							user.save
-						end
-
-						participation = participations.find_by_user_id(user.id)
-						if participation.nil?
-							participation = Participation.new
-							participation.meeting_id = @meeting.id
-							participation.user_id = user.id
-							participation.token = UUIDTools::UUID.random_create().to_s
-							if participation.save
-								UserMailer.invitation_email(email, participation.token).deliver
-							end
-						end
-					end
-				end
-
-				format.html { redirect_to meeting_path(@meeting.link_admin), notice: t("meeting.updated", :default => "Meeting successfully updated.") }
+			if meeting_updated
+				format.html { redirect_to meeting_path(@meeting.token), notice: t("meeting.updated", :default => "Meeting successfully updated.") }
 				format.json { head :ok }
 			else
 				format.html { render action: "edit" }
@@ -167,7 +168,7 @@ class MeetingsController < ApplicationController
 
 
 	def destroy
-		meeting = Meeting.find_by_link_admin(params[:id])
+		meeting = Meeting.find_by_token(params[:id])
 
 		if meeting == nil
 			respond_to do |format|
@@ -198,7 +199,7 @@ class MeetingsController < ApplicationController
 	end
 
     def update_minutes
-        meeting = Meeting.find_by_link_admin(params[:id])
+        meeting = Meeting.find_by_token(params[:id])
 
 		meeting.update_attribute(:minutes, params[:minutes])
 
@@ -207,7 +208,7 @@ class MeetingsController < ApplicationController
 
 
     def get_minutes
-		meeting = Meeting.find_by_link_admin(params[:id])
+		meeting = Meeting.find_by_token(params[:id])
 		
 		@static_minutes = create_static_minutes(meeting)
 		
@@ -236,7 +237,7 @@ class MeetingsController < ApplicationController
 
 
 	def download_pdf
-		meeting = Meeting.find_by_link_admin(params[:id])
+		meeting = Meeting.find_by_token(params[:id])
 
 		static_minutes = create_static_minutes(meeting)
 
