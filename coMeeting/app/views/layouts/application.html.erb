@@ -21,8 +21,8 @@
     }); 
   });
   
-  function toggleDiv() {
-    $("#drop_items").slideToggle("slow");
+  function toggleDiv(divId) {
+    $("#"+divId).slideToggle("slow");
   }
   
   var mouse_is_inside = false;
@@ -49,7 +49,7 @@
       <div id="user-navigation">
         <ul class="wat-cf">
 		  <li id="drop_menu">
-              <a href="#" onclick="toggleDiv();return false;"><%= image_tag("/assets/icons/globe.png", :alt => "") + t("current_language", :default => "English") %></a>
+              <a href="#" onclick="toggleDiv('drop_items');return false;"><%= image_tag("/assets/icons/globe.png", :alt => "") + t("current_language", :default => "English") %></a>
 			  <ul id="drop_items">
 				<li><%= link_to "English", url_for( :locale => "en" ) %></li>
 				<li><%= link_to "Portugu&#234;s".html_safe, url_for( :locale => "pt" ) %></li>

@@ -67,8 +67,7 @@ function createParticipation(num){
 
 
 function showAction(participant){
-	$("tr#"+participant).toggle();
-	
+	$("#"+participant).toggle();
 }
 
 
