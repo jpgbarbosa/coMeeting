@@ -4,33 +4,21 @@ class ApplicationController < ActionController::Base
 	
 	protected    
 	def set_locale
-		if params[:locale].blank?
-			I18n.locale = :'en'
-		else
-			I18n.locale = params[:locale]
-		end
+		I18n.locale = params[:locale] || I18n.locale = :en
 	end
-	
-	#def set_locale
-	#	I18n.locale = params[:locale] || I18n.locale = "en"
-	#end
 
 	# ensure locale persists
 	def default_url_options(options={})
 		{:locale => I18n.locale}
 	end
 	
+	
 	protected
 	def get_name_from(admin)
 		if admin.name.empty?
-			n = admin.mail.scan(/^.+(?=@.+)/)[0]
-			if n.nil?
-				name = ""
-			else
-				name = " " + t("by") +" " + n
-			end
+			name = admin.mail.scan(/^.+(?=@.+)/)[0]
 		else
-			name = " " + t("by") +" " + admin.name
+			name = admin.name
 		end
 		name
 	end

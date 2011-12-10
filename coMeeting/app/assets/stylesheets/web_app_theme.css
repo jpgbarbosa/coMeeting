@@ -207,19 +207,16 @@ table.centered {
   display: inline-block;
 }
 
-.homepage {
-  overflow: hidden
+#main .block .content .static {
+  overflow: hidden;
+  padding-top:15px;
 }
 
-.homepage h1 {
+.static h1 {
   color: #00273d;
 }
 
-.homepage div.left {
-  float:left;
-}
-
-.homepage img {
+.static img {
   float:right;
 }
 

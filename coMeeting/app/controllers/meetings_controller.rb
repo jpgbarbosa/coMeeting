@@ -31,8 +31,10 @@ class MeetingsController < ApplicationController
 			if @meeting.admin != -1
 				@admin = User.find(@meeting.admin)
 				if @meeting.verified == false
+					name = " " + t("by") +" " + get_name_from(@admin)
+				
 					@meeting.participations.each do |participation|
-						UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => @admin.name.empty? ? "" : " by " + @admin.name), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}") ).deliver
+						UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => name, :default => "You were invited#{name} to a meeting"), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}") ).deliver
 					end
 					@meeting.verified = true
 					@meeting.save
@@ -107,7 +109,9 @@ class MeetingsController < ApplicationController
 					@meeting.admin = admin.id
 					@meeting.save
 					
-					UserMailer.email(params[:admin][:mail], t("email.admin.subject", :admin => params[:admin][:name], :default => "#{params[:admin][:name]}, here's your meeting administration link"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{@meeting.token}").deliver
+					name = get_name_from(admin)
+					
+					UserMailer.email(params[:admin][:mail], t("email.admin.subject", :admin => name, :default => "#{name}, here's your meeting administration link"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{@meeting.token}").deliver
 					format.html { redirect_to root_path, notice: t("meeting.created.withauth", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
 					format.json { head :ok }
 				end
@@ -156,8 +160,7 @@ class MeetingsController < ApplicationController
 			admin.name = params[:admin][:name]
 			admin.save
 			
-			name = get_name_from(admin)
-			
+			name = " " + t("by") +" " + get_name_from(admin)
 		else
 			name = ""
 		end
@@ -182,7 +185,7 @@ class MeetingsController < ApplicationController
 				if participation.nil?
 					participation = Participation.new(:meeting_id => @meeting.id, :user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
 					if participation.save
-						UserMailer.email(email, t("email.participant.subject", :admin => name ), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}")).deliver
+						UserMailer.email(email, t("email.participant.subject", :admin => name, :default => "You were invited#{name} to a meeting"), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}")).deliver
 					end
 				end
 			end

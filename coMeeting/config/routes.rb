@@ -17,10 +17,10 @@ CoMeeting::Application.routes.draw do
 		get "meetings/:id/decline" => "participations#decline", :as => "decline_participation"
 	
 		get "meetings/:id/download_pdf" => "meetings#download_pdf", :as => "download_pdf"
+		
+		get "about-us" => "static#about_us", :as => 'about_us'
 	
 		resources :meetings
-		
-		# get "/:page" => "static#show", :as => 'static'
 		
 		root :to => 'home#index'
 	end

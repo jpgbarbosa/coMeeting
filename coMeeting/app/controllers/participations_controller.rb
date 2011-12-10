@@ -60,7 +60,14 @@ class ParticipationsController < ApplicationController
 		participation = Participation.find(params[:id])
 		admin = User.find(participation.meeting.admin)
 		name = get_name_from(admin)
-		UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => name, :default => "You were invited by #{name} for a meeting"), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}") ).deliver
+		if name.nil?
+			name = ""
+		else
+			name = " " + t("by") +" " + name
+		end
+		
+		
+		UserMailer.email(participation.user.mail, t("email.participant.subject", :admin => name, :default => "You were invited#{name} to a meeting"), t("email.participant.body", :link => "#{ENV['HOST']}/#{params[:locale]}/meetings/#{participation.token}") ).deliver
 		render :nothing => true
 	end
 end
