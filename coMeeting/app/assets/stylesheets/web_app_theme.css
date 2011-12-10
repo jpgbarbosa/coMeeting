@@ -96,6 +96,7 @@ html, body, #container {
 
 #header {
   position: relative;
+  background:#00273d;
 }
 
 #drop_items {
@@ -145,6 +146,11 @@ html, body, #container {
 
 #topicsDiv input, #participantsDiv input{
   margin-bottom: 10px;
+}
+
+#header img.logo {
+  padding-top:10px;
+  padding-bottom:5px;
 }
 
 .form input.date_picker{
@@ -206,7 +212,7 @@ table.centered {
 }
 
 .homepage h1 {
-  color: #002134;
+  color: #00273d;
 }
 
 .homepage div.left {
@@ -227,7 +233,7 @@ a.big_button:link, a.big_button:visited, a.big_button:hover, a.big_button:active
   display:block;
   float:left;
   margin:0 7px 0 0;
-  background-color: #4CA20C;
+  background-color: #00273d;
   font-size: 2em;
   line-height: 1.3em;
   font-weight: bold;
@@ -257,9 +263,9 @@ button.big_button[type] {
   padding:4px 10px 3px 7px; /* IE7 */
 }
 button.big_button:hover, a.big_button:hover {
-  background-color:#3C800A;
+  background-color:#06537f;
 }
 button.big_button:active, a.big_button:active {
-  background-color:#45930B;
+  background-color:#043958;
 }
 
