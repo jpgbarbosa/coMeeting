@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20111209121710) do
     t.string   "local"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "meeting_date"
     t.string   "extra_info"
+    t.string   "meeting_date"
     t.text     "topics"
     t.datetime "duration",     :limit => 255
     t.text     "minutes"
