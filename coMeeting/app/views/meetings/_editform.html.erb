@@ -1,3 +1,10 @@
+  <% if @meeting.admin != -1 %>
+	<div class="group">
+		<%= f.label :admin_name, t("form.name.label", :default => "Your Name"), :class => :label %>
+		<%= f.text_field :admin, :id => "admin_name", :class => 'text_field', :name => "admin[name]", :value => @admin.name %>
+		<span class="description"><%=t("form.name.description", :default => "This will be the name used in the invitations sent to the participants.") %></span>
+	</div>
+  <% end %>
   <div class="group">
     <%= f.label :subject, t("form.subject", :default => "Subject"), :class => :label %>
     <%= f.text_field :subject, :class => 'text_field' %>
@@ -24,6 +31,11 @@
     <%= f.label :duration, t("form.duration", :default => "Duration"), :class => :label %>
     <%= f.time_select :duration, :minute_step => 15,:default => Time.now.change(:hour => 0), :class => 'text_field' %>
   </div>
+  
+  <div class="group">
+    <%= f.label :extra_info, t("form.extra_info", :default => "Extra info"), :class => :label %>
+    <%= f.text_field :extra_info, :class => 'text_field' %>
+  </div>
 
   <div class="group">
 		<div id="topicsDiv">
@@ -49,8 +61,16 @@
     <span class="description"><%= t("form.add_topic", :default => "Add a new Topic")%></span>
   </div>
   
+  
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+  
   <div class="group">
-		<input type="hidden" id="admin_email" value="<%=@meeting.admin %>"/>
+		<% if @meeting.admin != -1 %>
+			<input type="hidden" id="admin_email" value="<%=@admin.mail %>"/>
+		<% else %>
+			<input type="hidden" id="admin_email" value=""/>
+		<% end %>
 		<div id="participantsDiv">
             <%= f.label :participants, t("participants", :default => "Participants"), :class => :label %>
 			<% if @participations.present? 
@@ -58,7 +78,7 @@
 				<% @participations.each do |participation| -%>
 					<% name_id = "participant#{num}" %>
 					<div id=<%=name_id %>>
-						<% if @meeting.admin.empty? %>
+						<% if @meeting.admin == -1%>
 							<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => participation.user.mail %>  <a href="#" tabindex="-1" onclick="removeParticipant('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 						<% else %>
 							<%= f.text_field :participants, :onclick => "getCircles(); return false;" , :autocomplete => "off" ,:class => "auto_search_complete shorter text_field", :name => "participations[]", :value => participation.user.mail %>  <a href="#" tabindex="-1" onclick="removeParticipant('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
@@ -68,7 +88,7 @@
 				<% end -%>
 			<% else %>
 				<div id="participant0">
-					<% if @meeting.admin.empty? %>
+					<% if @meeting.admin == -1 %>
 						<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeParticipant('participant0');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 					<% else %>
 						<%= f.text_field :participants, :onclick => "getCircles(); return false;" , :autocomplete => "off" ,:class => "auto_search_complete shorter text_field", :name => "participations[]", :value => "" %>  <a href="#" tabindex="-1" onclick="removeParticipant('participant0');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
@@ -80,14 +100,6 @@
 		<a href="#" onclick="addParticipant();return false;">+</a>
 		<input type="hidden" id="newParticipantNumber" value="<%=num%>" />
     <span class="description"><%=t("form.add_participant", :default => "Add a new Participant")%></span>
-  </div>	
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">
-	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
-	
-  <div class="group">
-    <%= f.label :extra_info, t("form.extra_info", :default => "Extra info"), :class => :label %>
-    <%= f.text_field :extra_info, :class => 'text_field' %>
   </div>
 
   <div class="outer_center">

@@ -67,7 +67,7 @@ en:
       show:                                    "The meeting you are looking for does not exist!"
       delete:                                  "The meeting you tried deleting does not exist!"
     warning:                                   "Warning! This meeting was not authenticated by our service."
-    no_participants:                           "You still have not envited people to your meeting!"
+    no_participants:                           "You still have not invited people to your meeting!"
   status:                                      "Status"
   assign_action_item:                          "Assign action item"
   send_email:                                  "Send email"
@@ -81,7 +81,9 @@ en:
   duration:                                    "Duration"
   extra_info:                                  "Extra Info"
   administrator_email:                         "Administrator Email"
+  administrator_name:                          "Administrator Name"
   until:                                       "until"
+  by:                                          "by"
   attending:
     confirmed:                                 "Attendance confirmed"
     unknown:                                   "Yet to answer"
@@ -97,8 +99,8 @@ en:
       subject:                                 "%{admin}, here's your meeting administration link"
       body:                                    ""
     participant:
-      subject:                                 "%{admin} invited you to a meeting"
-      body:                                    ""
+      subject:                                 "You were invited%{admin} to a meeting"
+      body:                                    "You were invited to use the service coMeeting. To do so, just click the following link:\n\n %{link} \n\n the coMeeting team"
 pt:
   hello:                                       "Olá mundo"
   current_language:                            "Português"
@@ -181,7 +183,9 @@ pt:
   duration:                                    "Duração"
   extra_info:                                  "Informações extra"
   administrator_email:                         "Email do administrador"
+  administrator_nome:                          "Nome do administrador"
   until:                                       "até"
+  by:                                          "por"
   attending:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"
@@ -197,5 +201,5 @@ pt:
       subject:                                 "%{admin}, aqui está o link de administração da sua reunião"
       body:                                    ""
     participant:
-      subject:                                 "%{admin} convidou-o para uma reunião"
-      body:                                    ""
+      subject:                                 "Foi convidado%{admin} para uma reunião"
+      body:                                    "Foi convidado para usar o serviço coMeeting. Para tal, basta clicar no seguinte endereço:\n\n %{link} \n\n a equipa coMeeting"

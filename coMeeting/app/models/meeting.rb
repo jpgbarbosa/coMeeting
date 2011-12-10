@@ -7,4 +7,13 @@ class Meeting < ActiveRecord::Base
 
   has_many :participations, :class_name => "Participation"
   has_many :users, :class_name => "User", :through => :participations
+  
+  after_initialize :init
+  
+  def init
+	self.verified ||= false
+	self.admin ||= -1
+  end
+  
+  
 end

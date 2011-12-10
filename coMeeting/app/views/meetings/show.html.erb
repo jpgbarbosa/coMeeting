@@ -1,5 +1,5 @@
 <div class="space outer_center">
-	<% if @admin %>
+	<% if @is_admin %>
 		
 		<div class="buttons wat-cf">
 			<%= link_to image_tag("/assets/icons/application_edit.png", :alt => "")+ " " + t("meeting.edit", :default=> "Edit"), edit_meeting_path(@meeting.token), :class => "button" %>
@@ -8,7 +8,7 @@
 			
 	<% else %>                                                   
 	
-		<% if @meeting.admin.empty? %>
+		<% if @meeting.admin == -1 %>
 			<p class="warning"><%= t("meeting.warning") %></p>
 		<% end %>
 		
@@ -45,16 +45,27 @@
   </div>
   <div class="content">
     <div class="inner">
-      <p>
-        <b>
-		  <% if @admin %>
-		    <%= t("form.email.label", :default => "Your email") %> :</b>
+		<% if @meeting.admin != -1 %>
+		  <% if @is_admin %>
+			<p>
+				<b> <%= t("form.name.label", :default => "Your name") %> :</b>
+				<%= @admin.name %>
+			</p>
+			<p>
+				<b> <%= t("form.email.label", :default => "Your email") %> :</b>
+				<%= @admin.mail %>
+			</p>
 		  <% else %>
-		    <%= t("administrator_email", :default => "Administrator Email") %> :</b>
+			<p>
+				<b> <%= t("administrator_name", :default => "Administrator Name") %> :</b>
+				<%= @admin.name %>
+			</p>
+			<p>
+				<b> <%= t("administrator_email", :default => "Administrator Email") %> :</b>
+				<%= @admin.mail %>
+			</p>
 		  <% end %>
-        <%= @meeting.admin %>
-      </p>
-	
+		<% end %>
       <p>
         <b><%= t("form.subject", :default => "Subject") %> :</b>
           
@@ -129,7 +140,7 @@
 		<input type="hidden" id="token" value="<%=@meeting.token%>">
 		<table class="centered table">
 		
-			<% if @admin %>
+			<% if @is_admin %>
 				<% if @meeting.participations.present? %>
 					<tr>
 						<td width='45%'><%= t("email.self", :default => "Email") %></td>
@@ -171,7 +182,7 @@
 						<% num = num + 1 %>
 					<% end %>
 				<% else %>
-					<tr><td class="leftered"><%= t("meeting.no_participants", :default => "You still have not envited people to your meeting!") %></td></tr>
+					<tr><td class="leftered"><%= t("meeting.no_participants", :default => "You still have not invited people to your meeting!") %></td></tr>
 				<% end %>
 			<% else %>
 				<tr>
@@ -202,7 +213,7 @@
   </div>
 </div>
 
-<% if @admin || @participation.is_attending != 0 %>
+<% if @is_admin || @participation.is_attending != 0 %>
 <div class="block" id="block-act">
   <div class="secondary-navigation">
     <ul class="wat-cf">
@@ -230,12 +241,10 @@
 <% end %>
 
 <script>
-	<% if true %>
-		<% if @admin %>
-			_initMinutesListener();
-		<% else %>
-			setInterval("getMinutes('<%=@meeting.token%>')", 5000);
-		<% end %>
+	<% if @is_admin %>
+		_initMinutesListener();
+	<% else %>
+		setInterval("getMinutes('<%=@meeting.token%>')", 5000);
 	<% end %>
 	
 	$('textarea#minutes').autoResize({
