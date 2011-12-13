@@ -18,14 +18,14 @@ CoMeeting::Application.routes.draw do
 	
 		get "meetings/:id/download_pdf" => "meetings#download_pdf", :as => "download_pdf"
 		
-		get "about-us" => "static#about_us", :as => 'about_us'
+		get "about-us" => "static#about_us", :as => "about_us"
 	
 		resources :meetings
 		
 		root :to => 'home#index'
 	end
 	
-	#match '/:anything' => redirect("/"), :constraints => { :anything => /.*/ }
+	match '/:anything' => redirect("/"), :constraints => { :anything => /.*/ }
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
