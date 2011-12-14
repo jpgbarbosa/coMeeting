@@ -1,2 +1,9 @@
 <%= text_area :static_minutes, nil, :id => "static_minutes", :value => @static_minutes, :class => "disabled", :disabled => true %>
+<script>
+$('textarea#static_minutes').autoResize({
+		maxHeight: 1000,
+		minHeight: 50
+	});
+</script>
+
 	

@@ -45,7 +45,7 @@
 				<% @meeting.topics.each do |topic| -%>
 					<% name_id = "topic#{num}" %>
 					<div id=<%=name_id %>>
-						<%= f.text_field :topics, :class => "shorter text_field", :name => "meeting[topics][]", :value => topic %>  <a href="#" tabindex="-1" onclick="removeTopic(<%= name_id %>);return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
+						<%= f.text_field :topics, :class => "shorter text_field", :name => "meeting[topics][]", :value => topic %>  <a href="#" tabindex="-1" onclick="removeTopic('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 					</div>
 					<% num = num + 1 %>
 				<% end -%>
@@ -77,7 +77,7 @@
 				num = 0 %>
 				<% @participations.each do |participation| -%>
 					<% name_id = "participant#{num}" %>
-					<div id=<%=name_id %>>
+					<div id='<%=name_id %>'>
 						<% if @meeting.admin == -1%>
 							<%= f.text_field :participants, :class => "shorter text_field", :name => "participations[]", :value => participation.user.mail %>  <a href="#" tabindex="-1" onclick="removeParticipant('<%= name_id %>');return false;"> <img valign="top" alt="" src="/assets/icons/cross.png"> </a>
 						<% else %>

@@ -21,28 +21,6 @@
   <component name="FavoritesManager">
     <favorites_list name="coMeeting" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="meetings_controller.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="11" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.48090523">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_createform.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/meetings/_createform.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="86" selection-start="1168" selection-end="1168" vertical-scroll-proportion="-6.923077">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
@@ -319,6 +297,13 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -346,13 +331,6 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda">
@@ -486,7 +464,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -494,7 +472,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35247666" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -593,9 +571,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/participations_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="0" selection-start="3030" selection-end="3030" vertical-scroll-proportion="0.7595474">
-          <folding />
-        </state>
+        <state line="108" column="0" selection-start="3030" selection-end="3030" vertical-scroll-proportion="0.7595474" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20111109193842_change_duration_column_in_meetings.rb">
@@ -605,44 +581,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20111107181347_change_is_attending_type_in_participations.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="48" selection-start="131" selection-end="131" vertical-scroll-proportion="0.047222223">
-          <folding />
-        </state>
+        <state line="2" column="48" selection-start="131" selection-end="131" vertical-scroll-proportion="0.047222223" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20111010142345_add_meeting_time_to_meetings.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20111207170852_change_meeting_time_in_meeting.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="24" selection-start="139" selection-end="139" vertical-scroll-proportion="0.07083333">
-          <folding />
-        </state>
+        <state line="3" column="24" selection-start="139" selection-end="139" vertical-scroll-proportion="0.07083333" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="28" selection-start="1167" selection-end="1179" vertical-scroll-proportion="0.6375">
-          <folding />
-        </state>
+        <state line="27" column="28" selection-start="1167" selection-end="1179" vertical-scroll-proportion="0.6375" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/meetings/_createform.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="86" selection-start="1168" selection-end="1168" vertical-scroll-proportion="-6.923077">
-          <folding />
-        </state>
+        <state line="23" column="86" selection-start="1168" selection-end="1168" vertical-scroll-proportion="-6.923077" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/meetings_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="11" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.48090523">
-          <folding />
-        </state>
+        <state line="127" column="11" selection-start="3449" selection-end="3449" vertical-scroll-proportion="0.48090523" />
       </provider>
     </entry>
   </component>

@@ -4,26 +4,27 @@ class ParticipationsController < ApplicationController
 		
 		meeting = Meeting.find_by_id(participation.meeting_id)
 		participations = meeting.participations
-		admin = User.find_by_mail(meeting.admin)
-	  
-		if !admin.nil?
-			participations.each do |participant|
-				if participant.is_attending == 1
-					if !participant.user.circles.include?(participation.user.id)
-						participant.user.circles << participation.user.id
-						participation.user.circles << participant.user.id
+		
+		if meeting.admin != -1
+			admin = User.find(meeting.admin)
+			if !admin.nil?
+				participations.each do |participant|
+					if participant.is_attending == 1
+						if !participant.user.circles.include?(participation.user.id)
+							participant.user.circles << participation.user.id
+							participation.user.circles << participant.user.id
+						end
 					end
+					participant.user.save
 				end
-				participant.user.save
-			end
-			if !admin.circles.include?(participation.user.id)
-				admin.circles << participation.user.id
-				participation.user.circles << admin.id
-				participation.user.save
-				admin.save
+				if !admin.circles.include?(participation.user.id)
+					admin.circles << participation.user.id
+					participation.user.circles << admin.id
+					participation.user.save
+					admin.save
+				end
 			end
 		end
-		
 		participation.is_attending = 1
 	
 		respond_to do |format|
