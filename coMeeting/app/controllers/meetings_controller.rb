@@ -1,11 +1,15 @@
 class MeetingsController < ApplicationController
 
 	def index
-		@meetings = Meeting.all
-
-		respond_to do |format|
-			format.html { render html: @meetings } # index.html.erb
-			format.json { render json: @meetings }
+    if params[:admin].blank?
+      respond_to do |format|
+        format.html { redirect_to root_path }
+      end
+    else
+      @meetings = Meeting.all
+      respond_to do |format|
+				format.html { render html: @meetings } # index.html.erb
+			end
 		end
 	end
 
@@ -50,7 +54,6 @@ class MeetingsController < ApplicationController
 				format.html { redirect_to root_path }
 			else
 				format.html # show.html.erb
-				format.json { render json: @meeting }
 			end
 		end
 	end
@@ -63,7 +66,6 @@ class MeetingsController < ApplicationController
 
 		respond_to do |format|
 			format.html # new.html.erb
-			format.json { render json: @meeting }
 		end
 	end
 
@@ -79,14 +81,9 @@ class MeetingsController < ApplicationController
 		respond_to do |format|
 			if @meeting.save
 				params[:participations].each do |email|
-					user = User.find_by_mail(email)
-					if user.nil?
-						user = User.new(:mail => email)
-						user.save
-					end
+					user = User.find_or_create_by_mail(email)
 
-					participation = Participation.new(:meeting_id => @meeting.id, :user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
-					participation.save
+          @meeting.participations.create(:user_id => user.id, :token => UUIDTools::UUID.random_create().to_s)
 				end
 
 				if params[:admin][:mail].empty?
@@ -95,15 +92,12 @@ class MeetingsController < ApplicationController
 					end
 					
 					format.html { redirect_to meeting_path(@meeting.token), notice: t("meeting.created.withoutauth", :default => "Meeting successfully created without email confirmation.") }
-					format.json { head :ok }
 				else
 					admin = User.find_by_mail(params[:admin][:mail])
 					if admin.nil?
-						admin = User.new(:mail => params[:admin][:mail], :name => params[:admin][:name])
-						admin.save
+						admin = User.create(:mail => params[:admin][:mail], :name => params[:admin][:name])
 					else
-						admin.name = params[:admin][:name]
-						admin.save
+            admin.update_attribute(:name, params[:admin][:name])  
 					end
 					
 					@meeting.admin = admin.id
@@ -113,11 +107,9 @@ class MeetingsController < ApplicationController
 					
 					UserMailer.email(params[:admin][:mail], t("email.admin.subject", :admin => name, :default => "#{name}, here's your meeting administration link"), "#{ENV['HOST']}/#{params[:locale]}/meetings/#{@meeting.token}").deliver
 					format.html { redirect_to root_path, notice: t("meeting.created.withauth", :default => "Meeting successfully created. Please check your email to continue the creation process.") }
-					format.json { head :ok }
 				end
 			else
 				format.html { render action: "new" }
-				format.json { render json: @meeting.errors, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -138,14 +130,13 @@ class MeetingsController < ApplicationController
 			end
 			respond_to do |format|
 				format.html # edit.html.erb
-				format.json { render json: @meeting }
 			end
 		end
 	end
     
     
 	def update
-    	params[:meeting][:topics].reject!( &:blank? )
+    params[:meeting][:topics].reject!( &:blank? )
 		params[:participations].reject!( &:blank? )
         
 		@meeting = Meeting.find_by_token(params[:id])
@@ -175,11 +166,7 @@ class MeetingsController < ApplicationController
 			end
 
 			params[:participations].each do |email|
-				user = User.find_by_mail(email)
-				if user.nil?
-					user = User.new(user.mail => email)
-					user.save
-				end
+				user = User.find_or_create_by_mail(email)
 
 				participation = participations.find_by_user_id(user.id)
 				if participation.nil?
@@ -194,10 +181,8 @@ class MeetingsController < ApplicationController
 		respond_to do |format|
 			if meeting_updated
 				format.html { redirect_to meeting_path(@meeting.token), notice: t("meeting.updated", :default => "Meeting successfully updated.") }
-				format.json { head :ok }
 			else
 				format.html { render action: "edit" }
-				format.json { render json: @meeting.errors, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -206,7 +191,7 @@ class MeetingsController < ApplicationController
 	def destroy
 		meeting = Meeting.find_by_token(params[:id])
 
-		if meeting == nil
+		if meeting.nil?
 			respond_to do |format|
 				flash[:error] = t("meeting.error.delete", :default => "The meeting you tried deleting doesn't exist!")
 				format.html { redirect_to root_path }
@@ -215,7 +200,6 @@ class MeetingsController < ApplicationController
 			meeting.destroy
 			respond_to do |format|
 				format.html { redirect_to root_path, notice: t("meeting.deleted", :default => "Meeting successfully deleted.") }
-				format.json { head :ok }
 			end
 		end
 	end
@@ -234,26 +218,26 @@ class MeetingsController < ApplicationController
 		end
 	end
 
-    def update_minutes
-        meeting = Meeting.find_by_token(params[:id])
+  def update_minutes
+    meeting = Meeting.find_by_token(params[:id])
 
 		meeting.update_attribute(:minutes, params[:minutes])
 
-        render :nothing => true
-    end
+    render :nothing => true
+  end
 
 
-    def get_minutes
+  def get_minutes
 		meeting = Meeting.find_by_token(params[:id])
 		
 		@static_minutes = create_static_minutes(meeting)
 		
 		@minutes = meeting.minutes
 		
-        respond_to do |format|
+    respond_to do |format|
 			format.js
 		end
-    end
+  end
 
 	respond_to :js
 	def get_admin_circles

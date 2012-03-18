@@ -33,7 +33,7 @@ CoMeeting::Application.configure do
   
   ENV['HOST'] = 'http://localhost:3000'
   config.action_mailer.raise_delivery_errors = true
-  #SMTP seetings to send emails
+  # SMTP settings to send emails
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
   	:address => "smtp.gmail.com",

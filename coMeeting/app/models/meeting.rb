@@ -11,8 +11,8 @@ class Meeting < ActiveRecord::Base
   after_initialize :init
   
   def init
-	self.verified ||= false
-	self.admin ||= -1
+    self.verified ||= false
+    self.admin ||= -1
   end
   
   

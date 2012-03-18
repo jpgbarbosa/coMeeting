@@ -1,5 +1,5 @@
 function addTopic() {
-    var numberDiv = document.getElementById('newTopicNumber');
+  var numberDiv = document.getElementById('newTopicNumber');
 	var mainDiv = document.getElementById("topicsDiv");
 	var num = parseInt(numberDiv.value);
 	var divName = 'topic' + num;
@@ -9,7 +9,7 @@ function addTopic() {
 	newDiv.innerHTML = "<input class='shorter text_field' id='meeting_topic_" + num + "' name='meeting[topics][]' size='30' type='text'>  <a href='#' tabindex='-1' onclick='removeTopic(\"" + divName + "\");return false;'> <img valign='top' alt='' src='/assets/icons/cross.png'> </a>";
 	mainDiv.appendChild(newDiv);
 
-    numberDiv.value = num + 1;
+  numberDiv.value = num + 1;
 	window.scrollBy(0,30);
 }
 
@@ -28,7 +28,7 @@ function removeTopic(divNum) {
 
 
 function addParticipant() {
-    var numberDiv = document.getElementById('newParticipantNumber');
+  var numberDiv = document.getElementById('newParticipantNumber');
 	var mainDiv = document.getElementById("participantsDiv");
 	var num = parseInt(numberDiv.value);
 	var divName = 'participant' + num;

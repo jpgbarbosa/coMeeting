@@ -60,7 +60,7 @@ CoMeeting::Application.configure do
   
   ENV['HOST'] = 'http://comeeting.herokuapp.com'
 
-  #SMTP seetings to send emails
+  # SMTP settings to send emails
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
   	:address => "smtp.gmail.com",
