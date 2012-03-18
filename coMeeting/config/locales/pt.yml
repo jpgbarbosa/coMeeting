@@ -87,6 +87,9 @@ pt:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"
     declined:                                  "Indisponível"
+    attended:                                  "Esteve presente"
+    unanswered:                                "Não respondeu"
+    not_attended:                              "Não esteve presente"
     confirm:                                   "Vou estar presente" 
     decline:                                   "Não vou estar presente"
     notice:

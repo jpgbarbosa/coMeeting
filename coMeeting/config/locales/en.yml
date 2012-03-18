@@ -84,10 +84,15 @@ en:
   administrator_name:                          "Administrator Name"
   until:                                       "until"
   by:                                          "by"
+  who_we_are:                                  "We are a group of students from the Department of Informatics Engineering."
+  what_for:                                    "This site was created under the subject of Organization, Behavior, Knowledge and Innovation."
   attending:
     confirmed:                                 "Attendance confirmed"
     unknown:                                   "Yet to answer"
     declined:                                  "Attendance declined"
+    attended:                                  "Attended"
+    unanswered:                                "Did not answer"
+    not_attended:                              "Did not attend"
     confirm:                                   "Attending" 
     decline:                                   "Not Attending"
     notice:
@@ -186,10 +191,15 @@ pt:
   administrator_nome:                          "Nome do administrador"
   until:                                       "até"
   by:                                          "por"
+  who_we_are:                                  "Somos um grupo de estudantes do Departamento de Engenharia Informática da Universidade de Coimbra"
+  what_for:                                    "Este site foi criado no âmbito da cadeira de Organização,Comportamento,Conhecimento e Inovação."
   attending:
     confirmed:                                 "Presença confirmada"
     unknown:                                   "Por confirmar"
     declined:                                  "Indisponível"
+    attended:                                  "Esteve presente"
+    unanswered:                                "Não respondeu"
+    not_attended:                              "Não esteve presente"
     confirm:                                   "Vou estar presente" 
     decline:                                   "Não vou estar presente"
     notice:

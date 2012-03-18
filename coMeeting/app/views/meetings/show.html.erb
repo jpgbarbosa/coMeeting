@@ -153,7 +153,13 @@
 						<% rowClass = cycle("even", "odd") %>
 						
 						<tr class="<%=rowClass%>">
-						  <td class="leftered" width='45%'><%=participation.user.mail %></td>
+						  <td class="leftered" width='45%'>
+							<% if participation.user.name.blank? %>
+								<%=participation.user.mail %>
+							<% else %>
+								<%= participation.user.name %> (<%=participation.user.mail %>)
+							<% end %>
+						  </td>
 						  
 						  <% if participation.is_attending == -1 %>
 							 <td width='25%'><%= t("attending.declined", :default => "This person is not attending") %></td>
@@ -247,7 +253,7 @@
 		setInterval("getMinutes('<%=@meeting.token%>')", 5000);
 	<% end %>
 	
-	$('textarea#minutes').autoResize({
+	$('textarea').autoResize({
 		maxHeight: 1000,
 		minHeight: 50
 	});

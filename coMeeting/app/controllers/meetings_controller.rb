@@ -282,9 +282,26 @@ class MeetingsController < ApplicationController
 		end
 
 		meeting.participations.each do |participation|
-			participants += "- " + participation.user.mail + "\n\t"
-			if !participation.action_item.nil? && !participation.deadline.nil?
-				action_items += "\n\t- " + participation.user.mail + " => " + participation.action_item.to_s + " " + t('until') + " " + participation.deadline.to_s
+			if !participation.user.name.blank?
+				participants += "- #{participation.user.name} (#{participation.user.mail})".ljust(60)
+			else
+				participants += "- #{participation.user.mail}".ljust(60)
+			end
+			
+			if participation.is_attending == 1
+				participants += " " + t("attending.attended")
+			elsif participation.is_attending == 0
+				participants += " " + t("attending.unanswered")
+			elsif participation.is_attending == -1
+				participants += " " + t("attending.not_attended")
+			end
+			participants += "\n\t"
+			if !participation.action_item.nil? && !participation.deadline.nil? && !participation.action_item.empty? && !participation.deadline.empty?
+				if !participation.user.name.empty?
+					action_items += "\n\t- " + participation.user.name + " (" + participation.user.mail + ")" + " => " + participation.action_item.to_s + " " + t('until') + " " + participation.deadline.to_s
+				else
+					action_items += "\n\t- " + participation.user.mail + " => " + participation.action_item.to_s + " " + t('until') + " " + participation.deadline.to_s
+				end
 			end
 		end
 		
